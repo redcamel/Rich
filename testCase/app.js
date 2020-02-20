@@ -4,6 +4,11 @@ Rich.init().then(_ => {
     let containerCurrentState, containerStatePass, containerStateFail, containerStateDuration;
     const testList = [
         {
+            title: 'Test - Rich.DETECTOR',
+            url: 'detector/Test_DETECTOR.html',
+            type: 'visual'
+        },
+        {
             title: 'Test - Rich.Dom',
             url: 'display/TestBdd_Dom.html'
         },
@@ -24,17 +29,16 @@ Rich.init().then(_ => {
     ]
     const IFRAME_LIST = []
     containerRoot = Rich.Dom('div').S(
-        '>', containerCurrentState = Rich.Dom('div').S(
+        '>', Rich.Dom('div').S(
             '@className', 'containerCurrentState',
-            'html', 'Total Test Page : ' + testList.length,
+            '>', containerCurrentState = Rich.Dom('div'),
             '>', containerStatePass = Rich.Dom('div').S('@className', 'pass'),
             '>', containerStateFail = Rich.Dom('div').S('@className', 'fail'),
             '>', containerStateDuration = Rich.Dom('div').S('@className', 'duration')
         ),
         '<', 'body'
     );
-    let tick = function () { 
-
+    let tick = function () {
         let pass = 0;
         let fail = 0;
         let duration = 0
@@ -48,6 +52,7 @@ Rich.init().then(_ => {
             if (t0) duration += +t0.textContent
 
         })
+        containerCurrentState.S('html', 'Total Test Result - ' + (fail ? 'FAIL' : 'SUCCESS'))
         containerStatePass.S('html', 'Passed : ' + pass);
         containerStateFail.S('html', 'Fail : ' + fail);
         containerStateDuration.S('html', 'Total duration : ' + duration + 's');
