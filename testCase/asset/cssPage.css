@@ -1,0 +1,26 @@
+@import url('https://fonts.googleapis.com/css?family=Fira+Sans&display=swap');
+
+* {
+    font-family: 'Fira Sans', sans-serif;
+}
+
+
+/* width */
+::-webkit-scrollbar {
+    width: 4px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #333;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: rgb(120, 115, 159);
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: rgb(242, 169, 113);
+}

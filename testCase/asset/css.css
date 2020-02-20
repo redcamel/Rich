@@ -1,0 +1,97 @@
+@import url('https://fonts.googleapis.com/css?family=Fira+Sans&display=swap');
+
+* {
+    font-family: 'Fira Sans', sans-serif;
+    color: #fff;
+    box-sizing: border-box;
+}
+
+html, body {
+    margin: 0;
+    padding: 10px;
+    color: #fff;
+    background: #222;
+    font-size: 12px;
+}
+
+.containerCurrentState {
+    margin: 10px;
+    font-size: 26px;
+}
+
+.containerCurrentState .pass {
+    color: #888;
+    font-size: 12px;
+}
+
+.containerCurrentState .fail {
+    color: red;
+    font-size: 12px;
+}
+
+.containerCurrentState .duration {
+    color: #888;
+    font-size: 12px;
+}
+
+.itemContainer {
+    overflow: hidden;
+    width: 300px;
+    height: 150px;
+    display: inline-block;
+    border: 0;
+    margin: 10px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.itemContainer iframe {
+    height: 107px;
+    border: 1px solid rgb(51, 51, 51);
+    border-bottom-left-radius: 10px;
+    overflow: auto;
+    overflow-x: hidden;
+    background: #fff;
+}
+
+.itemContainer .title {
+    background: #4d4786;
+    padding: 15px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    cursor: pointer;
+    font-size: 12px;
+    position: relative;
+}
+
+.itemContainer .type {
+    position: absolute;
+    right: 0;
+    top: 0;
+    padding: 8px;
+    font-size: 11px;
+    background: #c26c00;
+}
+
+
+/* width */
+::-webkit-scrollbar {
+    width: 4px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #222;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #70020c;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #70020c;
+}
+
+

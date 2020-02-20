@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../dist/Rich.min.js"></script>
+</head>
+<body>
+<div id="testID"></div>
+<script>
+    Rich.init()
+        .then(context => {
+
+            console.log('초기성공여부!', context)
+
+            console.log(Rich)
+            console.log(context)
+            //
+            // Rich.getJS('https://cdnjs.cloudflare.com/ajax/libs/gsap/3.1.1/CSSRulePlugin.js')
+            //     .then(v => console.log('성공',v))
+            //     .catch(v => console.log('실패',v))
+            // Rich.ajaxJsonGet('test.json')
+            //     .then(v => v.json())
+            //     .then(v => console.log('성공',v))
+            //     .catch(v => console.log('실패',v))
+            // Rich.ajaxJsonGet('testText.txt')
+            //     .then(v => v.text())
+            //     .then(v => console.log('성공',v))
+            //     .catch(v => console.log('실패',v))
+            // Rich.ajaxJsonPost('test.json')
+            //     .then(v => v.json())
+            //     .then(v => console.log('성공',v))
+            //     .catch(v => console.log('실패',v))
+            // Rich.ajaxJsonPost('testText.txt')
+            //     .then(v => v.text())
+            //     .then(v => console.log('성공',v))
+            //     .catch(v => console.log('실패',v))
+            // context.getJS('test.js', 'failTest.js', 'test.js', 'failTest.js')
+            //     .then(v => {
+            //         console.log('성공이다', v)
+            //     })
+            //     .catch(v => console.log('실패',v))
+            //
+            // context.getJS('test.js', 'test.js')
+            //     .then(v => {
+            //         console.log('성공이다', v)
+            //         test()
+            //     })
+
+            // let testClass = class testClass extends Rich.ClassUUID {
+            //     _test = 1
+            //     constructor() {
+            //         super();
+            //         console.log(context)
+            //     }
+            // }
+            // let testClass2 = class testClass extends Rich.ClassUUID {
+            //     _test = 1
+            //     constructor() {
+            //         super();
+            //         console.log(context)
+            //     }
+            // }
+
+            // context.addClass('testClass', testClass)
+            // context.testClass()
+            // context.testClass()
+            // context.testClass()
+            // context.testClass()
+            // context.testClass()
+            // context.addClass('testClass',testClass2)
+            // context.addClass('testClass', testClass)
+
+            // console.log(Rich.Dom('body'))
+            // console.log(Rich.Dom('body') == Rich.Dom('body'))
+            // Rich.Dom('div').S('<', 'body', 'html', '태그를 생성')
+            // Rich.Dom('div').S('<', 'body', 'html', '태그를 생성2')
+            // Rich.Dom('div').S('<', 'body', 'html', '태그를 생성3')
+            // Rich.Dom('<div>tagTest</div>').S('<', 'body')
+            // Rich.Dom('<div><ul>tagTest<li>subtag</li></ul><ul>tagTest<li>subtag</li></ul></div>').S('<', 'body')
+            //
+           // console.log( Rich.Dom('#testID').S('html', 'testID'))
+            console.log('못찾아야함', Rich.Dom('#nullidTest'))
+        })
+
+</script>
+
+</body>
+</html>
