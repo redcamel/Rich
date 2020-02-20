@@ -33,7 +33,7 @@ Rich.init().then(_ => {
         ),
         '<', 'body'
     );
-    let tick = function () {
+    let tick = function () { 
 
         let pass = 0;
         let fail = 0;
