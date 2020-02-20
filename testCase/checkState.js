@@ -1,4 +1,4 @@
-var testRun = function(){
+var checkState = function(){
     mocha.run(failures => {
         console.log(failures)
 
@@ -20,6 +20,23 @@ var testRun = function(){
                 '<', 'body'
             )
             Rich.Dom('#mocha-report').S('@className', 'fail')
+        }else{
+            Rich.Dom('button').S(
+                'position', 'fixed',
+                'z-index',1,
+                'top', 15,
+                'right', 15,
+                'width', 40,
+                'height', 40,
+                'border', 0,
+                'border-radius', '50%',
+                'outline', 'none',
+                'background', '#fff',
+                'color', '#000',
+                'html', 'Pass',
+                '<', 'body'
+            )
+            Rich.Dom('#mocha-report').S('@className', 'test pass fast')
         }
     });
 }
