@@ -575,7 +575,8 @@ fn$1.S = function () {
   var noPx = {
     'opacity': 1,
     'z-index': 1,
-    'zIndex': 1
+    'zIndex': 1,
+    'content': 1
   };
 
   var regFunc = function regFunc(match, _char, index, str) {
@@ -638,6 +639,7 @@ Css = function Css(key) {
     if (!temp.__noHasBrowser) UU_TABLE[key] = temp, UUID$2++;
   }
 
+  console.log(UU_TABLE);
   return UU_TABLE[key];
 };
 

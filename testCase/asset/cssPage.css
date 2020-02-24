@@ -10,6 +10,11 @@ html, body {
     font-size: 12px;
 }
 
+/*#test-id::after{*/
+/*    content: "afterTest";*/
+/*    position:absolute;*/
+/*}*/
+
 input, select, option, button {
     color: #222
 }

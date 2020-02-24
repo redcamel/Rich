@@ -43,7 +43,7 @@ CssCls.fn = fn;
 fn.S = (function () {
     let isIE9 = DETECTOR.browser == 'ie' && DETECTOR.browserVer < 10;
     let exp = /-([a-z])/gi;
-    let noPx = {'opacity': 1, 'z-index': 1, 'zIndex': 1};
+    let noPx = {'opacity': 1, 'z-index': 1, 'zIndex': 1,'content':1};
     let regFunc = function (match, char, index, str) {
         return char.toUpperCase();
     };
@@ -60,6 +60,7 @@ fn.S = (function () {
                 if (i < arg.length) {
                     typeof this[k] == "function" ? this[k](v) :
                         typeof v == "number" ? tS[k] = noPx[k] ? v : (v + "px") : tS[k] = v
+
                 } else {
                     return typeof this[k] == "function" ? this[k]() : isNaN(parseFloat(tS[k])) ? tS[k] : (tS[k].indexOf('px') > -1) ? parseFloat(tS[k]) : tS[k]
                 }
@@ -78,6 +79,7 @@ fn.S = (function () {
                 if (i < arg.length) {
                     typeof this[k] == "function" ? this[k](v) :
                         typeof v == "number" ? tS[k] = noPx[k] ? v : (v + "px") : tS[k] = v
+
                 } else {
                     return typeof this[k] == "function" ? this[k]() : isNaN(parseFloat(tS[k])) ? tS[k] : (tS[k].indexOf('px') > -1) ? parseFloat(tS[k]) : tS[k]
                 }
@@ -96,6 +98,8 @@ Css = function (key) {
         temp = new CssCls(key);
         if (!temp.__noHasBrowser) UU_TABLE[key] = temp, UUID++
     }
+
+    console.log(UU_TABLE)
     return UU_TABLE[key]
 };
 export default Css;

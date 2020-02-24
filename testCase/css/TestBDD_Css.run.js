@@ -1,3 +1,6 @@
+Rich.Css('#test-id::before').S('content', '"beforeTest"')
+Rich.Css('#test-id::after').S('content', '"afterTest"')
+
 describe('Test Rich.Css', function () {
     describe('Test tag', function () {
         it('test html - get/set', function () {
