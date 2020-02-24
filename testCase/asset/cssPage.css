@@ -9,33 +9,47 @@ html, body {
     background: #222;
     font-size: 12px;
 }
-#mocha{
-    margin:88px 15px 60px 15px;
+
+input, select, option, button {
+    color: #222
 }
+
+#mocha {
+    margin: 88px 15px 60px 15px;
+}
+
+#mocha h1 a {
+    color: #f2a971;
+}
+
 #mocha-stats em {
     color: #f2a971
 }
-
+#mocha .test.pass.fast .duration{
+    color:#666;
+    display: inline-block;
+}
 
 #mocha-stats {
     background: #222;
     padding: 10px;
     top: 0;
     left: 0;
-    right:0;
+    right: 0;
     white-space: nowrap;
 }
 
-#mocha h1{
-    margin-top : 20px
-}
-ul#mocha-stats  {
-    padding: 15px 10px 15px 10px;
-    border-bottom: 1px solid #333;
-    box-shadow: 0px 10px 20px rgba(0,0,0,1);
+#mocha h1 {
+    margin-top: 20px
 }
 
-#mocha-stats .progress{
+ul#mocha-stats {
+    padding: 15px 10px 15px 10px;
+    border-bottom: 1px solid #333;
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 1);
+}
+
+#mocha-stats .progress {
     line-height: 0;
 }
 

@@ -1,3 +1,3 @@
-var test = function(){
+var test = function () {
     console.log('야호')
 }

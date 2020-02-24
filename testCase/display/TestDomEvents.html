@@ -20,160 +20,160 @@
 <script src="../../dist/Rich.min.js"></script>
 <script>
 
-	var testEvents;
-	var testContainer, i, testDoms, lastEvent;
-	var addEvents;
-	testEvents = 'over,out,down,up,move,click,dblclick,wheel'.split(','),
-		// safari not surpport 'wheel',
-		// keyboard event
-		testEvents.push('keydown', 'keyup', 'keypress');
-	// element event
-	testEvents.push('blur', 'change', 'contextmenu', 'focus', 'input', 'invalid', 'reset', 'select', 'submit', 'search');
-	// safari not surpport 'invalid',
-	// ie, firefox not surpport 'search',
-	// drag event
-	testEvents.push('drag', 'dragend', 'dragenter', 'dragleave', 'dragover', 'dragstart', 'drop', 'scroll')
-	testContainer = Rich.Dom('div').S(
-		'position', 'absolute',
-		'top', 0, 'left', 250, 'right', 0,
-		'background', '#1d1c24',
-		'<', "body"
-	);
-	testDoms = [
-		Rich.Dom('div').S(
-			'html', 'testDiv',
-			'marginTop', 10,
-			'background', '#FFF',
-			'<', 'body'
-		),
-		Rich.Dom('button').S(
-			'html', 'testButton',
-			'marginTop', 10,
-			'background', '#FFF',
-			'<', 'body'
-		),
-		Rich.Dom('input').S(
-			'@type', 'text',
-			'display', 'block',
-			'marginTop', 10,
-			'@placeHolder', 'eventCheck',
-			'<', 'body'
-		),
-		Rich.Dom('select').S(
-			'display', 'block',
-			'marginTop', 10,
-			'>', Rich.Dom('option').S('html', 'test1'),
-			'>', Rich.Dom('option').S('html', 'test2'),
-			'>', Rich.Dom('option').S('html', 'test3'),
-			'<', 'body'
-		),
-		Rich.Dom('form').S(
-			'@action', '#',
-			'marginTop', 10,
-			'>', Rich.Dom('input').S('@placeholder', 'form input', '@required', '', 'width', 80),
-			'>', Rich.Dom('input').S('@type', 'reset'),
-			'>', Rich.Dom('input').S('@type', 'submit'),
-			'>', Rich.Dom('div'),
-			'<', 'body'
-		),
-		Rich.Dom('input').S('marginTop', 10, '@type', 'search', '@placeholder', 'search test', 'html', 'display', 'block', 'form search', '<', 'body'),
-		Rich.Dom('button').S('display', 'block', 'marginTop', 10, '@draggable', true, 'html', 'dragTest', 'background', 'pink', '<', 'body')
-	];
-	lastEvent = Rich.Dom('div').S(
-		'marginTop', 10,
-		'background', '#444',
-		'padding', '5px 10px 5px 10px',
-		'overflow', 'hidden',
-		'width', 213,
-		'height', 18,
-		'color', '#fff',
-		'<', 'body'
-	);
-	addEvents = function () {
-		i = testEvents.length;
-		testContainer.S('html', '');
-		while (i--) {
-			var handler = (function () {
-				var tDom;
-				tDom = Rich.Dom('div').S(
-					'min-width', 250,
-					'max-width', 250,
-					'>', Rich.Dom('button').S(
-						'height', 30, 'width', '100%', 'background', '#272530', 'text-align', 'left',
-						'border', 0, 'outline', 'none', 'color', '#fff',
-						'margin-bottom', 5,
-						'html', testEvents[i]
-					),
-					'display', 'inline-block',
-					'height', 150,
-					'overflow-x', 'hidden', 'overflow-y', 'scroll',
-					'<', testContainer
-				);
-				return function (e) {
+    var testEvents;
+    var testContainer, i, testDoms, lastEvent;
+    var addEvents;
+    testEvents = 'over,out,down,up,move,click,dblclick,wheel'.split(','),
+        // safari not surpport 'wheel',
+        // keyboard event
+        testEvents.push('keydown', 'keyup', 'keypress');
+    // element event
+    testEvents.push('blur', 'change', 'contextmenu', 'focus', 'input', 'invalid', 'reset', 'select', 'submit', 'search');
+    // safari not surpport 'invalid',
+    // ie, firefox not surpport 'search',
+    // drag event
+    testEvents.push('drag', 'dragend', 'dragenter', 'dragleave', 'dragover', 'dragstart', 'drop', 'scroll')
+    testContainer = Rich.Dom('div').S(
+        'position', 'absolute',
+        'top', 0, 'left', 250, 'right', 0,
+        'background', '#1d1c24',
+        '<', "body"
+    );
+    testDoms = [
+        Rich.Dom('div').S(
+            'html', 'testDiv',
+            'marginTop', 10,
+            'background', '#FFF',
+            '<', 'body'
+        ),
+        Rich.Dom('button').S(
+            'html', 'testButton',
+            'marginTop', 10,
+            'background', '#FFF',
+            '<', 'body'
+        ),
+        Rich.Dom('input').S(
+            '@type', 'text',
+            'display', 'block',
+            'marginTop', 10,
+            '@placeHolder', 'eventCheck',
+            '<', 'body'
+        ),
+        Rich.Dom('select').S(
+            'display', 'block',
+            'marginTop', 10,
+            '>', Rich.Dom('option').S('html', 'test1'),
+            '>', Rich.Dom('option').S('html', 'test2'),
+            '>', Rich.Dom('option').S('html', 'test3'),
+            '<', 'body'
+        ),
+        Rich.Dom('form').S(
+            '@action', '#',
+            'marginTop', 10,
+            '>', Rich.Dom('input').S('@placeholder', 'form input', '@required', '', 'width', 80),
+            '>', Rich.Dom('input').S('@type', 'reset'),
+            '>', Rich.Dom('input').S('@type', 'submit'),
+            '>', Rich.Dom('div'),
+            '<', 'body'
+        ),
+        Rich.Dom('input').S('marginTop', 10, '@type', 'search', '@placeholder', 'search test', 'html', 'display', 'block', 'form search', '<', 'body'),
+        Rich.Dom('button').S('display', 'block', 'marginTop', 10, '@draggable', true, 'html', 'dragTest', 'background', 'pink', '<', 'body')
+    ];
+    lastEvent = Rich.Dom('div').S(
+        'marginTop', 10,
+        'background', '#444',
+        'padding', '5px 10px 5px 10px',
+        'overflow', 'hidden',
+        'width', 213,
+        'height', 18,
+        'color', '#fff',
+        '<', 'body'
+    );
+    addEvents = function () {
+        i = testEvents.length;
+        testContainer.S('html', '');
+        while (i--) {
+            var handler = (function () {
+                var tDom;
+                tDom = Rich.Dom('div').S(
+                    'min-width', 250,
+                    'max-width', 250,
+                    '>', Rich.Dom('button').S(
+                        'height', 30, 'width', '100%', 'background', '#272530', 'text-align', 'left',
+                        'border', 0, 'outline', 'none', 'color', '#fff',
+                        'margin-bottom', 5,
+                        'html', testEvents[i]
+                    ),
+                    'display', 'inline-block',
+                    'height', 150,
+                    'overflow-x', 'hidden', 'overflow-y', 'scroll',
+                    '<', testContainer
+                );
+                return function (e) {
 
-					tDom.addChildAt(1, Rich.Dom('div').S(
-						'overflow', 'hidden',
-						'white-space', 'nowrap',
-						'color', '#a7a4b4', 'padding', '0px 5px 1px 5px',
-						'html', e.uuid + " : " + e.type + " : " + e.target
-					))
-					lastEvent.S(
-						'html', e.uuid + " : " + e.type + " : " + e.target
-					)
-				}
-			})()
-			testDoms.forEach(function (testDom) {
-				testDom.S(
-					testEvents[i], handler
-				)
-			})
+                    tDom.addChildAt(1, Rich.Dom('div').S(
+                        'overflow', 'hidden',
+                        'white-space', 'nowrap',
+                        'color', '#a7a4b4', 'padding', '0px 5px 1px 5px',
+                        'html', e.uuid + " : " + e.type + " : " + e.target
+                    ))
+                    lastEvent.S(
+                        'html', e.uuid + " : " + e.type + " : " + e.target
+                    )
+                }
+            })()
+            testDoms.forEach(function (testDom) {
+                testDom.S(
+                    testEvents[i], handler
+                )
+            })
 
-		}
-	};
-	addEvents();
-	var startY = 250, itemGap = 22;
-	Rich.Dom('button').S(
-		'html', '이벤트 전부 재작성',
-		'position', 'absolute', 'top', startY, 'left', 10,
-		'down', function () {
-			addEvents()
-		},
-		'<', 'body'
-	);
-	startY += itemGap;
-	Rich.Dom('button').S(
-		'html', '이벤트 전부 삭제',
-		'position', 'absolute', 'top', startY, 'left', 10,
-		'down', function () {
-			i = testEvents.length;
-			while (i--) {
-				testDoms.forEach(function (testDom) {
-					testDom.S(
-						testEvents[i], null
-					)
-				})
-			}
-		},
-		'<', 'body'
-	);
-	startY += 15;
-	i = testEvents.length;
-	while (i--) {
-		startY += itemGap;
-		Rich.Dom('button').S(
-			'html', testEvents[i] + ' 이벤트 삭제',
-			'position', 'absolute', 'top', startY, 'left', 10,
-			'down', (function () {
-				var tEvent = testEvents[i];
-				return function () {
-					testDoms.forEach(function (testDom) {
-						testDom.S(tEvent, null)
-					})
-				}
-			})(),
-			'<', 'body'
-		)
-	}
+        }
+    };
+    addEvents();
+    var startY = 250, itemGap = 22;
+    Rich.Dom('button').S(
+        'html', '이벤트 전부 재작성',
+        'position', 'absolute', 'top', startY, 'left', 10,
+        'down', function () {
+            addEvents()
+        },
+        '<', 'body'
+    );
+    startY += itemGap;
+    Rich.Dom('button').S(
+        'html', '이벤트 전부 삭제',
+        'position', 'absolute', 'top', startY, 'left', 10,
+        'down', function () {
+            i = testEvents.length;
+            while (i--) {
+                testDoms.forEach(function (testDom) {
+                    testDom.S(
+                        testEvents[i], null
+                    )
+                })
+            }
+        },
+        '<', 'body'
+    );
+    startY += 15;
+    i = testEvents.length;
+    while (i--) {
+        startY += itemGap;
+        Rich.Dom('button').S(
+            'html', testEvents[i] + ' 이벤트 삭제',
+            'position', 'absolute', 'top', startY, 'left', 10,
+            'down', (function () {
+                var tEvent = testEvents[i];
+                return function () {
+                    testDoms.forEach(function (testDom) {
+                        testDom.S(tEvent, null)
+                    })
+                }
+            })(),
+            '<', 'body'
+        )
+    }
 </script>
 </body>
 </html>

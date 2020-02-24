@@ -1,12 +1,12 @@
-var checkState = function(){
-    mocha.run(failures => {
+var checkState = function () {
+    mocha.run(function (failures) {
         console.log(failures)
 
-        console.log('failures',failures)
+        console.log('failures', failures)
         if (failures) {
             Rich.Dom('button').S(
                 'position', 'fixed',
-                'z-index',1,
+                'z-index', 1,
                 'top', 15,
                 'right', 15,
                 'width', 40,
@@ -20,10 +20,10 @@ var checkState = function(){
                 '<', 'body'
             )
             Rich.Dom('#mocha-report').S('@className', 'fail')
-        }else{
+        } else {
             Rich.Dom('button').S(
                 'position', 'fixed',
-                'z-index',1,
+                'z-index', 1,
                 'top', 15,
                 'right', 15,
                 'width', 40,
