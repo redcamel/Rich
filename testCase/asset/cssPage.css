@@ -15,7 +15,7 @@ html, body {
 /*    position:absolute;*/
 /*}*/
 
-input, select, option, button {
+input, select, option, button, textarea {
     color: #222
 }
 

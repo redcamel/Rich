@@ -2,32 +2,15 @@
 <html lang="en">
 <head>
     <meta charset="utf-8"/>
-    <title>Rich.Css TestCase</title>
+    <title>Rich.LOOPER TestCase</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <link rel="stylesheet" href="https://unpkg.com/mocha/mocha.css"/>
     <link rel="stylesheet" href="../asset/cssPage.css"/>
-
-
 </head>
 <body>
-<div id="mocha">
-    <div id="test-id">
-        <div>test-id</div>
-        <button>button1</button>
-        <button>button2</button>
-        <button>button3</button>
-    </div>
-    <div class="test-class">
-        <div>test-class</div>
 
-    </div>
-    <div>
-        <div class="test-class2">test-class2</div>
-        <div class="test-class2">test-class2</div>
-        <div class="test-class2">test-class2</div>
-        <div class="test-class2">test-class2</div>
-    </div>
-    <h1>Rich.Css TestCase</h1>
+<div id="mocha">
+    <h1>Rich.LOOPER TestCase</h1>
 </div>
 
 <script src="https://unpkg.com/chai/chai.js"></script>
@@ -40,11 +23,10 @@
     mocha.checkLeaks();
 </script>
 <script src="../../dist/Rich.min.js"></script>
-<script src="TestBDD_Css.run.js"></script>
+<script src="TestBDD_LOOPER.run.js"></script>
 <script src="../checkState.js"></script>
 <script class="mocha-exec">
     checkState()
 </script>
-<button>button4</button>
 </body>
 </html>

@@ -9,6 +9,10 @@ Rich.init().then(function () {
                 url: 'main/TestBDD_Main.html?testParams=1&testParams2=test'
             },
             {
+                title: 'Test - dispatcher',
+                url: 'main/TestBDD_dispatcher.html'
+            },
+            {
                 title: 'Test - Rich.Dom',
                 url: 'display/TestBdd_Dom.html'
             },
@@ -29,6 +33,15 @@ Rich.init().then(function () {
             {
                 title: 'Test - Test Container Method',
                 url: 'display/TestContainerMethod.html',
+                type: 'visual'
+            },
+            {
+                title: 'Test - Rich.LOOPER',
+                url: 'looper/TestBDD_LOOPER.html'
+            },
+            {
+                title: 'Test - Rich.KEY',
+                url: 'keyboard/TestBDD_KEY.html',
                 type: 'visual'
             }
         ]

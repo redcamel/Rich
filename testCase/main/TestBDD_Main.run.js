@@ -1,3 +1,29 @@
+Rich.init().then(function () {
+    console.log('초기화', 1)
+})
+Rich.init().then(function () {
+    console.log('초기화', 2)
+    Rich.init().then(function () {
+        console.log('초기화', 3)
+    })
+})
+describe('Test init', function () {
+    it('Test - 기본 초기화 체크', function () {
+        Rich.init().then(function (v) {
+            expect(v === Rich).to.be.true
+        })
+    })
+    it('Test - 기본 초기화 체크 : js파일 로딩하고 초기화 되는지 확인', function () {
+        Rich.init(
+            'Test.js',
+            'Test2.js'
+        ).then(function (v) {
+            console.log(new Rich.Test('test'))
+            console.log(new Rich.Test2('test2') instanceof Rich.Test2)
+            expect(new Rich.Test2('test2') instanceof Rich.Test2).to.be.true
+        })
+    })
+});
 describe('Test addMethod', function () {
     describe('Test nameKey', function () {
         it('Test - name : 소문자로 시작하는거 체킹되는지 : testMethodDefine', function () {
@@ -172,20 +198,6 @@ describe('Test getParam', function () {
     })
 })
 
-describe('Test dispatcher', function () {
-    ['down', 'up', 'click', 'move'].forEach(function (key, index) {
-        it('Test - dispatcher : ' + key, function () {
-            let result = key + '0';
-            Rich.Dom('body').S(key, function (e) {
-                console.log(key, e)
-                result = key + '1';
-            })
-            Rich.dispatcher(Rich.Dom('body'), key)
-            expect(result === key + '1').to.be.true;
-
-        })
-    })
-})
 describe('TODO - makeAjax', function () {
     it('TODO')
 });

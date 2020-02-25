@@ -66,36 +66,6 @@ function _setPrototypeOf(o, p) {
   return _setPrototypeOf(o, p);
 }
 
-function isNativeReflectConstruct() {
-  if (typeof Reflect === "undefined" || !Reflect.construct) return false;
-  if (Reflect.construct.sham) return false;
-  if (typeof Proxy === "function") return true;
-
-  try {
-    Date.prototype.toString.call(Reflect.construct(Date, [], function () {}));
-    return true;
-  } catch (e) {
-    return false;
-  }
-}
-
-function _construct(Parent, args, Class) {
-  if (isNativeReflectConstruct()) {
-    _construct = Reflect.construct;
-  } else {
-    _construct = function _construct(Parent, args, Class) {
-      var a = [null];
-      a.push.apply(a, args);
-      var Constructor = Function.bind.apply(Parent, a);
-      var instance = new Constructor();
-      if (Class) _setPrototypeOf(instance, Class.prototype);
-      return instance;
-    };
-  }
-
-  return _construct.apply(null, arguments);
-}
-
 function _assertThisInitialized(self) {
   if (self === void 0) {
     throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
@@ -490,6 +460,50 @@ fn['text+'] = function (v) {
 
 var Dom$1 = Dom;
 
+var KEY = {
+  downList: {},
+  upList: {},
+  code2name: {},
+  name2code: {}
+};
+var i$1, j, k, v;
+var t1;
+t1 = 'a,65,b,66,c,67,d,68,e,69,f,70,g,71,h,72,i,73,j,74,k,75,l,76,m,77,n,78,o,79,p,80,q,81,r,82,s,83,t,84,u,85,v,86,w,87,x,88,y,89,z,90,' + 'back,8,tab,9,enter,13,shift,16,control,17,alt,18,pause,19,caps,20,esc,27,space,32,' + 'pageUp,33,pageDown,34,end,35,home,36,left,37,up,38,right,39,down,40,insert,45,delete,46,numLock,144,scrollLock,145,' + '0,48,1,49,2,50,3,51,4,52,5,53,6,54,7,55,8,56,9,57,' + 'numPad0,96,numPad1,97,numPad2,98,numPad3,99,numPad4,100,numPad5,101,numPad6,102,numPad7,103,numPad8,104,numPad9,105,' + 'numPad*,106,numPad+,107,numPad-,109,numPad.,110,numPad/,111';
+t1 = t1.split(',');
+t1.push(';', 186);
+t1.push('=', 187);
+t1.push(',', 188);
+t1.push('-', 189);
+t1.push('.', 190);
+t1.push('/', 191);
+t1.push('`', 192);
+t1.push('[', 219);
+t1.push(']', 221);
+t1.push("'", 222);
+t1.push('\\', 220);
+t1.push('altRight', 21);
+t1.push('controlRight', 25);
+t1.push('window', 91);
+t1.push('windowRight', 92);
+i$1 = 0, j = t1.length;
+
+while (i$1 < j) {
+  k = t1[i$1++], v = parseInt(t1[i$1++]), KEY.name2code[k] = v, KEY.code2name[v] = k;
+}
+
+document.addEventListener('keydown', function (e) {
+  KEY.code2name[e.keyCode] ? KEY.downList[KEY.code2name[e.keyCode]] = 1 : 0;
+});
+document.addEventListener('keyup', function (e) {
+  if (KEY.code2name[e.keyCode]) delete KEY.downList[KEY.code2name[e.keyCode]], KEY.upList[KEY.code2name[e.keyCode]] = 1;
+});
+
+KEY.resolve = function () {
+  for (var k in KEY.upList) {
+    delete KEY.upList[k];
+  }
+};
+
 var dispatcher;
 
 dispatcher = function dispatcher(target, type, keyName, bubble, cancelAble) {
@@ -514,7 +528,13 @@ dispatcher = function dispatcher(target, type, keyName, bubble, cancelAble) {
     0, //button 0 = left, 1 = middle, 2 = right
     null // relatedTarget
     );
-  } else if (type === 'keydown' || type === 'keyup' || type === 'keypress') ; else {
+  } else if (type === 'keydown' || type === 'keyup' || type === 'keypress') {
+    keyName = keyName.toLowerCase();
+    t0 = document.createEvent("Event");
+    t0.initEvent(type, bubble, cancelAble);
+    t0.keyCode = t0.which = KEY.name2code[keyName];
+    t0.key = keyName;
+  } else {
     // 커스텀이벤트
     t0 = document.createEvent('Event');
     t0.initEvent(type, bubble, cancelAble);
@@ -563,8 +583,10 @@ getIndex = function getIndex(k) {
   }
 
   return result;
-}, //////////////////////////////////
+}; //////////////////////////////////
 // 프로토타입 정의
+
+
 fn$1 = CssCls.prototype; // 외부 유출용 프로토타입 정의
 
 CssCls.fn = fn$1;
@@ -639,11 +661,138 @@ Css = function Css(key) {
     if (!temp.__noHasBrowser) UU_TABLE[key] = temp, UUID$2++;
   }
 
-  console.log(UU_TABLE);
   return UU_TABLE[key];
 };
 
 var Css$1 = Css;
+
+var LOOPER;
+
+var _tick;
+
+var totalLoopMap = {
+  beforeLoop: {
+    keyMap: {},
+    list: []
+  },
+  mainLoop: {
+    keyMap: {},
+    list: []
+  },
+  afterLoop: {
+    keyMap: {},
+    list: []
+  }
+};
+
+_tick = function tick(time) {
+  var i, len;
+  var tList;
+  tList = totalLoopMap.beforeLoop.list;
+  i = 0;
+  len = tList.length;
+
+  for (i; i < len; i++) {
+    tList[i](time);
+  } //
+
+
+  tList = totalLoopMap.mainLoop.list;
+  i = 0;
+  len = tList.length;
+
+  for (i; i < len; i++) {
+    tList[i](time);
+  } //
+
+
+  tList = totalLoopMap.afterLoop.list;
+  i = 0;
+  len = tList.length;
+
+  for (i; i < len; i++) {
+    tList[i](time);
+  }
+
+  KEY.resolve(time);
+  requestAnimationFrame(_tick);
+};
+
+requestAnimationFrame(_tick);
+
+var makeMethods = function makeMethods(title) {
+  var targetMap, targetList;
+  targetMap = totalLoopMap[title].keyMap;
+  targetList = totalLoopMap[title].list;
+  return {
+    add: function add(key, handler) {
+      if (typeof key != 'string') throw new Error(title + ' - key allow only sting. input value : ' + key);
+      if (typeof handler != 'function') throw new Error(title + ' - handler allow only function. input value : ' + handler);
+      if (targetMap[key]) throw new Error(title + ' - already defined key. input value : ' + key);
+      targetMap[key] = handler;
+      targetList.push(handler);
+    },
+    has: function has(key) {
+      return targetMap.hasOwnProperty(key);
+    },
+    get: function get(key) {
+      return targetMap[key];
+    },
+    getList: function getList() {
+      return targetList.concat();
+    },
+    del: function del(key) {
+      var t0;
+      t0 = targetList.indexOf(targetMap[key]);
+
+      if (t0 > -1) {
+        targetList.splice(t0, 1);
+        delete targetMap[key];
+      }
+    },
+    delAll: function delAll() {
+      targetMap = totalLoopMap[title].keyMap = {};
+      targetList = totalLoopMap[title].list = [];
+    }
+  };
+};
+
+var mainLoopInfo, beforeLoopInfo, afterLoopInfo;
+mainLoopInfo = makeMethods('mainLoop');
+beforeLoopInfo = makeMethods('beforeLoop');
+afterLoopInfo = makeMethods('afterLoop');
+LOOPER = {
+  addBeforeLoop: beforeLoopInfo.add,
+  addMainLoop: mainLoopInfo.add,
+  addAfterLoop: afterLoopInfo.add,
+  //
+  hasBeforeLoop: beforeLoopInfo.has,
+  hasMainLoop: mainLoopInfo.has,
+  hasAfterLoop: afterLoopInfo.has,
+  //
+  getBeforeLoop: beforeLoopInfo.get,
+  getMainLoop: mainLoopInfo.get,
+  getAfterLoop: afterLoopInfo.get,
+  //
+  getBeforeLoopList: beforeLoopInfo.getList,
+  getMainLoopList: mainLoopInfo.getList,
+  getAfterLoopList: afterLoopInfo.getList,
+  //
+  delBeforeLoop: beforeLoopInfo.del,
+  delMainLoop: mainLoopInfo.del,
+  delAfterLoop: afterLoopInfo.del,
+  //
+  delBeforeLoopAll: beforeLoopInfo.delAll,
+  delMainLoopAll: mainLoopInfo.delAll,
+  delAfterLoopAll: afterLoopInfo.delAll,
+  //
+  delAll: function delAll() {
+    beforeLoopInfo.delAll();
+    mainLoopInfo.delAll();
+    afterLoopInfo.delAll();
+  }
+};
+var LOOPER$1 = LOOPER;
 
 var Rich = function (_) {
   var tempRich;
@@ -668,18 +817,15 @@ var Rich = function (_) {
       };
 
       return function (name, cls) {
-        var isClassYn = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : true;
 
         if (cls instanceof Function) {
           checkTableAndName(name);
-          CLASS_NAME_TABLE[name] = cls;
-          if (isClassYn) tempRich[name] = function () {
-            for (var _len = arguments.length, arg = new Array(_len), _key = 0; _key < _len; _key++) {
-              arg[_key] = arguments[_key];
-            }
+          CLASS_NAME_TABLE[name] = cls; // if (isClassYn) tempRich[name] = (...arg) => {
+          //     return new cls(...arg)
+          // };
+          // else tempRich[name] = cls;
 
-            return _construct(cls, arg);
-          };else tempRich[name] = cls;
+          tempRich[name] = cls;
         } else throwError("".concat(name, " : \uD074\uB798\uC2A4\uB294 \uD568\uC218 \uD655\uC7A5\uD615\uC774\uC5B4\uC57C\uD568"));
       };
     }(),
@@ -690,6 +836,10 @@ var Rich = function (_) {
       } else throwError("".concat(name, " : \uC624\uBE0C\uC81D\uD2B8\uB9CC \uC2A4\uD0C0\uD2F1\uC73C\uB85C\uB85C \uB4F1\uB85D\uAC00\uB2A5"));
     },
     init: function init() {
+      for (var _len = arguments.length, urls = new Array(_len), _key = 0; _key < _len; _key++) {
+        urls[_key] = arguments[_key];
+      }
+
       return new Promise(function (resolve, reject) {
         var tick = function tick(time) {
           switch (document.readyState) {
@@ -710,7 +860,9 @@ var Rich = function (_) {
           }
 
           console.log(time);
-          resolve(tempRich);
+          if (urls) getJS.apply(void 0, urls).then(function (v) {
+            return resolve(tempRich);
+          });else resolve(tempRich);
         };
 
         requestAnimationFrame(tick);
@@ -741,6 +893,8 @@ var Rich = function (_) {
   tempRich.addClass('Css', Css$1, false); // static
 
   tempRich.addStatic('DETECTOR', DETECTOR$1);
+  tempRich.addStatic('KEY', KEY);
+  tempRich.addStatic('LOOPER', LOOPER$1);
   return tempRich;
 }();
 (function (undefined$1) {

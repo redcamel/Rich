@@ -1,5 +1,5 @@
-Rich.Css('#test-id::before').S('content', '"beforeTest"')
-Rich.Css('#test-id::after').S('content', '"afterTest"')
+Rich.Css('#test-id::before').S('content', '"beforeTest"', 'background', 'red');
+Rich.Css('#test-id::after').S('content', '"afterTest"', 'background', 'red');
 
 describe('Test Rich.Css', function () {
     describe('Test tag', function () {

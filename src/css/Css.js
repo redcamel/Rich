@@ -34,16 +34,16 @@ getIndex = function (k) {
         }
     }
     return result
-},
-    //////////////////////////////////
-    // 프로토타입 정의
-    fn = CssCls.prototype;
+};
+//////////////////////////////////
+// 프로토타입 정의
+fn = CssCls.prototype;
 // 외부 유출용 프로토타입 정의
 CssCls.fn = fn;
 fn.S = (function () {
     let isIE9 = DETECTOR.browser == 'ie' && DETECTOR.browserVer < 10;
     let exp = /-([a-z])/gi;
-    let noPx = {'opacity': 1, 'z-index': 1, 'zIndex': 1,'content':1};
+    let noPx = {'opacity': 1, 'z-index': 1, 'zIndex': 1, 'content': 1};
     let regFunc = function (match, char, index, str) {
         return char.toUpperCase();
     };
@@ -98,8 +98,6 @@ Css = function (key) {
         temp = new CssCls(key);
         if (!temp.__noHasBrowser) UU_TABLE[key] = temp, UUID++
     }
-
-    console.log(UU_TABLE)
     return UU_TABLE[key]
 };
 export default Css;

@@ -1,5 +1,6 @@
 "use strict"
 import DETECTOR from "../ditector/DETECTOR";
+import KEY from "../keyboard/KEY";
 
 
 let dispatcher
@@ -28,12 +29,11 @@ dispatcher = function (target, type, keyName, bubble, cancelAble) {
             null // relatedTarget
         )
     } else if (type === 'keydown' || type === 'keyup' || type === 'keypress') {
-        // TODO
-        // keyName = keyName.toLowerCase()
-        // t0 = document.createEvent("Event")
-        // t0.initEvent(type, bubble, cancelAble)
-        // t0.keyCode = t0.which = Alucard.KEY.name2code[keyName]
-        // t0.key = keyName
+        keyName = keyName.toLowerCase()
+        t0 = document.createEvent("Event")
+        t0.initEvent(type, bubble, cancelAble)
+        t0.keyCode = t0.which = KEY.name2code[keyName]
+        t0.key = keyName
     } else {
         // 커스텀이벤트
         t0 = document.createEvent('Event');
