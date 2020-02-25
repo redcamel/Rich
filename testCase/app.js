@@ -43,6 +43,10 @@ Rich.init().then(function () {
                 title: 'Test - Rich.KEY',
                 url: 'keyboard/TestBDD_KEY.html',
                 type: 'visual'
+            },
+            {
+                title: 'Test - Rich.STORAGE',
+                url: 'storage/TestBDD_STORAGE.html'
             }
         ]
         const IFRAME_LIST = []

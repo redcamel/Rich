@@ -17,13 +17,12 @@ const config ={
     ],
     plugins: [
         resolve(),
-        // terser({
-        //     // module: true,
-        //     // toplevel:true,
-        //     // keep_classnames:true,
-        //     keep_fnames :true
-        // }),
-
+        terser({
+            // module: true,
+            // toplevel:true,
+            // keep_classnames:true,
+            keep_fnames :true
+        }),
         babel({
             plugins: ["@babel/plugin-proposal-class-properties"],
             exclude: 'node_modules/**' // only transpile our source code

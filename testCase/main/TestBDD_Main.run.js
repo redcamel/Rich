@@ -18,6 +18,7 @@ describe('Test init', function () {
             'Test.js',
             'Test2.js'
         ).then(function (v) {
+            console.log('여기가 안오는게냐')
             console.log(new Rich.Test('test'))
             console.log(new Rich.Test2('test2') instanceof Rich.Test2)
             expect(new Rich.Test2('test2') instanceof Rich.Test2).to.be.true
