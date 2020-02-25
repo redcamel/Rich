@@ -1,16 +1,15 @@
 "use strict"
 
 export default function getJS(...urlList) {
-    return new Promise((resolve,reject) => {
+    return new Promise((resolve, reject) => {
+        let failRes;
         Promise.all([...urlList].map(src => fetch(src)))
             .then(response => {
-                let failRes;
                 response.forEach(res => {
-                    console.log(res)
                     if (res.ok === false) failRes = res;
                 });
                 if (failRes) {
-                    reject(failRes);
+                    if(reject) reject(failRes);
                 } else {
                     Promise.all(response.map(res => {
                         return res.text().then(source => {
@@ -23,5 +22,6 @@ export default function getJS(...urlList) {
                     })
                 }
             })
+
     })
 }

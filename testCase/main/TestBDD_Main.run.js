@@ -9,20 +9,36 @@ Rich.init().then(function () {
 })
 describe('Test init', function () {
     it('Test - 기본 초기화 체크', function () {
-        Rich.init().then(function (v) {
+        return Rich.init().then(function (v) {
             expect(v === Rich).to.be.true
         })
     })
+    it('Test - 기본 초기화 체크 : js파일 실패후 catch로 처리되는지', function () {
+        return Rich.init('Test.js', 'Test23.js')
+            .then(function (response) {
+                console.log(response)
+                console.log(new Rich.Test('test'))
+                console.log(new Rich.Test2('test2') instanceof Rich.Test2)
+                expect(new Rich.Test('test') instanceof Rich.Test).to.be.true
+            })
+            .catch(function (failRes) {
+                console.log('실패테스트')
+                expect(failRes.ok).to.be.false
+            })
+    })
     it('Test - 기본 초기화 체크 : js파일 로딩하고 초기화 되는지 확인', function () {
-        Rich.init(
-            'Test.js',
-            'Test2.js'
-        ).then(function (v) {
-            console.log('여기가 안오는게냐')
-            console.log(new Rich.Test('test'))
-            console.log(new Rich.Test2('test2') instanceof Rich.Test2)
-            expect(new Rich.Test2('test2') instanceof Rich.Test2).to.be.true
-        })
+        return Rich.init('Test.js', 'Test2.js')
+            .then(function (response) {
+                console.log('성공테스트')
+                console.log(response)
+                console.log(new Rich.Test('test'))
+                console.log(new Rich.Test2('test2') instanceof Rich.Test2)
+                expect(new Rich.Test('test') instanceof Rich.Test).to.be.true
+            })
+            .catch(function (failRes) {
+                console.log('실패테스트')
+                expect(failRes.ok).to.be.false
+            })
     })
 });
 describe('Test addMethod', function () {

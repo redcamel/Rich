@@ -45,6 +45,11 @@ Rich.init().then(function () {
                 type: 'visual'
             },
             {
+                title: 'Test - Rich.WIN',
+                url: 'window/TestBDD_WIN.html',
+                type: 'visual'
+            },
+            {
                 title: 'Test - Rich.STORAGE',
                 url: 'storage/TestBDD_STORAGE.html'
             }

@@ -5,9 +5,10 @@ import KEY from "../keyboard/KEY";
 
 let dispatcher
 dispatcher = function (target, type, keyName, bubble, cancelAble) {
+    console.log(target, type, keyName, bubble, cancelAble)
     let t0
     target = target === 'body' ? document.body : target
-    target = target === document || target instanceof Element ? target : target.dom
+    target = target === window || target === document || target instanceof Element ? target : target.dom
     if (DETECTOR[type]) {
         // 마우스이벤트들
         t0 = document.createEvent('MouseEvents')
@@ -38,6 +39,7 @@ dispatcher = function (target, type, keyName, bubble, cancelAble) {
         // 커스텀이벤트
         t0 = document.createEvent('Event');
         t0.initEvent(type, bubble, cancelAble);
+
     }
     target.dispatchEvent(t0);
 }
