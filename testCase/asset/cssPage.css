@@ -26,6 +26,9 @@ input, select, option, button, textarea {
 #mocha h1 a {
     color: #f2a971;
 }
+#mocha .suite .suite h1 a {
+    color: #888;
+}
 
 #mocha-stats em {
     color: #f2a971

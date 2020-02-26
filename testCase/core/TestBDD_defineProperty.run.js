@@ -50,6 +50,20 @@ Rich.init(
                     });
                 });
             })
+            describe('Test - 키가 중복 될떄 에러가 나는지', function () {
+                it('keyName 중복 테스트', function () {
+                    var testTarget = function () {
+                    }
+                    Rich.defineProperty(testTarget.prototype, 'testKeyNameDuplication', Rich.defineProperty.NUMBER)
+                    var result = true;
+                    try {
+                        Rich.defineProperty(testTarget.prototype, 'testKeyNameDuplication', Rich.defineProperty.NUMBER)
+                    } catch (e) {
+                        result = false;
+                    }
+                    expect(result).to.be.false;
+                });
+            })
         });
         describe('Test - type', function () {
             it('입력값 : 정의할수없는 타입을 입력함', function () {
@@ -144,7 +158,6 @@ Rich.init(
         })
     });
     describe('Test - Number : ', function () {
-
         describe('Test - 허용범위 테스트', function () {
             [-1.1, -1, 0, 1, 1.1].forEach(function (v) {
                 it('입력값 : ' + v, function () {
@@ -199,6 +212,8 @@ Rich.init(
                     var targetInstance = new target();
                     expect(targetInstance.keyName_test === -1).to.be.true;
                 });
+            });
+            describe('Test - 기본 범위 체크', function () {
                 [-1.1, -1, 0, 1, 1.1].forEach(function (v) {
                     it('입력값 : ' + v + '허용되는지', function () {
                         var target = function Test() {
@@ -217,20 +232,83 @@ Rich.init(
                 });
             });
             describe('Test - option.min 테스트', function () {
-                it('TODO', function () {
-                })
+                it('{ value : -10, min : -1 } : 초기값이 최소값 보다 작을때 최소값으로 치환되는지', function () {
+                    var target = function Test() {
+                    }
+                    Rich.defineProperty(
+                        target.prototype,
+                        'keyName_test',
+                        Rich.defineProperty.NUMBER,
+                        {
+                            value: -10,
+                            min: -1
+                        }
+                    )
+
+                    var targetInstance = new target();
+                    console.log(targetInstance)
+                    expect(targetInstance.keyName_test == -1).to.be.true;
+                });
+                it('{  min : -1 } : 입력값이 최소값 보다 작을때 최소값으로 치환되는지', function () {
+                    var target = function Test() {
+                    }
+                    Rich.defineProperty(
+                        target.prototype,
+                        'keyName_test',
+                        Rich.defineProperty.NUMBER,
+                        {
+                            min: -1
+                        }
+                    )
+
+                    var targetInstance = new target();
+                    console.log(targetInstance)
+                    targetInstance.keyName_test = -2;
+                    expect(targetInstance.keyName_test == -1).to.be.true;
+                });
             });
             describe('Test - option.max 테스트', function () {
-                it('TODO', function () {
-                })
+                it('{ value : 10, max : 5 } : 초기값이 최대값보다 클때 최대값으로 치환되는지', function () {
+                    var target = function Test() {
+                    }
+                    Rich.defineProperty(
+                        target.prototype,
+                        'keyName_test',
+                        Rich.defineProperty.NUMBER,
+                        {
+                            value: 10,
+                            max: 5
+                        }
+                    )
+                    var targetInstance = new target();
+                    console.log(targetInstance)
+                    expect(targetInstance.keyName_test == 5).to.be.true;
+                });
+                it('{  max : 5 } : 입력값이 최대값보다 클때 최대값으로 치환되는지', function () {
+                    var target = function Test() {
+                    }
+                    Rich.defineProperty(
+                        target.prototype,
+                        'keyName_test',
+                        Rich.defineProperty.NUMBER,
+                        {
+                            max: 5
+                        }
+                    )
+                    var targetInstance = new target();
+                    console.log(targetInstance)
+                    targetInstance.keyName_test = 10
+                    expect(targetInstance.keyName_test == 5).to.be.true;
+                });
             });
             describe('Test - option.step 테스트', function () {
                 it('TODO', function () {
                 })
             });
             describe('Test - option.nullishAble 테스트', function () {
-                it('TODO', function () {
-                })
+                it('TODO - {  value : null, nullishAble : true } : nullishAble 상태일때 초기값이 null로 허용되나 체크', function () {
+
+                });
             });
             describe('Test - option.callback 테스트', function () {
                 it('TODO', function () {
