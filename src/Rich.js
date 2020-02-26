@@ -13,6 +13,7 @@ import KEY from "./keyboard/KEY";
 import STORAGE from "./storage/STORAGE";
 import WIN from "./window/WIN";
 import getCSS from "./network/getCSS";
+import defineProperty from "./core/defineProperty";
 
 const Rich = (_ => {
     let tempRich;
@@ -106,6 +107,7 @@ const Rich = (_ => {
     }
     // method
     tempRich.addMethod('throwError', throwError);
+    tempRich.addMethod('defineProperty', defineProperty);
     tempRich.addMethod('getParam', getParam);
     tempRich.addMethod('dispatcher', dispatcher);
     tempRich.addMethod('makeAjax', makeAjax);

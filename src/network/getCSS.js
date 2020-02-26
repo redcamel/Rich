@@ -15,7 +15,6 @@ export default function getCSS(...urlList) {
                     Promise.all(response.map((res,index) => {
                         return res.text().then(source => {
                             let t0 = document.createElement('style');
-                            t0.setAttribute('media','all')
                             t0.innerHTML = source;
                             result[index] = t0
                         })

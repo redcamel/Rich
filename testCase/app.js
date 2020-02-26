@@ -9,8 +9,12 @@ Rich.init('asset/css.css').then(function () {
                 url: 'main/TestBDD_Main.html?testParams=1&testParams2=test'
             },
             {
-                title: 'Test - dispatcher',
+                title: 'Test - Rich.dispatcher',
                 url: 'main/TestBDD_dispatcher.html'
+            },
+            {
+                title: 'Test - Rich.defineProperty',
+                url: 'core/TestBDD_defineProperty.html'
             },
             {
                 title: 'Test - Rich.Dom',
