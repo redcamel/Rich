@@ -35,6 +35,7 @@ defineProperty = (target, keyName, type, option) => {
                     if (hasCallback) CALLBACK.call(this, v)
                 }
             }
+            //TODO - nullishAble을 포함해서 동적 작성하고 싶은데...귀찮네..
             // 기본값 생성
             option['value'] = option['value'] || 0
             // 타입형 체크
