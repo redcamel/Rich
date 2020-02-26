@@ -1,5 +1,8 @@
 "use strict";
-Rich.init().then(v => {
+Rich.init(
+    "../asset/cssPage.css",
+    "../checkState.js"
+).then(_ => {
     let tMap = {}
     let tBox;
     tBox = Rich.Dom('div').S('font-size', 11);
@@ -23,8 +26,8 @@ Rich.init().then(v => {
             tMap[k].S('html', k + ' : ' + Rich.WIN[k])
         }
     })
+    checkState();
 })
-
 let pre_test_one, pre_test_multi;
 let HD_test1, HD_test2, HD_null
 HD_test1 = function () {
@@ -74,7 +77,7 @@ describe(
             let result = true
             try {
                 Rich.WIN.add('overrideTest', HD_test2)
-            }catch (e) {
+            } catch (e) {
                 result = false
             }
             expect(result).to.be.false

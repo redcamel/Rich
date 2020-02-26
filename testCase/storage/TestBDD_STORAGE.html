@@ -5,28 +5,20 @@
     <title>Rich.STORAGE TestCase</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <link rel="stylesheet" href="https://unpkg.com/mocha/mocha.css"/>
-    <link rel="stylesheet" href="../asset/cssPage.css"/>
+    <script src="https://unpkg.com/chai/chai.js"></script>
+    <script src="https://unpkg.com/mocha/mocha.js"></script>
+    <script src="../../dist/Rich.min.js"></script>
 </head>
 <body>
-
 <div id="mocha">
     <h1>Rich.STORAGE TestCase</h1>
 </div>
-
-<script src="https://unpkg.com/chai/chai.js"></script>
-<script src="https://unpkg.com/mocha/mocha.js"></script>
-
 <script class="mocha-init">
     var expect = chai.expect;
     var assert = chai.assert;
     mocha.setup('bdd');
     mocha.checkLeaks();
 </script>
-<script src="../../dist/Rich.min.js"></script>
 <script src="TestBDD_STORAGE.run.js"></script>
-<script src="../checkState.js"></script>
-<script class="mocha-exec">
-    checkState()
-</script>
 </body>
 </html>

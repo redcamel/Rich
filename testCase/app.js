@@ -1,5 +1,5 @@
 "use strict";
-Rich.init().then(function () {
+Rich.init('asset/css.css').then(function () {
     {
         let containerRoot;
         let containerCurrentState, containerStatePass, containerStateFail, containerStateDuration;
@@ -59,9 +59,12 @@ Rich.init().then(function () {
             '>', Rich.Dom('div').S(
                 '@className', 'containerCurrentState',
                 '>', containerCurrentState = Rich.Dom('div'),
-                '>', containerStatePass = Rich.Dom('div').S('@className', 'pass'),
-                '>', containerStateFail = Rich.Dom('div').S('@className', 'fail'),
-                '>', containerStateDuration = Rich.Dom('div').S('@className', 'duration')
+                '>', Rich.Dom('div').S(
+                    'line-height',18,
+                    '>', containerStatePass = Rich.Dom('div').S('@className', 'pass'),
+                    '>', containerStateFail = Rich.Dom('div').S('@className', 'fail'),
+                    '>', containerStateDuration = Rich.Dom('div').S('@className', 'duration')
+                )
             ),
             '<', 'body'
         );
@@ -81,7 +84,7 @@ Rich.init().then(function () {
             containerCurrentState.S('html', 'Total Test Result - ' + (fail ? 'FAIL' : 'SUCCESS'))
             containerStatePass.S('html', 'Passed : ' + pass);
             containerStateFail.S('html', 'Fail : ' + fail);
-            containerStateDuration.S('html', 'Total duration : ' + duration + 's');
+            containerStateDuration.S('html', 'Total duration : ' + duration.toFixed(2) + 's');
             requestAnimationFrame(tick)
         }
         requestAnimationFrame(tick)

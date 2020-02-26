@@ -12,6 +12,7 @@ import LOOPER from "./looper/LOOPER";
 import KEY from "./keyboard/KEY";
 import STORAGE from "./storage/STORAGE";
 import WIN from "./window/WIN";
+import getCSS from "./network/getCSS";
 
 const Rich = (_ => {
     let tempRich;
@@ -79,7 +80,20 @@ const Rich = (_ => {
                     console.log('초기화시간', time);
 
                     if (urls) {
-                        let t0 = getJS(...urls).then(v => resolve(tempRich));
+                        let jsURLs = [];
+                        let cssURLs = [];
+                        urls.forEach(url => {
+                            if (url.includes('.css')) cssURLs.push(url)
+                            else if (url.includes('.js')) jsURLs.push(url)
+                        });
+                        let t0 = Promise.all(
+                            [
+                                getJS(...jsURLs),
+                                getCSS(...cssURLs)
+                            ]
+                        ).then(_ => {
+                            resolve(tempRich)
+                        });
                         if (reject) t0.catch(error => reject(error))
                     } else resolve(tempRich);
                     dispatcher(window, 'resize')
@@ -98,6 +112,8 @@ const Rich = (_ => {
     tempRich.addMethod('ajaxJsonGet', makeAjax({method: 'GET', headers: {'Content-Type': 'application/json'}}));
     tempRich.addMethod('ajaxJsonPost', makeAjax({method: 'POST', headers: {'Content-Type': 'application/json'}}));
     tempRich.addMethod('getJS', getJS);
+    tempRich.addMethod('getCSS', getCSS);
+
     // class
     tempRich.addClass('ClassUUID', ClassUUID);
     tempRich.addClass('Dom', Dom, false);
