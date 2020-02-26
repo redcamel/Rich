@@ -1,7 +1,7 @@
 Rich.init(
     "../asset/cssPage.css",
     "../checkState.js"
-).then(_ => {
+).then(function() {
     describe('Test Rich.Dom', function () {
         ['div', 'button', 'ul', 'li', 'table', 'input'].forEach(function (tagName) {
             it('test - make by tagName : ' + tagName, function () {

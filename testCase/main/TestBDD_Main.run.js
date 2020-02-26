@@ -1,7 +1,7 @@
 Rich.init(
     "../asset/cssPage.css",
     "../checkState.js"
-).then(_ => {
+).then(function() {
     describe('Test init', function () {
         it('Test - 기본 초기화 체크', function () {
             return Rich.init().then(function (v) {
@@ -39,7 +39,7 @@ Rich.init(
     describe('Test addMethod', function () {
         describe('Test nameKey', function () {
             it('Test - name : 소문자로 시작하는거 체킹되는지 : testMethodDefine', function () {
-                let result = true;
+                var result = true;
                 try {
                     Rich.addMethod('testMethodDefine', function (v) {
                         console.log(v)
@@ -50,7 +50,7 @@ Rich.init(
                 expect(result).to.be.true;
             });
             it('Test - name : 소문자로 시작하는거 체킹되는지 : TestMethodDefine', function () {
-                let result = true;
+                var result = true;
                 try {
                     Rich.addMethod('TestMethodDefine', function (v) {
                         console.log(v)
@@ -61,7 +61,7 @@ Rich.init(
                 expect(result).to.be.false;
             });
             it('Test - name : 중복정의 체킹되는지', function () {
-                let result = true;
+                var result = true;
                 Rich.addMethod('testMethodDuplication', function (v) {
                     console.log(v)
                 })
@@ -78,7 +78,7 @@ Rich.init(
         describe('Test value', function () {
             [NaN, -1.1, -1, 0, 1, 1.1, null, undefined, {}].forEach(function (v, index) {
                 it('Test - value : 함수만 허용하는지 : ' + v, function () {
-                    let result = true;
+                    var result = true;
                     try {
                         Rich.addMethod('testMethodDefine_' + index, v)
                     } catch (e) {
@@ -92,7 +92,7 @@ Rich.init(
     describe('Test addClass', function () {
         describe('Test nameKey', function () {
             it('Test - name : 대문자로 시작하는거 체킹되는지 : TestClassDefine', function () {
-                let result = true;
+                var result = true;
                 try {
                     Rich.addClass('TestClassDefine', function (v) {
                         console.log(v)
@@ -103,7 +103,7 @@ Rich.init(
                 expect(result).to.be.true;
             });
             it('Test - name : 대문자로 시작하는거 체킹되는지 : testClassDefine', function () {
-                let result = true;
+                var result = true;
                 try {
                     Rich.addClass('testClassDefine', function (v) {
                         console.log(v)
@@ -114,7 +114,7 @@ Rich.init(
                 expect(result).to.be.false;
             });
             it('Test - name : 중복정의 체킹되는지', function () {
-                let result = true;
+                var result = true;
                 Rich.addClass('TestClassDuplication', function (v) {
                     console.log(v)
                 })
@@ -131,7 +131,7 @@ Rich.init(
         describe('Test value', function () {
             [NaN, -1.1, -1, 0, 1, 1.1, null, undefined, {}].forEach(function (v, index) {
                 it('Test - value : 함수만 허용하는지 : ' + v, function () {
-                    let result = true;
+                    var result = true;
                     try {
                         Rich.addClass('testClassDefine_' + index, v)
                     } catch (e) {
@@ -147,7 +147,7 @@ Rich.init(
     describe('Test addStatic', function () {
         describe('Test nameKey', function () {
             it('Test - name : 대문자만 허용하는지 : TEST_STATIC_OBJECT', function () {
-                let result = true;
+                var result = true;
                 try {
                     Rich.addStatic('TEST_STATIC_OBJECT', {})
                 } catch (e) {
@@ -156,7 +156,7 @@ Rich.init(
                 expect(result).to.be.true;
             });
             it('Test - name : 대문자만 허용하는지 : test_static_object', function () {
-                let result = true;
+                var result = true;
                 try {
                     Rich.addStatic('test_static_object', {})
                 } catch (e) {
@@ -165,7 +165,7 @@ Rich.init(
                 expect(result).to.be.false;
             });
             it('Test - name : 중복정의 체킹되는지', function () {
-                let result = true;
+                var result = true;
                 Rich.addStatic('TEST_STATIC_OBJECT_DUPLICATION', {})
                 try {
                     Rich.addStatic('TEST_STATIC_OBJECT_DUPLICATION', {})
@@ -179,7 +179,7 @@ Rich.init(
             [NaN, -1.1, -1, 0, 1, 1.1, null, undefined, function () {
             }].forEach(function (v, index) {
                 it('Test - value : 오브젝트만 허용하는지 : ' + v, function () {
-                    let result = true;
+                    var result = true;
                     try {
                         Rich.addStatic('TEST_STATIC_OBJECT_DUPLICATION_' + index, v)
                     } catch (e) {
@@ -194,7 +194,7 @@ Rich.init(
 
     describe('Test throwError', function () {
         it('Test - throwError', function () {
-            let t0 = function () {
+            var t0 = function () {
                 Rich.throwError('throwError', 'test')
             };
             expect(t0).to.throw();

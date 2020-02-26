@@ -2,9 +2,9 @@
 Rich.init(
     "../asset/cssPage.css",
     "../checkState.js"
-).then(_ => {
-    let tMap = {}
-    let tBox;
+).then(function() {
+    var tMap = {}
+    var tBox;
     tBox = Rich.Dom('div').S('font-size', 11);
     Rich.Dom('#mocha').addChildAt(1, tBox);
     'mouseX,mouseY,w,h,orientation,pageX,pageY'.split(',').forEach(function (k) {
@@ -22,14 +22,14 @@ Rich.init(
         '<', 'body'
     )
     Rich.LOOPER.addMainLoop('WIN_TEST', function () {
-        for (let k in tMap) {
+        for (var k in tMap) {
             tMap[k].S('html', k + ' : ' + Rich.WIN[k])
         }
     })
     checkState();
 })
-let pre_test_one, pre_test_multi;
-let HD_test1, HD_test2, HD_null
+var pre_test_one, pre_test_multi;
+var HD_test1, HD_test2, HD_null
 HD_test1 = function () {
 }
 HD_test2 = function () {
@@ -74,7 +74,7 @@ describe(
         it("Rich.WIN - 중복정의 add : 허용하지않음", function () {
             // pre_test_one 을 2로 다시 바꾸는 콜백으로 덮어씀
             Rich.WIN.add('overrideTest', HD_test1)
-            let result = true
+            var result = true
             try {
                 Rich.WIN.add('overrideTest', HD_test2)
             } catch (e) {
@@ -83,7 +83,7 @@ describe(
             expect(result).to.be.false
         });
         it("Rich.WIN - add시 핸들러를 함수만 받는지", function () {
-            let t0 = true
+            var t0 = true
             try {
                 Rich.WIN.add('nullTest', HD_null)
             } catch (error) {

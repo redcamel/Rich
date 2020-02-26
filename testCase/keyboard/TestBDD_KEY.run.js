@@ -1,6 +1,6 @@
 Rich.init(
     "../asset/cssPage.css"
-).then(_ => {
+).then(function() {
     var t0, i, j, k;
     var temp, temp2, root, subRoot;
     var type1, type2
@@ -44,7 +44,7 @@ Rich.init(
                     'key_' + data[i][j] == 'key_insert' ||
                     'key_' + data[i][j] == 'key_home' ||
                     'key_' + data[i][j] == 'key_pageUp' ||
-                    'key_' + data[i][j] == 'key_delete' ||
+                    'key_' + data[i][j] == 'key_devare' ||
                     'key_' + data[i][j] == 'key_end' ||
                     'key_' + data[i][j] == 'key_pageDown' ||
                     ('key_' + data[i][j]).indexOf('key_num') > -1
@@ -73,7 +73,7 @@ Rich.init(
         ("" +
             "scrollLock_pause__" +
             "insert_home_pageUp__" +
-            "delete_end_pageDown__" +
+            "devare_end_pageDown__" +
             "up__" +
             "left_down_right").split('__').reverse()
     )

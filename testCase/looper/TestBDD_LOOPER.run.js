@@ -1,7 +1,7 @@
 Rich.init(
 	"../asset/cssPage.css",
 	"../checkState.js"
-).then(_ => {
+).then(function() {
 	describe('Test beforeLoop', function () {
 		afterEach(function () {
 			Rich.LOOPER.delAll();
@@ -60,7 +60,7 @@ Rich.init(
 				expect(Rich.LOOPER.hasBeforeLoop('test')).to.be.true;
 			});
 			it('test - redefine', function () {
-				let result = true;
+				var result = true;
 				Rich.LOOPER.addBeforeLoop('test', function () {
 				});
 				try {
@@ -166,7 +166,7 @@ Rich.init(
 				expect(Rich.LOOPER.hasMainLoop('test')).to.be.true;
 			});
 			it('test - redefine', function () {
-				let result = true;
+				var result = true;
 				Rich.LOOPER.addMainLoop('test', function () {
 				});
 				try {
@@ -272,7 +272,7 @@ Rich.init(
 				expect(Rich.LOOPER.hasAfterLoop('test')).to.be.true;
 			});
 			it('test - redefine', function () {
-				let result = true;
+				var result = true;
 				Rich.LOOPER.addAfterLoop('test', function () {
 				});
 				try {

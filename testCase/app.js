@@ -1,8 +1,8 @@
 "use strict";
 Rich.init('asset/css.css').then(function () {
     {
-        let containerRoot;
-        let containerCurrentState, containerStatePass, containerStateFail, containerStateDuration;
+        var containerRoot;
+        var containerCurrentState, containerStatePass, containerStateFail, containerStateDuration;
         const testList = [
             {
                 title: 'Test - Main',
@@ -72,12 +72,12 @@ Rich.init('asset/css.css').then(function () {
             ),
             '<', 'body'
         );
-        let tick = function () {
-            let pass = 0;
-            let fail = 0;
-            let duration = 0
+        var tick = function () {
+            var pass = 0;
+            var fail = 0;
+            var duration = 0
             IFRAME_LIST.forEach(function (v) {
-                let t0;
+                var t0;
                 t0 = v.dom.contentWindow.document.querySelector('.passes em');
                 if (t0) pass += +t0.textContent
                 t0 = v.dom.contentWindow.document.querySelector('.failures em');
@@ -95,7 +95,7 @@ Rich.init('asset/css.css').then(function () {
 
 
         testList.forEach(function (v) {
-            let t0;
+            var t0;
             Rich.Dom('div').S(
                 '@className', 'itemContainer',
                 '>', Rich.Dom('div').S(

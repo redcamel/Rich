@@ -1,13 +1,13 @@
 Rich.init(
     "../asset/cssPage.css",
     "../checkState.js"
-).then(_ => {
+).then(function() {
     describe('Test dispatcher : body', function () {
         ['down', 'up', 'over', 'out', 'click', 'move'].forEach(function (key, index) {
             Rich.Css('html').S('height', '100%');
             Rich.Css('body').S('height', '100%');
             it('Test - dispatcher : ' + key, function () {
-                let result = key + '0';
+                var result = key + '0';
                 Rich.Dom('body').S(
                     key, function (e) {
                         console.log(key, e)
@@ -27,8 +27,8 @@ Rich.init(
             'drag', 'dragend', 'dragenter', 'dragleave', 'dragover', 'dragstart', 'drop', 'scroll'
         ].forEach(function (key, index) {
             it('Test - dispatcher : ' + key, function () {
-                let result = key + '0';
-                let t0 = Rich.Dom('div').S(
+                var result = key + '0';
+                var t0 = Rich.Dom('div').S(
                     key, function (e) {
                         console.log(key, e)
                         result = key + '1';

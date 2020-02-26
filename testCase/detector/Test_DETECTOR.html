@@ -9,7 +9,7 @@
 <h1>Rich.DETECTOR</h1>
 <script src="../../dist/Rich.min.js"></script>
 <script>
-    Rich.init('../asset/css.css').then(_ => {
+    Rich.init('../asset/css.css').then(function() {
         Rich.Css('.test').S('padding', 8, 'background', '#333')
         Rich.Css('.test:nth-child(odd)').S('padding', 8, 'background', '#444')
         for (var k in Rich.DETECTOR) {

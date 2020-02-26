@@ -2,7 +2,7 @@
 Rich.init(
     "../asset/cssPage.css",
     "../checkState.js"
-).then(_ => {
+).then(function() {
     describe(
         'Rich.STORAGE Test',
         function () {
