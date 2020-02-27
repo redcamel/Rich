@@ -1,7 +1,7 @@
 Rich.init(
     "../asset/cssPage.css",
     "../checkState.js"
-).then(function() {
+).then(function () {
     describe('Test dispatcher : body', function () {
         ['down', 'up', 'over', 'out', 'click', 'move'].forEach(function (key, index) {
             Rich.Css('html').S('height', '100%');

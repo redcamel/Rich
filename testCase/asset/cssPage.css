@@ -26,6 +26,7 @@ input, select, option, button, textarea {
 #mocha h1 a {
     color: #f2a971;
 }
+
 #mocha .suite .suite h1 a {
     color: #888;
 }
@@ -33,16 +34,19 @@ input, select, option, button, textarea {
 #mocha-stats em {
     color: #f2a971
 }
-#mocha .test.pass.fast .duration{
-    color:#afa3ef;
+
+#mocha .test.pass.fast .duration {
+    color: #afa3ef;
     display: inline-block;
 }
-#mocha .test.pass.medium .duration{
-    color : #fff
+
+#mocha .test.pass.medium .duration {
+    color: #fff
 }
-#mocha .test.pass.slow .duration{
-    color : #fff;
-    background : red
+
+#mocha .test.pass.slow .duration {
+    color: #fff;
+    background: red
 }
 
 #mocha-stats {

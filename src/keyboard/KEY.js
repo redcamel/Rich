@@ -42,7 +42,7 @@ document.addEventListener('keyup',
         if (KEY.code2name[e.keyCode]) delete KEY.downList[KEY.code2name[e.keyCode]], KEY.upList[KEY.code2name[e.keyCode]] = 1
     }
 )
-KEY.resolve = function(){
+KEY.resolve = function () {
     for (var k in KEY.upList) delete KEY.upList[k]
 }
 export default KEY

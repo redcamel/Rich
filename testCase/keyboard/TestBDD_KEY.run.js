@@ -1,6 +1,6 @@
 Rich.init(
     "../asset/cssPage.css"
-).then(function() {
+).then(function () {
     var t0, i, j, k;
     var temp, temp2, root, subRoot;
     var type1, type2

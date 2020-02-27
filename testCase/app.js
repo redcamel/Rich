@@ -17,6 +17,31 @@ Rich.init('asset/css.css').then(function () {
                 url: 'core/TestBDD_defineProperty.html'
             },
             {
+                title: 'Test - Rich.defineProperty : NUMBER',
+                url: 'core/TestBDD_NUMBER.html',
+                banner: 'Type'
+            },
+            {
+                title: 'Test - Rich.defineProperty : INT',
+                url: 'core/TestBDD_INT.html',
+                banner: 'Type'
+            },
+            {
+                title: 'Test - Rich.defineProperty : UINT',
+                url: 'core/TestBDD_UINT.html',
+                banner: 'Type'
+            },
+            {
+                title: 'Test - Rich.defineProperty : STRING',
+                url: 'core/TestBDD_STRING.html',
+                banner: 'Type'
+            },
+            {
+                title: 'Test - Rich.defineProperty : BOOLEAN',
+                url: 'core/TestBDD_BOOLEAN.html',
+                banner: 'Type'
+            },
+            {
                 title: 'Test - Rich.Dom',
                 url: 'display/TestBdd_Dom.html'
             },
@@ -27,17 +52,17 @@ Rich.init('asset/css.css').then(function () {
             {
                 title: 'Test - Rich.DETECTOR',
                 url: 'detector/Test_DETECTOR.html',
-                type: 'visual'
+                banner: 'Visual'
             },
             {
                 title: 'Test - Test Dom Events',
                 url: 'display/TestDomEvents.html',
-                type: 'visual'
+                banner: 'Visual'
             },
             {
                 title: 'Test - Test Container Method',
                 url: 'display/TestContainerMethod.html',
-                type: 'visual'
+                banner: 'Visual'
             },
             {
                 title: 'Test - Rich.LOOPER',
@@ -46,12 +71,12 @@ Rich.init('asset/css.css').then(function () {
             {
                 title: 'Test - Rich.KEY',
                 url: 'keyboard/TestBDD_KEY.html',
-                type: 'visual'
+                banner: 'Visual'
             },
             {
                 title: 'Test - Rich.WIN',
                 url: 'window/TestBDD_WIN.html',
-                type: 'visual'
+                banner: 'Visual'
             },
             {
                 title: 'Test - Rich.STORAGE',
@@ -64,7 +89,7 @@ Rich.init('asset/css.css').then(function () {
                 '@className', 'containerCurrentState',
                 '>', containerCurrentState = Rich.Dom('div'),
                 '>', Rich.Dom('div').S(
-                    'line-height',18,
+                    'line-height', 18,
                     '>', containerStatePass = Rich.Dom('div').S('@className', 'pass'),
                     '>', containerStateFail = Rich.Dom('div').S('@className', 'fail'),
                     '>', containerStateDuration = Rich.Dom('div').S('@className', 'duration')
@@ -105,9 +130,9 @@ Rich.init('asset/css.css').then(function () {
                     },
                     'html', v['title'],
                     '>', Rich.Dom('div').S(
-                        '@className', 'type',
-                        'display', v['type'] === 'visual' ? 'block' : 'none',
-                        'html', 'Visual Test'
+                        '@className', 'banner',
+                        'display', v['banner'] ? 'block' : 'none',
+                        'html', v['banner']
                     )
                 ),
                 '>', t0 = Rich.Dom('iframe').S(
@@ -115,7 +140,7 @@ Rich.init('asset/css.css').then(function () {
                 ),
                 '<', containerRoot
             )
-            if (v['type'] != 'visual') IFRAME_LIST.push(t0)
+            if (v['banner'] != 'Visual') IFRAME_LIST.push(t0)
 
         })
     }

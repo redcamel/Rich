@@ -1,7 +1,7 @@
 Rich.init(
     "../asset/cssPage.css",
     "../checkState.js"
-).then(function() {
+).then(function () {
     Rich.Css('#test-id::before').S('content', '"beforeTest"', 'background', 'red');
     Rich.Css('#test-id::after').S('content', '"afterTest"', 'background', 'red');
 

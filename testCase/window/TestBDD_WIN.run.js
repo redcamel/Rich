@@ -2,7 +2,7 @@
 Rich.init(
     "../asset/cssPage.css",
     "../checkState.js"
-).then(function() {
+).then(function () {
     var tMap = {}
     var tBox;
     tBox = Rich.Dom('div').S('font-size', 11);

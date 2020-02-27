@@ -1,7 +1,7 @@
 Rich.init(
     "../asset/cssPage.css",
     "../checkState.js"
-).then(function() {
+).then(function () {
     describe('Test init', function () {
         it('Test - 기본 초기화 체크', function () {
             return Rich.init().then(function (v) {
