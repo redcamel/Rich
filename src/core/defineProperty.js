@@ -196,6 +196,7 @@ defineProperty = (target, keyName, type, option) => {
             defineBoolean(target, keyName, type, option);
             break;
         default :
+            // TODO - 커스텀
             throwError('정의할수 없는 타입')
     }
 }
@@ -217,6 +218,10 @@ export default defineProperty;
             ....
         ]
      )
+ */
+/*
+    TODO - 커스텀
+    TODO - FUNCTION
  */
 
 
