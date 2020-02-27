@@ -22,36 +22,55 @@ defineProperty = (target, keyName, type, option) => {
             let MIN = hasMin ? option['min'] : null;
             let MAX = hasMax ? option['max'] : null;
             let CALLBACK = hasCallback ? option['callback'] : null;
+            let NULLISH_ABLE = option['nullishAble']
             tempDefineInfo = {
                 get: function () {
                     return this['_' + keyName]
                 },
                 set: function (v) {
-                    if (typeof v != 'number' || isNaN(v)) throwError(`${target.constructor.name} - ${keyName} : Number만 허용함. / 입력값 : ${v}`);
-                    if (hasMin && v < MIN) v = MIN
-                    if (hasMax && v > MAX) v = MAX
+                    if (typeof v == 'number') {
+                        if (isNaN(v)) throwError(`${target.constructor.name} - v : Number만 허용함. / 입력값 : ${v}`);
+                        if (hasMin && v < MIN) v = MIN
+                        if (hasMax && v > MAX) v = MAX
+                    } else {
+                        if (!(NULLISH_ABLE && (v === null || v === undefined))) {
+                            if (v === null || v === undefined) throwError(`${target.constructor.name} - v : nullish를 허용하지 않는 세팅상태. / 입력값 : ${v}`);
+                            else throwError(`${target.constructor.name} - v : Number만 허용함. / 입력값 : ${v}`);
+                        }
+                    }
                     this['_' + keyName] = v
                     // 콜백 옵션실행
                     if (hasCallback) CALLBACK.call(this, v)
                 }
             }
-            //TODO - nullishAble을 포함해서 동적 작성하고 싶은데...귀찮네..
             // 기본값 생성
-            option['value'] = option['value'] || 0
+            option['value'] = option['value'] || (NULLISH_ABLE ? null : 0);
             // 타입형 체크
-            if (typeof option['value'] != 'number' || isNaN(option['value'])) throwError(`${target.constructor.name} - option['value'] : Number만 허용함. / 입력값 : ${option['value']}`);
-            // range 체크
-            if (hasMin) {
-                if (typeof MIN != 'number' || isNaN(MIN)) throwError(`${target.constructor.name} - option['min'] : Number만 허용함. / 입력값 : ${MIN}`);
-                if (option['value'] < MIN) option['value'] = MIN
+            if (typeof option['value'] == 'number') {
+                if (isNaN(option['value'])) throwError(`${target.constructor.name} - option['value'] : Number만 허용함. / 입력값 : ${option['value']}`);
+                // range 체크
+                if (hasMin) {
+                    if (typeof MIN != 'number' || isNaN(MIN)) throwError(`${target.constructor.name} - option['min'] : Number만 허용함. / 입력값 : ${MIN}`);
+                    if (option['value'] < MIN) option['value'] = MIN
+                }
+                if (hasMax) {
+                    if (typeof MAX != 'number' || isNaN(MAX)) throwError(`${target.constructor.name} - option['max'] : Number만 허용함. / 입력값 : ${MAX}`);
+                    if (option['value'] > MAX) option['value'] = MAX
+                }
+                if (hasMin && hasMax) {
+                    if (MIN > MAX) throwError(target.constructor.name + ' - ' + "option['min'], option['max'] : min값은 max보다 작아야함", '입력값 : ', MIN, MAX);
+                }
+            } else {
+                if (NULLISH_ABLE && (option['value'] == null || option['value'] === undefined)) {
+                } else {
+                    if (option['value'] == null || option['value'] === undefined) {
+                        throwError(`${target.constructor.name} - option['value'] : nullish를 허용하지 않는 세팅상태. / 입력값 : ${option['value']}`);
+                    } else {
+                        throwError(`${target.constructor.name} - option['value'] : Number만 허용함. / 입력값 : ${option['value']}`);
+                    }
+                }
             }
-            if (hasMax) {
-                if (typeof MAX != 'number' || isNaN(MAX)) throwError(`${target.constructor.name} - option['max'] : Number만 허용함. / 입력값 : ${MAX}`);
-                if (option['value'] > MAX) option['value'] = MAX
-            }
-            if (hasMin && hasMax) {
-                if (MIN > MAX) throwError(target.constructor.name + ' - ' + "option['min'], option['max'] : min값은 max보다 작아야함", '입력값 : ', MIN, MAX);
-            }
+
             // 초기값 지정
             target['_' + keyName] = option['value'];
             // 콜백 옵션실행

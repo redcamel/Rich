@@ -306,8 +306,71 @@ Rich.init(
                 })
             });
             describe('Test - option.nullishAble 테스트', function () {
-                it('TODO - {  value : null, nullishAble : true } : nullishAble 상태일때 초기값이 null로 허용되나 체크', function () {
-
+                it('{   nullishAble : true } : nullishAble 상태일때 초기값이 null로 세팅되나 체크', function () {
+                    var target = function Test() {
+                    }
+                    Rich.defineProperty(
+                        target.prototype,
+                        'keyName_test',
+                        Rich.defineProperty.NUMBER,
+                        {
+                            nullishAble: true
+                        }
+                    )
+                    var targetInstance = new target();
+                    console.log(targetInstance)
+                    expect(targetInstance.keyName_test == null).to.be.true;
+                });
+                it('{ value : 5, nullishAble : true } : nullishAble 상태일때 초기값이 세팅이 옵션되로 되는지 체크', function () {
+                    var target = function Test() {
+                    }
+                    Rich.defineProperty(
+                        target.prototype,
+                        'keyName_test',
+                        Rich.defineProperty.NUMBER,
+                        {
+                            value: 5,
+                            nullishAble: true
+                        }
+                    )
+                    var targetInstance = new target();
+                    console.log(targetInstance)
+                    expect(targetInstance.keyName_test == 5).to.be.true;
+                });
+                it('{ value : 5, nullishAble : true } : nullishAble 실제 값을 set 했을때 허용되는지 체크', function () {
+                    var target = function Test() {
+                    }
+                    Rich.defineProperty(
+                        target.prototype,
+                        'keyName_test',
+                        Rich.defineProperty.NUMBER,
+                        {
+                            value: 5,
+                            nullishAble: true
+                        }
+                    )
+                    var targetInstance = new target();
+                    targetInstance.keyName_test = null
+                    console.log(targetInstance)
+                    expect(targetInstance.keyName_test == null).to.be.true;
+                });
+                it('{ min : 5, nullishAble : true } : nullishAble 일떄 nullish입력시 min, max를 무시하는지 체크', function () {
+                    var target = function Test() {
+                    }
+                    Rich.defineProperty(
+                        target.prototype,
+                        'keyName_test',
+                        Rich.defineProperty.NUMBER,
+                        {
+                            value :null,
+                            min: 5,
+                            nullishAble: true
+                        }
+                    )
+                    var targetInstance = new target();
+                    // targetInstance.keyName_test = null
+                    console.log(targetInstance)
+                    expect(targetInstance.keyName_test == null).to.be.true;
                 });
             });
             describe('Test - option.callback 테스트', function () {
