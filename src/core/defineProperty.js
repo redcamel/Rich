@@ -146,13 +146,6 @@ defineBoolean = (target, keyName, type, option) => {
         }
     }
     // 기본값 생성
-    // if (NULLISH_ABLE) {
-    //     if (option.hasOwnProperty('value')) option['value'] = option['value'] ? true : false;
-    //     else option['value'] = null;
-    // } else {
-    //     if (option['value'] === null || option['value'] === undefined) throwError(`${target.constructor.name} - option['value'] : nullish를 허용하지 않는 세팅상태./ 입력값 : ${option['value']}`)
-    //     option['value'] = option['value'] ? true : false
-    // }
     if (!NULLISH_ABLE) {
         option['value'] = option['value'] ? true : false;
     } else {
@@ -214,6 +207,19 @@ defineProperty.BOOLEAN = 'BOOLEAN';
 Object.freeze(defineProperty);
 export default defineProperty;
 
+/*
+    TODO - definePropertys(
+        target,
+        [
+            { keyName : '키네임', type : defineProperty.NUMBER, option : {옵션정보객체} },
+            { keyName : '키네임', type : defineProperty.NUMBER, option : {옵션정보객체} },
+            { keyName : '키네임', type : defineProperty.NUMBER, option : {옵션정보객체} },
+            ....
+        ]
+     )
+ */
+
+
 // let target = function () {
 // }
 // defineProperty(
@@ -236,6 +242,19 @@ export default defineProperty;
 //     defineProperty.STRING,
 //     {
 //         value: 0,
+//         allowList : [],
+//         nullishAble: false,
+//         callback: function () {
+//         }
+//     }
+// )
+
+// defineProperty(
+//     target.prototype,
+//     'keyName',
+//     defineProperty.BOOLEAN,
+//     {
+//         value: true,
 //         allowList : [],
 //         nullishAble: false,
 //         callback: function () {
