@@ -20,6 +20,11 @@ Rich.init('asset/css.css').then(function () {
                 description: '객체에 타입별 getter/setter 기능을 테스트함'
             },
             {
+                title: 'Rich.definePropertys',
+                url: 'core/TestBDD_definePropertys.html',
+                description: 'defineProperty를 한번에 하는 기능을 테스트함'
+            },
+            {
                 title: 'Rich.defineProperty : NUMBER',
                 url: 'core/TestBDD_NUMBER.html',
                 description: 'defineProperty.NUMBER 유형을 테스트함',
@@ -147,7 +152,7 @@ Rich.init('asset/css.css').then(function () {
                 })
                 prevFailNum = fail;
                 containerCurrentState.S(
-                    'color', fail ? 'red' : '#f2a971' ,
+                    'color', fail ? 'red' : '#f2a971',
                     'html', 'Total Test Result - ' + (fail ? 'FAIL' : 'SUCCESS')
                 )
                 containerStatePass.S('html', 'Passed : ' + pass);
