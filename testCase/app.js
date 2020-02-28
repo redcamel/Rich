@@ -20,9 +20,19 @@ Rich.init('asset/css.css').then(function () {
                 description: '객체에 타입별 getter/setter 기능을 테스트함'
             },
             {
-                title: 'Rich.definePropertys',
+                title: 'TODO - Rich.definePropertys',
                 url: 'core/TestBDD_definePropertys.html',
                 description: 'defineProperty를 한번에 하는 기능을 테스트함'
+            },
+            {
+                title: 'TODO - 순수데이터자체검증 하는 기능필요',
+                url: '',
+                description: 'TODO - 순수데이터자체를 검증하는 녀석도 필요함'
+            },
+            {
+                title: 'TODO - 매서드 내에서도 필요한데??',
+                url: '',
+                description: 'TODO - 이런식이면 매서드 내에서도 필요한데'
             },
             {
                 title: 'Rich.defineProperty : NUMBER',
@@ -163,7 +173,6 @@ Rich.init('asset/css.css').then(function () {
         })()
         requestAnimationFrame(tick)
 
-
         testList.forEach(function (v) {
             var t0;
             var itemContainer = Rich.Dom('div').S(
@@ -173,6 +182,7 @@ Rich.init('asset/css.css').then(function () {
                     'down', function () {
                         location.href = v['url']
                     },
+                    'background', v['title'].indexOf('TODO')>-1 ? '#6c7180' : '',
                     'html', v['title'],
                     '>', Rich.Dom('div').S(
                         '@className', 'description',
