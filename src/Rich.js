@@ -13,7 +13,7 @@ import KEY from "./keyboard/KEY";
 import STORAGE from "./storage/STORAGE";
 import WIN from "./window/WIN";
 import getCSS from "./network/getCSS";
-import defineProperty from "./core/defineProperty";
+import defineProperty from "./core/defineProperty/defineProperty";
 
 const Rich = (_ => {
     let tempRich;
