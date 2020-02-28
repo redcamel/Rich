@@ -5,105 +5,105 @@ Rich.init('asset/css.css').then(function () {
         var containerCurrentState, containerStatePass, containerStateFail, containerStateDuration;
         const testList = [
             {
-                title: 'Test - Main',
+                title: 'Main',
                 url: 'main/TestBDD_Main.html?testParams=1&testParams2=test',
-                description : '초기화와 기본 정의 매서드를 테스트함.'
+                description: '초기화와 기본 정의 매서드를 테스트함.'
             },
             {
-                title: 'Test - Rich.dispatcher',
+                title: 'Rich.dispatcher',
                 url: 'main/TestBDD_dispatcher.html',
-                description : '기본 이벤트 디스패처를 테스트함'
+                description: '기본 이벤트 디스패처를 테스트함'
             },
             {
-                title: 'Test - Rich.defineProperty',
+                title: 'Rich.defineProperty',
                 url: 'core/TestBDD_defineProperty.html',
-                description : '객체에 타입별 getter/setter 기능을 테스트함'
+                description: '객체에 타입별 getter/setter 기능을 테스트함'
             },
             {
-                title: 'Test - Rich.defineProperty : NUMBER',
+                title: 'Rich.defineProperty : NUMBER',
                 url: 'core/TestBDD_NUMBER.html',
-                description : 'defineProperty.NUMBER 유형을 테스트함',
+                description: 'defineProperty.NUMBER 유형을 테스트함',
                 banner: 'Type'
             },
             {
-                title: 'Test - Rich.defineProperty : INT',
+                title: 'Rich.defineProperty : INT',
                 url: 'core/TestBDD_INT.html',
-                description : 'defineProperty.INT 유형을 테스트함',
+                description: 'defineProperty.INT 유형을 테스트함',
                 banner: 'Type'
             },
             {
-                title: 'Test - Rich.defineProperty : UINT',
+                title: 'Rich.defineProperty : UINT',
                 url: 'core/TestBDD_UINT.html',
-                description : 'defineProperty.UINT 유형을 테스트함',
+                description: 'defineProperty.UINT 유형을 테스트함',
                 banner: 'Type'
             },
             {
-                title: 'Test - Rich.defineProperty : STRING',
+                title: 'Rich.defineProperty : STRING',
                 url: 'core/TestBDD_STRING.html',
-                description : 'defineProperty.STRING 유형을 테스트함',
+                description: 'defineProperty.STRING 유형을 테스트함',
                 banner: 'Type'
             },
             {
-                title: 'Test - Rich.defineProperty : BOOLEAN',
+                title: 'Rich.defineProperty : BOOLEAN',
                 url: 'core/TestBDD_BOOLEAN.html',
-                description : 'defineProperty.BOOLEAN 유형을 테스트함',
+                description: 'defineProperty.BOOLEAN 유형을 테스트함',
                 banner: 'Type'
             },
             {
-                title: 'TODO - Rich.defineProperty : CUSTOM',
+                title: 'Rich.defineProperty : CUSTOM',
                 url: 'core/TestBDD_CUSTOM.html',
-                description : 'defineProperty.CUSTOM 유형을 테스트함',
+                description: 'defineProperty.CUSTOM 유형을 테스트함',
                 banner: 'Type'
             },
             {
-                title: 'Test - Rich.Dom',
+                title: 'Rich.Dom',
                 url: 'display/TestBdd_Dom.html',
-                description : 'Dom 객체 생성/핸들링을 테스트함'
+                description: 'Dom 객체 생성/핸들링을 테스트함'
             },
             {
-                title: 'Test - Rich.Css',
+                title: 'Rich.Css',
                 url: 'css/TestBDD_Css.html',
-                description : 'CSSStyleDeclaration 객체 생성/핸들링을 테스트함'
+                description: 'CSSStyleDeclaration 객체 생성/핸들링을 테스트함'
             },
             {
-                title: 'Test - Rich.DETECTOR',
+                title: 'Rich.DETECTOR',
                 url: 'detector/Test_DETECTOR.html',
-                description : '기본 디텍팅 항목',
+                description: '기본 디텍팅 항목',
                 banner: 'Visual'
             },
             {
-                title: 'Test - Test Dom Events',
+                title: 'Test Dom Events',
                 url: 'display/TestDomEvents.html',
-                description : 'Dom 이벤트 처리 시각화',
+                description: 'Dom 이벤트 처리 시각화',
                 banner: 'Visual'
             },
             {
-                title: 'Test - Test Container Method',
+                title: 'Test Container Method',
                 url: 'display/TestContainerMethod.html',
-                description : 'Dom 자식처리 시각화',
+                description: 'Dom 자식처리 시각화',
                 banner: 'Visual'
             },
             {
-                title: 'Test - Rich.LOOPER',
+                title: 'Rich.LOOPER',
                 url: 'looper/TestBDD_LOOPER.html',
-                description : '루퍼 매니저 테스트함'
+                description: '루퍼 매니저 테스트함'
             },
             {
-                title: 'Test - Rich.KEY',
+                title: 'Rich.KEY',
                 url: 'keyboard/TestBDD_KEY.html',
-                description : '키보드 버퍼처리 시각화함',
+                description: '키보드 버퍼처리 시각화함',
                 banner: 'Visual'
             },
             {
-                title: 'Test - Rich.WIN',
+                title: 'Rich.WIN',
                 url: 'window/TestBDD_WIN.html',
-                description : '윈도우 관련 매니저 테스트함',
+                description: '윈도우 관련 매니저 테스트함',
                 banner: 'Visual'
             },
             {
-                title: 'Test - Rich.STORAGE',
+                title: 'Rich.STORAGE',
                 url: 'storage/TestBDD_STORAGE.html',
-                description : '스토리지 관리 테스트함'
+                description: '스토리지 관리 테스트함'
             }
         ]
         const IFRAME_LIST = []
@@ -120,31 +120,40 @@ Rich.init('asset/css.css').then(function () {
             ),
             '<', 'body'
         );
-        var tick = function () {
-            var pass = 0;
-            var fail = 0;
-            var duration = 0
-            IFRAME_LIST.forEach(function (v) {
-                var t0;
-                t0 = v.dom.contentWindow.document.querySelector('.passes em');
-                if (t0) pass += +t0.textContent
-                t0 = v.dom.contentWindow.document.querySelector('.failures em');
-                if (t0) fail += +t0.textContent
-                t0 = v.dom.contentWindow.document.querySelector('.duration em');
-                if (t0) duration += +t0.textContent
-            })
-            containerCurrentState.S('html', 'Total Test Result - ' + (fail ? 'FAIL' : 'SUCCESS'))
-            containerStatePass.S('html', 'Passed : ' + pass);
-            containerStateFail.S('html', 'Fail : ' + fail);
-            containerStateDuration.S('html', 'Total duration : ' + duration.toFixed(2) + 's');
-            requestAnimationFrame(tick)
-        }
+        var tick = (function(){
+            var prevFailNum = 0;
+            return function () {
+                var pass = 0;
+                var fail = 0;
+                var duration = 0
+                IFRAME_LIST.forEach(function (itemContainer) {
+                    var v = Rich.Dom(itemContainer.dom.querySelector('iframe'))
+                    var t0;
+                    if(prevFailNum) itemContainer.S('opacity',0.1)
+                    t0 = v.dom.contentWindow.document.querySelector('.passes em');
+                    if (t0) pass += +t0.textContent
+                    t0 = v.dom.contentWindow.document.querySelector('.failures em');
+                    if (t0) {
+                        fail += +t0.textContent
+                        if(+t0.textContent) itemContainer.S('opacity',1)
+                    }
+                    t0 = v.dom.contentWindow.document.querySelector('.duration em');
+                    if (t0) duration += +t0.textContent
+                })
+                prevFailNum = fail;
+                containerCurrentState.S('html', 'Total Test Result - ' + (fail ? 'FAIL' : 'SUCCESS'))
+                containerStatePass.S('html', 'Passed : ' + pass);
+                containerStateFail.S('html', 'Fail : ' + fail);
+                containerStateDuration.S('html', 'Total duration : ' + duration.toFixed(2) + 's');
+                requestAnimationFrame(tick)
+            }
+        })()
         requestAnimationFrame(tick)
 
 
         testList.forEach(function (v) {
             var t0;
-            Rich.Dom('div').S(
+            var itemContainer = Rich.Dom('div').S(
                 '@className', 'itemContainer',
                 '>', Rich.Dom('div').S(
                     '@className', 'title',
@@ -157,7 +166,7 @@ Rich.init('asset/css.css').then(function () {
                         'html', v['description']
                     ),
                     '>', Rich.Dom('div').S(
-                        '@className', 'banner',
+                        '@className', 'banner ' + v['banner'],
                         'display', v['banner'] ? 'block' : 'none',
                         'html', v['banner']
                     )
@@ -167,7 +176,7 @@ Rich.init('asset/css.css').then(function () {
                 ),
                 '<', containerRoot
             )
-            if (v['banner'] != 'Visual') IFRAME_LIST.push(t0)
+            IFRAME_LIST.push(itemContainer)
 
         })
     }
