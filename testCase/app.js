@@ -42,8 +42,8 @@ Rich.init('asset/css.css').then(function () {
                 banner: 'Type'
             },
             {
-                title: 'TODO - Rich.defineProperty : CustomType',
-                url: '',//'core/TestBDD_BOOLEAN.html',
+                title: 'TODO - Rich.defineProperty : CUSTOM',
+                url: 'core/TestBDD_CUSTOM.html',
                 banner: 'Type'
             },
             {
