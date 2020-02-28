@@ -61,6 +61,11 @@ Rich.init('asset/css.css').then(function () {
                 description: 'Dom 객체 생성/핸들링을 테스트함'
             },
             {
+                title: 'query & queryAll',
+                url: 'display/TestBdd_query.html',
+                description: 'query & queryAll 매서드 동작 테스트'
+            },
+            {
                 title: 'Rich.Css',
                 url: 'css/TestBDD_Css.html',
                 description: 'CSSStyleDeclaration 객체 생성/핸들링을 테스트함'
@@ -120,7 +125,7 @@ Rich.init('asset/css.css').then(function () {
             ),
             '<', 'body'
         );
-        var tick = (function(){
+        var tick = (function () {
             var prevFailNum = 0;
             return function () {
                 var pass = 0;
@@ -129,19 +134,22 @@ Rich.init('asset/css.css').then(function () {
                 IFRAME_LIST.forEach(function (itemContainer) {
                     var v = Rich.Dom(itemContainer.dom.querySelector('iframe'))
                     var t0;
-                    if(prevFailNum) itemContainer.S('opacity',0.1)
+                    if (prevFailNum) itemContainer.S('opacity', 0.1)
                     t0 = v.dom.contentWindow.document.querySelector('.passes em');
                     if (t0) pass += +t0.textContent
                     t0 = v.dom.contentWindow.document.querySelector('.failures em');
                     if (t0) {
                         fail += +t0.textContent
-                        if(+t0.textContent) itemContainer.S('opacity',1)
+                        if (+t0.textContent) itemContainer.S('opacity', 1)
                     }
                     t0 = v.dom.contentWindow.document.querySelector('.duration em');
                     if (t0) duration += +t0.textContent
                 })
                 prevFailNum = fail;
-                containerCurrentState.S('html', 'Total Test Result - ' + (fail ? 'FAIL' : 'SUCCESS'))
+                containerCurrentState.S(
+                    'color', fail ? 'red' : '#f2a971' ,
+                    'html', 'Total Test Result - ' + (fail ? 'FAIL' : 'SUCCESS')
+                )
                 containerStatePass.S('html', 'Passed : ' + pass);
                 containerStateFail.S('html', 'Fail : ' + fail);
                 containerStateDuration.S('html', 'Total duration : ' + duration.toFixed(2) + 's');

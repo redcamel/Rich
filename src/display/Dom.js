@@ -1,17 +1,18 @@
 "use strict";
 import DETECTOR from "../ditector/DETECTOR";
 import ClassUUID from "../core/ClassUUID";
+import query from "./query";
+import queryAll from "./queryAll";
 
-var UUID_TABLE, UUID;
-var Dom, DomCls, fn;
-UUID = 0;
+let UUID_TABLE;
+let Dom, DomCls, fn;
 UUID_TABLE = {},
     //////////////////////////////////
     // 실제 클래스
     DomCls = class extends ClassUUID {
         constructor(k) {
             super();
-            (this.dom = k).__uuid = UUID++;
+            (this.dom = k).__uuid = this._uuid;
             UUID_TABLE[this.dom.__uuid] = this;
             this.dom.dataset ? 0 : this.dom.dataset = {}
         }
@@ -19,16 +20,16 @@ UUID_TABLE = {},
     //////////////////////////////////
     // 클래스 팩토리
     Dom = (function () {
-        var result, t;
+        let result, t;
         return function (k) {
-            if (k == 'body') k = document.body;
+            if (k === 'body') k = document.body;
             if (k instanceof Element) result = UUID_TABLE[k.__uuid] ? UUID_TABLE[k.__uuid] : new DomCls(k);
-            else if (k = k.trim(), k.charAt(0) == "<") {
+            else if (k = k.trim(), k.charAt(0) === "<") {
                 t = document.createElement("div"),
                     t.innerHTML = k,
                     result = new DomCls(t.childNodes[0]);
                 t = null;
-            } else if (k.charAt(0) == "#") {
+            } else if (k.charAt(0) === "#") {
                 t = document.getElementById(k = k.substr(1, k.length - 1));
                 if (t && UUID_TABLE[t.__uuid]) result = UUID_TABLE[t.__uuid];
                 else if (t) result = new DomCls(t);
@@ -45,11 +46,11 @@ UUID_TABLE = {},
     //////////////////////////////////
     // fn정의
     fn.S = (function () {
-        var noPx = {'opacity': 1, 'z-index': 1, 'zIndex': 1};
+        let noPx = {'opacity': 1, 'z-index': 1, 'zIndex': 1};
         return function () {
-            var arg = arguments;
-            var max, i;
-            var k, v, isAttr, tS, tD;
+            let arg = arguments;
+            let max, i;
+            let k, v, isAttr, tS, tD;
             k = DETECTOR[k] ? DETECTOR[k] : k, //모바일 터치이벤트 체크
                 i = 0, max = arg.length,
                 tD = this.dom,
@@ -57,30 +58,32 @@ UUID_TABLE = {},
             for (i; i < max; i++) {
                 k = arg[i],
                     isAttr = false,
-                    k.charAt(0) == "@" ? (isAttr = true, k = k.substr(1, k.length - 1)) : 0,
+                    k.charAt(0) === "@" ? (isAttr = true, k = k.substr(1, k.length - 1)) : 0,
                     i++, v = arg[i];
                 if (v === null) {
-                    typeof this[k] == "function" ? this[k](v) :
+                    typeof this[k] === "function" ? this[k](v) :
                         isAttr ? tD.removeAttribute(k) : tS[k] = ""
                 } else if (i < arg.length) {
-                    typeof this[k] == "function" ? this[k](v) :
-                        isAttr ? tD.setAttribute(k, v) : typeof v == "number" ? tS[k] = noPx[k] ? v : (v + "px") : tS[k] = v
+                    typeof this[k] === "function" ? this[k](v) :
+                        isAttr ? tD.setAttribute(k, v) : typeof v === "number" ? tS[k] = noPx[k] ? v : (v + "px") : tS[k] = v
                 } else {
-                    return typeof this[k] == "function" ? this[k]() :
+                    return typeof this[k] === "function" ? this[k]() :
                         isAttr ? tD.getAttribute(k) : isNaN(parseFloat(tS[k])) ? tS[k] : (tS[k].indexOf('px') > -1) ? parseFloat(tS[k]) : tS[k]
                 }
-                if (i == max - 1) return this
+                if (i === max - 1) return this
             }
         }
     })(),
     //////////////////////////////////
     // method 기술하자.
+    fn['query'] = query,
+    fn['queryAll'] = queryAll,
     fn['className'] = function (v) {
         if (v === null) return this.dom.removeAttribute('class');
-        else return v != undefined ? this.dom.className = v : this.dom.hasAttribute('class') ? this.dom.className : null
+        else return v !== undefined ? this.dom.className = v : this.dom.hasAttribute('class') ? this.dom.className : null
     },
     fn['className+'] = (function () {
-        var arg, i, t;
+        let arg, i, t;
         return function (v) {
             arg = v.split(' '), i = arg.length;
             while (i--) t = arg[i], ~this.dom.className.indexOf(t) ? 0 : this.dom.className += (' ' + t);
@@ -88,7 +91,7 @@ UUID_TABLE = {},
         }
     })(),
     fn['className-'] = (function () {
-        var arg, i, t;
+        let arg, i, t;
         return function (v) {
             arg = v.split(' '), i = arg.length;
             while (i--) t = arg[i], ~this.dom.className.indexOf(t) ? this.dom.className = this.dom.className.replace(t, '') : 0;
@@ -96,29 +99,29 @@ UUID_TABLE = {},
         }
     })(),
     fn['+html'] = function (v) {
-        return v != undefined ? this.dom.innerHTML = v + this.dom.innerHTML : this.dom.innerHTML
+        return v !== undefined ? this.dom.innerHTML = v + this.dom.innerHTML : this.dom.innerHTML
     },
     fn['html'] = function (v) {
         return v !== undefined ? this.dom.innerHTML = v : this.dom.innerHTML
     }, // set-null 일때 set-'' 과 동일하게 처리
     fn['html+'] = function (v) {
-        return v != undefined ? this.dom.innerHTML += v : this.dom.innerHTML
+        return v !== undefined ? this.dom.innerHTML += v : this.dom.innerHTML
     },
     fn['+text'] = function (v) {
-        return v != undefined ? this.dom.textContent = v + this.dom.textContent : this.dom.textContent
+        return v !== undefined ? this.dom.textContent = v + this.dom.textContent : this.dom.textContent
     },
     fn['text'] = function (v) {
         return v !== undefined ? this.dom.textContent = v : this.dom.textContent
     }, // set-null 일때 set-'' 과 동일하게 처리
     fn['text+'] = function (v) {
-        return v != undefined ? this.dom.textContent += v : this.dom.textContent
+        return v !== undefined ? this.dom.textContent += v : this.dom.textContent
     },
     fn['value'] = function (v) {
-        return v != undefined ? this.dom.value = v : this.dom.value
+        return v !== undefined ? this.dom.value = v : this.dom.value
     },
     fn['parent'] = fn['<'] = function (v) {
-        v = v == 'body' ? document.body : v instanceof DomCls ? v.dom : v;
-        if (v == undefined) return this.dom.parentNode ? Dom(this.dom.parentNode) : this.dom.parentNode;
+        v = v === 'body' ? document.body : v instanceof DomCls ? v.dom : v;
+        if (v === undefined) return this.dom.parentNode ? Dom(this.dom.parentNode) : this.dom.parentNode;
         else v.appendChild(this.dom)
     },
     fn['remove'] = function () {
@@ -129,7 +132,7 @@ UUID_TABLE = {},
         this.dom.appendChild(v instanceof DomCls ? v.dom : v);
     },
     fn['addChildAt'] = function (index, v) {
-        var refChild = this.dom.children[index];
+        let refChild = this.dom.children[index];
         if (refChild) this.dom.insertBefore(v instanceof DomCls ? v.dom : v, refChild);
         else this.dom.appendChild(v instanceof DomCls ? v.dom : v);
     },
@@ -142,7 +145,7 @@ UUID_TABLE = {},
         }
     },
     fn['getChildAt'] = function (index) {
-        var t;
+        let t;
         return (t = this.dom.children[index]) ? Dom(t) : null
     },
     fn['getChildNum'] = function () {
@@ -156,11 +159,11 @@ UUID_TABLE = {},
     };
 ///////////////////////////////////////////////////////////////////////////////////
 (function () {
-    var keys, realKeys;
-    var lX, lY, realX, realY, preventKey;
-    var evtUUID, event_UUID_TABLE;
-    var i;
-    var preventKeyFunc;
+    let keys, realKeys;
+    let lX, lY, realX, realY, preventKey;
+    let evtUUID, event_UUID_TABLE;
+    let i;
+    let preventKeyFunc;
     evtUUID = 0,
         event_UUID_TABLE = {},
         // 디텍팅과 관련된 녀석들
@@ -181,16 +184,16 @@ UUID_TABLE = {},
         preventKeyFunc = function (v) {
             v[preventKey]()
         },
-        // lX = (DETECTOR.browser == 'ie' && DETECTOR.browserVer < 10) ? 'offsetX' : 'layerX',
-        // lY = (DETECTOR.browser == 'ie' && DETECTOR.browserVer < 10) ? 'offsetY' : 'layerY',
-        // realX = (DETECTOR.browser == 'firefox') ? 'pageX' : 'x',
-        // realY = (DETECTOR.browser == 'firefox') ? 'pageY' : 'y',
-        preventKey = (DETECTOR.browser == 'ie') ? 'preventDefault' : 'stopPropagation';
+        // lX = (DETECTOR.browser === 'ie' && DETECTOR.browserVer < 10) ? 'offsetX' : 'layerX',
+        // lY = (DETECTOR.browser === 'ie' && DETECTOR.browserVer < 10) ? 'offsetY' : 'layerY',
+        // realX = (DETECTOR.browser === 'firefox') ? 'pageX' : 'x',
+        // realY = (DETECTOR.browser === 'firefox') ? 'pageY' : 'y',
+        preventKey = (DETECTOR.browser === 'ie') ? 'preventDefault' : 'stopPropagation';
     i = keys.length;
     while (i--) {
         (function () {
-            var eventKey = keys[i];
-            var tDomUUID;
+            let eventKey = keys[i];
+            let tDomUUID;
             realKeys[eventKey] = DETECTOR[eventKey] ? DETECTOR[eventKey] : eventKey;
             fn[eventKey] = function (handler) {
                 tDomUUID = this.dom.__uuid;

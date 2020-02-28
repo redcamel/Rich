@@ -14,6 +14,8 @@ import STORAGE from "./storage/STORAGE";
 import WIN from "./window/WIN";
 import getCSS from "./network/getCSS";
 import defineProperty from "./core/defineProperty/defineProperty";
+import queryAll from "./display/queryAll";
+import query from "./display/query";
 
 const Rich = (_ => {
     let tempRich;
@@ -115,7 +117,8 @@ const Rich = (_ => {
     tempRich.addMethod('ajaxJsonPost', makeAjax({method: 'POST', headers: {'Content-Type': 'application/json'}}));
     tempRich.addMethod('getJS', getJS);
     tempRich.addMethod('getCSS', getCSS);
-
+    tempRich.addMethod('query', query);
+    tempRich.addMethod('queryAll', queryAll);
     // class
     tempRich.addClass('ClassUUID', ClassUUID);
     tempRich.addClass('Dom', Dom, false);
