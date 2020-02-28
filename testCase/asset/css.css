@@ -37,7 +37,7 @@ html, body {
 .itemContainer {
     overflow: hidden;
     width: 300px;
-    height: 115px;
+    height: 135px;
     display: inline-block;
     border: 1px solid rgb(51, 51, 51);
     margin: 10px;
@@ -57,6 +57,7 @@ html, body {
     background: #fff;
 }
 
+
 .itemContainer .title {
     background: #4d4786;
     padding: 15px;
@@ -67,6 +68,14 @@ html, body {
     position: relative;
 }
 
+.itemContainer .description {
+    font-size: 11px;
+    margin-top: 5px;
+    height: 15px;
+    opacity: 0.5;
+    /*background: #d435a3;*/
+
+}
 .itemContainer .banner {
     position: absolute;
     right: 0;

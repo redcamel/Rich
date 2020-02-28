@@ -6,86 +6,104 @@ Rich.init('asset/css.css').then(function () {
         const testList = [
             {
                 title: 'Test - Main',
-                url: 'main/TestBDD_Main.html?testParams=1&testParams2=test'
+                url: 'main/TestBDD_Main.html?testParams=1&testParams2=test',
+                description : '초기화와 기본 정의 매서드를 테스트함.'
             },
             {
                 title: 'Test - Rich.dispatcher',
-                url: 'main/TestBDD_dispatcher.html'
+                url: 'main/TestBDD_dispatcher.html',
+                description : '기본 이벤트 디스패처를 테스트함'
             },
             {
                 title: 'Test - Rich.defineProperty',
-                url: 'core/TestBDD_defineProperty.html'
+                url: 'core/TestBDD_defineProperty.html',
+                description : '객체에 타입별 getter/setter 기능을 테스트함'
             },
             {
                 title: 'Test - Rich.defineProperty : NUMBER',
                 url: 'core/TestBDD_NUMBER.html',
+                description : 'defineProperty.NUMBER 유형을 테스트함',
                 banner: 'Type'
             },
             {
                 title: 'Test - Rich.defineProperty : INT',
                 url: 'core/TestBDD_INT.html',
+                description : 'defineProperty.INT 유형을 테스트함',
                 banner: 'Type'
             },
             {
                 title: 'Test - Rich.defineProperty : UINT',
                 url: 'core/TestBDD_UINT.html',
+                description : 'defineProperty.UINT 유형을 테스트함',
                 banner: 'Type'
             },
             {
                 title: 'Test - Rich.defineProperty : STRING',
                 url: 'core/TestBDD_STRING.html',
+                description : 'defineProperty.STRING 유형을 테스트함',
                 banner: 'Type'
             },
             {
                 title: 'Test - Rich.defineProperty : BOOLEAN',
                 url: 'core/TestBDD_BOOLEAN.html',
+                description : 'defineProperty.BOOLEAN 유형을 테스트함',
                 banner: 'Type'
             },
             {
                 title: 'TODO - Rich.defineProperty : CUSTOM',
                 url: 'core/TestBDD_CUSTOM.html',
+                description : 'defineProperty.CUSTOM 유형을 테스트함',
                 banner: 'Type'
             },
             {
                 title: 'Test - Rich.Dom',
-                url: 'display/TestBdd_Dom.html'
+                url: 'display/TestBdd_Dom.html',
+                description : 'Dom 객체 생성/핸들링을 테스트함'
             },
             {
                 title: 'Test - Rich.Css',
-                url: 'css/TestBDD_Css.html'
+                url: 'css/TestBDD_Css.html',
+                description : 'CSSStyleDeclaration 객체 생성/핸들링을 테스트함'
             },
             {
                 title: 'Test - Rich.DETECTOR',
                 url: 'detector/Test_DETECTOR.html',
+                description : '기본 디텍팅 항목',
                 banner: 'Visual'
             },
             {
                 title: 'Test - Test Dom Events',
                 url: 'display/TestDomEvents.html',
+                description : 'Dom 이벤트 처리 시각화',
                 banner: 'Visual'
             },
             {
                 title: 'Test - Test Container Method',
                 url: 'display/TestContainerMethod.html',
+                description : 'Dom 자식처리 시각화',
                 banner: 'Visual'
             },
             {
                 title: 'Test - Rich.LOOPER',
-                url: 'looper/TestBDD_LOOPER.html'
+                url: 'looper/TestBDD_LOOPER.html',
+                description : '루퍼 매니저 테스트함'
             },
             {
                 title: 'Test - Rich.KEY',
                 url: 'keyboard/TestBDD_KEY.html',
+                description : '키보드 버퍼처리 시각화함',
                 banner: 'Visual'
             },
             {
                 title: 'Test - Rich.WIN',
                 url: 'window/TestBDD_WIN.html',
+                description : '윈도우 관련 매니저 테스트함',
                 banner: 'Visual'
             },
             {
                 title: 'Test - Rich.STORAGE',
-                url: 'storage/TestBDD_STORAGE.html'
+                url: 'storage/TestBDD_STORAGE.html',
+                description : '스토리지 관리 테스트함'
             }
         ]
         const IFRAME_LIST = []
@@ -134,6 +152,10 @@ Rich.init('asset/css.css').then(function () {
                         location.href = v['url']
                     },
                     'html', v['title'],
+                    '>', Rich.Dom('div').S(
+                        '@className', 'description',
+                        'html', v['description']
+                    ),
                     '>', Rich.Dom('div').S(
                         '@className', 'banner',
                         'display', v['banner'] ? 'block' : 'none',
