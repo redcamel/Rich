@@ -1,16 +1,4 @@
-"use strict"
-
-/*
-    TODO - definePropertys(
-        target,
-        [
-            { keyName : '키네임', type : defineProperty.NUMBER, option : {옵션정보객체} },
-            { keyName : '키네임', type : defineProperty.NUMBER, option : {옵션정보객체} },
-            { keyName : '키네임', type : defineProperty.NUMBER, option : {옵션정보객체} },
-            ....
-        ]
-     )
- */
+"use strict";
 import defineProperty from "./defineProperty";
 
 let definePropertys;

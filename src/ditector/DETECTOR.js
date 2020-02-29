@@ -9,9 +9,9 @@ let navi = window['navigator'],
     browser, bv, os, osv,
     i, t0,
     ie = function () {
-        if (agent.indexOf('edge') > -1) {
+        if (agent.indexOf('edg') > -1) {
             if (agent.indexOf('iemobile') > -1) os = 'winMobile';
-            return browser = 'edge', bv = (/edge\/([\d]+)/.exec(agent)[1]);
+            return browser = 'edge', bv = (/edg\/([\d]+)/.exec(agent)[1]);
         } else {
             if (agent.indexOf('msie') < 0 && agent.indexOf('trident') < 0) return;
             if (agent.indexOf('iemobile') > -1) os = 'winMobile';
