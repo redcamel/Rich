@@ -65,8 +65,8 @@ Rich.init('asset/css.css').then(function () {
                 banner: 'Type'
             },
             {
-                title: 'TODO - Rich.defineProperty : FUNCTION',
-                url: '',
+                title: 'Rich.defineProperty : FUNCTION',
+                url: 'core/TestBDD_FUNCTION.html',
                 description: 'defineProperty.FUNCTION 유형을 테스트함',
                 banner: 'Type'
             },

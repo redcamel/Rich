@@ -5,6 +5,7 @@ import defineNumber from "./defineNumber";
 import defineString from "./defineString";
 import defineBoolean from "./defineBoolean";
 import defineCustomType from "./defineCustomType";
+import defineFunction from "./defineFunction";
 
 let defineProperty;
 defineProperty = (target, keyName, type, option, isCustomType = false) => {
@@ -34,6 +35,9 @@ defineProperty = (target, keyName, type, option, isCustomType = false) => {
                 break;
             case DEFINE_TYPE.BOOLEAN :
                 defineBoolean(target, keyName, type, option);
+                break;
+            case DEFINE_TYPE.FUNCTION :
+                defineFunction(target, keyName, type, option);
                 break;
             default :
                 throwError('정의할수 없는 타입')
