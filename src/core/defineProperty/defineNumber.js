@@ -37,7 +37,13 @@ let defineNumber = (target, keyName, type, option) => {
         }
     }
     // 기본값 생성
-    option['value'] = option['value'] || (NULLISH_ABLE ? null : 0);
+
+    if (NULLISH_ABLE) {
+        if (!option.hasOwnProperty('value')) option['value'] = option['value'] = null;
+    } else {
+        if (!option.hasOwnProperty('value')) throwError(`${target.constructor.name} - option['value'] : nullish 허용안한 상태에서는 초기값을 반드시 지정해야합니다.. / 입력값 : ${option['value']}`);
+    }
+
     if (!NULLISH_ABLE && type !== DEFINE_TYPE.NUMBER && option['value'] !== parseInt(option['value'])) throwError(`${target.constructor.name} - v : 소수점 허용안함. / 입력값 : ${option['value']}`);
     if (!NULLISH_ABLE && type === DEFINE_TYPE.UINT && option['value'] < 0) throwError(`${target.constructor.name} - option['value'] : 음수 허용안함. / 입력값 : ${option['value']}`);
     // 타입형 체크
