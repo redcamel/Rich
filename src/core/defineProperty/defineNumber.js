@@ -38,17 +38,22 @@ let defineNumber = (target, keyName, type, option) => {
     }
     // 기본값 생성
     if (NULLISH_ABLE) {
-        if (option.hasOwnProperty('value')) {
-            if (!(option['value'] === null || option['value'] === undefined) && type !== DEFINE_TYPE.NUMBER && option['value'] !== parseInt(option['value'])) throwError(`${target.constructor.name} - option['value'] : 소수점 허용안함. / 입력값 : ${option['value']}`);
-        } else option['value'] = option['value'] = null;
-
-    } else {
-        if (option.hasOwnProperty('value')) {
-            if (type !== DEFINE_TYPE.NUMBER && option['value'] !== parseInt(option['value'])) throwError(`${target.constructor.name} - option['value'] : 소수점 허용안함. / 입력값 : ${option['value']}`);
+        if (!option.hasOwnProperty('value')) option['value'] = option['value'] = null;
+    }
+    if(typeof option['value'] == 'number'){
+        if (type !== DEFINE_TYPE.NUMBER && option['value'] !== parseInt(option['value'])) throwError(`${target.constructor.name} - option['value'] : 소수점 허용안함. / 입력값 : ${option['value']}`);
+        if (type === DEFINE_TYPE.UINT && option['value'] < 0) throwError(`${target.constructor.name} - option['value'] : 음수 허용안함. / 입력값 : ${option['value']}`);
+    }else{
+        if (NULLISH_ABLE && (option['value'] == null || option['value'] === undefined)) {
         } else {
-            throwError(`${target.constructor.name} - option['value'] : nullish 허용안한 상태에서는 초기값을 반드시 지정해야합니다.. / 입력값 : ${option['value']}`);
+            if (option['value'] == null || option['value'] === undefined) {
+                throwError(`${target.constructor.name} - option['value'] : nullish를 허용하지 않는 세팅상태. / 입력값 : ${option['value']}`);
+            } else {
+                throwError(`${target.constructor.name} - option['value'] : Number만 허용함. / 입력값 : ${option['value']}`);
+            }
         }
     }
+
     if (hasMin) {
         if (typeof MIN != 'number' || isNaN(MIN)) throwError(`${target.constructor.name} - option['min'] : Number만 허용함. / 입력값 : ${MIN}`);
         if (type !== DEFINE_TYPE.NUMBER && MIN !== parseInt(MIN)) throwError(`${target.constructor.name} - option['min'] : 소수점 허용안함. / 입력값 : ${MIN}`);

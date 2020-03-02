@@ -103,7 +103,7 @@ Rich.init(
                     });
                 });
                 [-1.1, 1.1].forEach(function (v) {
-                    it('option = { value : ' + v + ' } 초기값이 정수가 아닐경우 에러를 발생시키는지', function () {
+                    it('option = { value : ' + v + ' } / 초기값이 정수가 아닐경우 에러를 발생시키는지', function () {
                         var result = true
                         var target = function Test() {}
                         try {
@@ -124,7 +124,7 @@ Rich.init(
             });
 
             describe('Test - option.min 테스트', function () {
-                it('option = { value : -10, min : -1 } : 초기값이 최소값 보다 작을때 최소값으로 치환되는지', function () {
+                it('option = { value : -10, min : -1 } / 초기값이 최소값 보다 작을때 최소값으로 치환되는지', function () {
                     var target = function Test() {}
                     Rich.defineProperty(
                         target.prototype,
@@ -140,7 +140,7 @@ Rich.init(
                     console.log(targetInstance)
                     expect(targetInstance.keyName_test == -1).to.be.true;
                 });
-                it('option = {  min : -1 } : 입력값이 최소값 보다 작을때 최소값으로 치환되는지', function () {
+                it('option = {  min : -1 } / 입력값이 최소값 보다 작을때 최소값으로 치환되는지', function () {
                     var target = function Test() {}
                     Rich.defineProperty(
                         target.prototype,
@@ -157,7 +157,7 @@ Rich.init(
                     expect(targetInstance.keyName_test == -1).to.be.true;
                 });
                 [-1.1, 1.1].forEach(function (v) {
-                    it('option = { min : ' + v + ' } 최소값이 정수가 아닐경우 에러를 발생시키는지', function () {
+                    it('option = { min : ' + v + ' } / 최소값이 정수가 아닐경우 에러를 발생시키는지', function () {
                         var result = true
                         var target = function Test() {}
                         try {
@@ -178,7 +178,7 @@ Rich.init(
                 });
             });
             describe('Test - option.max 테스트', function () {
-                it('option = { value : 10, max : 5 } : 초기값이 최대값보다 클때 최대값으로 치환되는지', function () {
+                it('option = { value : 10, max : 5 } / 초기값이 최대값보다 클때 최대값으로 치환되는지', function () {
                     var target = function Test() {}
                     Rich.defineProperty(
                         target.prototype,
@@ -193,7 +193,7 @@ Rich.init(
                     console.log(targetInstance)
                     expect(targetInstance.keyName_test == 5).to.be.true;
                 });
-                it('option = {  max : 5 } : 입력값이 최대값보다 클때 최대값으로 치환되는지', function () {
+                it('option = {  max : 5 } / 입력값이 최대값보다 클때 최대값으로 치환되는지', function () {
                     var target = function Test() {}
                     Rich.defineProperty(
                         target.prototype,
@@ -229,7 +229,18 @@ Rich.init(
                 });
             });
             describe('Test - option.nullishAble 테스트', function () {
-                it('option = {   nullishAble : true } : nullishAble 상태일때 초기값이 null로 세팅되나 체크', function () {
+                it('option = null / nullishAble 상태일때 초기값이 null로 세팅되나 체크', function () {
+                    var target = function Test() {}
+                    Rich.defineProperty(
+                        target.prototype,
+                        'keyName_test',
+                        Rich.DEFINE_TYPE.INT
+                    )
+                    var targetInstance = new target();
+                    console.log(targetInstance)
+                    expect(targetInstance.keyName_test == null).to.be.true;
+                });
+                it('option = { nullishAble : true } / nullishAble 상태일때 초기값이 null로 세팅되나 체크', function () {
                     var target = function Test() {}
                     Rich.defineProperty(
                         target.prototype,
@@ -243,30 +254,45 @@ Rich.init(
                     console.log(targetInstance)
                     expect(targetInstance.keyName_test == null).to.be.true;
                 });
-                it('option = { value : 5, nullishAble : true } : nullishAble 상태일때 초기값이 세팅이 옵션되로 되는지 체크', function () {
+                it('option = { nullishAble : false } / nullishAble 상태가 아닐때 초기값이 없으면 에러가 나나!', function () {
+                    var target = function Test() {}
+                    var result = true;
+                    try {
+                        Rich.defineProperty(
+                            target.prototype,
+                            'keyName_test',
+                            Rich.DEFINE_TYPE.INT,
+                            {
+                                nullishAble: false
+                            }
+                        )
+                    } catch (e) {
+                        result = false;
+                    }
+                    expect(result).to.be.false;
+                });
+                it('option = { value : 5 } / nullishAble 상태일때 초기값이 세팅이 옵션되로 되는지 체크', function () {
                     var target = function Test() {}
                     Rich.defineProperty(
                         target.prototype,
                         'keyName_test',
                         Rich.DEFINE_TYPE.INT,
                         {
-                            value: 5,
-                            nullishAble: true
+                            value: 5
                         }
                     )
                     var targetInstance = new target();
                     console.log(targetInstance)
                     expect(targetInstance.keyName_test == 5).to.be.true;
                 });
-                it('{ value : 5, nullishAble : true } : nullishAble 실제 값을 set 했을때 허용되는지 체크', function () {
+                it('option = { value : 5 } / nullishAble 실제 값을 set 했을때 허용되는지 체크', function () {
                     var target = function Test() {}
                     Rich.defineProperty(
                         target.prototype,
                         'keyName_test',
                         Rich.DEFINE_TYPE.INT,
                         {
-                            value: 5,
-                            nullishAble: true
+                            value: 5
                         }
                     )
                     var targetInstance = new target();
@@ -274,7 +300,7 @@ Rich.init(
                     console.log(targetInstance)
                     expect(targetInstance.keyName_test == null).to.be.true;
                 });
-                it('option = { min : 5, nullishAble : true } : nullishAble 일떄 nullish입력시 min, max를 무시하는지 체크', function () {
+                it('option = { min : 5 } / nullishAble 일떄 nullish입력시 min, max를 무시하는지 체크', function () {
                     var target = function Test() {}
                     Rich.defineProperty(
                         target.prototype,
@@ -282,8 +308,7 @@ Rich.init(
                         Rich.DEFINE_TYPE.INT,
                         {
                             value: null,
-                            min: 5,
-                            nullishAble: true
+                            min: 5
                         }
                     )
                     var targetInstance = new target();

@@ -34,7 +34,7 @@ Rich.init(
                 });
             });
         });
-        describe('Test - 허용범위 외 테스트', function () {
+        describe('Test - 허용범위 외 테스트 ( option.nullishAble = false일때 )', function () {
             [NaN, true, false, '문자열', {}, function () {}, null, undefined].forEach(function (v) {
                 it('option = { nullishAble : false, value : 0 } / 입력값 : ' + v, function () {
                     var target = function Test() {}
