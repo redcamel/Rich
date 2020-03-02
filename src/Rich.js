@@ -18,6 +18,7 @@ import definePropertys from "./core/defineProperty/definePropertys";
 import queryAll from "./display/queryAll";
 import query from "./display/query";
 import DEFINE_TYPE from "./core/defineProperty/DEFINE_TYPE";
+import checkType from "./core/checkType";
 
 
 const Rich = (_ => {
@@ -89,8 +90,8 @@ const Rich = (_ => {
                         let jsURLs = [];
                         let cssURLs = [];
                         urls.forEach(url => {
-                            if (url.indexOf('.css')>-1) cssURLs.push(url)
-                            else if (url.indexOf('.js')>-1) jsURLs.push(url)
+                            if (url.indexOf('.css') > -1) cssURLs.push(url)
+                            else if (url.indexOf('.js') > -1) jsURLs.push(url)
                         });
                         let t0 = Promise.all(
                             [
@@ -114,6 +115,7 @@ const Rich = (_ => {
     tempRich.addMethod('throwError', throwError);
     tempRich.addMethod('defineProperty', defineProperty);
     tempRich.addMethod('definePropertys', definePropertys);
+    tempRich.addMethod('checkType', checkType);
 
     tempRich.addMethod('getParam', getParam);
     tempRich.addMethod('dispatcher', dispatcher);

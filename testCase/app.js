@@ -30,9 +30,10 @@ Rich.init('asset/css.css').then(function () {
                 description: 'TODO - 순수데이터자체를 검증하는 녀석도 필요함'
             },
             {
-                title: 'TODO - checkType method',
-                url: '',
-                description: 'TODO - 매서드 내에서도 필요한데??'
+                title: 'ING - checkType method',
+                url: 'core/TestBDD_checkType.html',
+                description: '진행중 - 단순값을 타입 평가하는 테스트',
+                banner: 'Type'
             },
             {
                 title: 'Rich.defineProperty : NUMBER',
@@ -188,7 +189,7 @@ Rich.init('asset/css.css').then(function () {
                     'down', function () {
                         location.href = v['url']
                     },
-                    'background', v['title'].indexOf('TODO')>-1 ? '#6c7180' : '',
+                    'background', v['title'].substr(0, 4) === 'TODO' ? '#6c7180' : v['title'].substr(0, 3) === 'ING' ? '#3d8c4e' : '',
                     'html', v['title'],
                     '>', Rich.Dom('div').S(
                         '@className', 'description',

@@ -80,7 +80,6 @@ let checkType = function (value, type, option) {
         default :
             break;
     }
-    return true;
 }
 
 export default checkType;
