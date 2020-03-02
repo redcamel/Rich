@@ -37,31 +37,34 @@ let defineNumber = (target, keyName, type, option) => {
         }
     }
     // 기본값 생성
-
     if (NULLISH_ABLE) {
-        if (!option.hasOwnProperty('value')) option['value'] = option['value'] = null;
-    } else {
-        if (!option.hasOwnProperty('value')) throwError(`${target.constructor.name} - option['value'] : nullish 허용안한 상태에서는 초기값을 반드시 지정해야합니다.. / 입력값 : ${option['value']}`);
-    }
+        if (option.hasOwnProperty('value')) {
+            if (!(option['value'] === null || option['value'] === undefined) && type !== DEFINE_TYPE.NUMBER && option['value'] !== parseInt(option['value'])) throwError(`${target.constructor.name} - option['value'] : 소수점 허용안함. / 입력값 : ${option['value']}`);
+        } else option['value'] = option['value'] = null;
 
-    if (!NULLISH_ABLE && type !== DEFINE_TYPE.NUMBER && option['value'] !== parseInt(option['value'])) throwError(`${target.constructor.name} - v : 소수점 허용안함. / 입력값 : ${option['value']}`);
-    if (!NULLISH_ABLE && type === DEFINE_TYPE.UINT && option['value'] < 0) throwError(`${target.constructor.name} - option['value'] : 음수 허용안함. / 입력값 : ${option['value']}`);
+    } else {
+        if (option.hasOwnProperty('value')) {
+            if (type !== DEFINE_TYPE.NUMBER && option['value'] !== parseInt(option['value'])) throwError(`${target.constructor.name} - option['value'] : 소수점 허용안함. / 입력값 : ${option['value']}`);
+        } else {
+            throwError(`${target.constructor.name} - option['value'] : nullish 허용안한 상태에서는 초기값을 반드시 지정해야합니다.. / 입력값 : ${option['value']}`);
+        }
+    }
+    if (hasMin) {
+        if (typeof MIN != 'number' || isNaN(MIN)) throwError(`${target.constructor.name} - option['min'] : Number만 허용함. / 입력값 : ${MIN}`);
+        if (type !== DEFINE_TYPE.NUMBER && MIN !== parseInt(MIN)) throwError(`${target.constructor.name} - option['min'] : 소수점 허용안함. / 입력값 : ${MIN}`);
+        if (type === DEFINE_TYPE.UINT && option['min'] < 0) throwError(`${target.constructor.name} - option['min'] : 음수 허용안함. / 입력값 : ${option['min']}`);
+    }
+    if (hasMax) {
+        if (typeof MAX != 'number' || isNaN(MAX)) throwError(`${target.constructor.name} - option['max'] : Number만 허용함. / 입력값 : ${MAX}`);
+        if (type !== DEFINE_TYPE.NUMBER && MAX !== parseInt(MAX)) throwError(`${target.constructor.name} - option['max'] : 소수점 허용안함. / 입력값 : ${MAX}`);
+        if (type === DEFINE_TYPE.UINT && option['max'] < 0) throwError(`${target.constructor.name} - option['max'] : 음수 허용안함. / 입력값 : ${option['max']}`);
+    }
     // 타입형 체크
     if (typeof option['value'] == 'number') {
         if (isNaN(option['value'])) throwError(`${target.constructor.name} - option['value'] : Number만 허용함. / 입력값 : ${option['value']}`);
         // range 체크
-        if (hasMin) {
-            if (typeof MIN != 'number' || isNaN(MIN)) throwError(`${target.constructor.name} - option['min'] : Number만 허용함. / 입력값 : ${MIN}`);
-            if (!NULLISH_ABLE && type !== DEFINE_TYPE.NUMBER && MIN !== parseInt(MIN)) throwError(`${target.constructor.name} - option['min'] : 소수점 허용안함. / 입력값 : ${MIN}`);
-            if (!NULLISH_ABLE && type === DEFINE_TYPE.UINT && option['min'] < 0) throwError(`${target.constructor.name} - option['min'] : 음수 허용안함. / 입력값 : ${option['min']}`);
-            if (option['value'] < MIN) option['value'] = MIN
-        }
-        if (hasMax) {
-            if (typeof MAX != 'number' || isNaN(MAX)) throwError(`${target.constructor.name} - option['max'] : Number만 허용함. / 입력값 : ${MAX}`);
-            if (!NULLISH_ABLE && type !== DEFINE_TYPE.NUMBER && MAX !== parseInt(MAX)) throwError(`${target.constructor.name} - option['max'] : 소수점 허용안함. / 입력값 : ${MAX}`);
-            if (!NULLISH_ABLE && type === DEFINE_TYPE.UINT && option['max'] < 0) throwError(`${target.constructor.name} - option['max'] : 음수 허용안함. / 입력값 : ${option['max']}`);
-            if (option['value'] > MAX) option['value'] = MAX
-        }
+        if (hasMin && option['value'] < MIN) option['value'] = MIN
+        if (hasMax && option['value'] > MAX) option['value'] = MAX
         if (hasMin && hasMax) {
             if (MIN > MAX) throwError(target.constructor.name + ' - ' + "option['min'], option['max'] : min값은 max보다 작아야함", '입력값 : ', MIN, MAX);
         }
