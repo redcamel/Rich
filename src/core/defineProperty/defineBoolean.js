@@ -26,17 +26,16 @@ let defineBoolean = (target, keyName, type, option) => {
         }
     }
     // 기본값 생성
-    if (!NULLISH_ABLE) {
-        option['value'] = option['value'] ? true : false;
+    if (NULLISH_ABLE) {
+        if (option.hasOwnProperty('value')) {
+            if (typeof option['value'] != 'boolean') throwError(`${target.constructor.name} - option['value'] : boolean만 허용함. / 입력값 : ${option['value']}`);
+        } else option['value'] = null;
     } else {
-        if (!option.hasOwnProperty('value')) option['value'] = null
-        else {
-            if (option['value'] != null) option['value'] = option['value'] ? true : false;
-        }
+        if (typeof option['value'] != 'boolean') throwError(`${target.constructor.name} - option['value'] : boolean만 허용함. / 입력값 : ${option['value']}`);
     }
     // 타입형 체크
     if (typeof option['value'] != 'boolean') {
-        if (NULLISH_ABLE && (option['value'] == null || option['value'] === undefined)) {
+        if (NULLISH_ABLE && (option['value'] === null || option['value'] === undefined)) {
         } else {
             if (option['value'] == null || option['value'] === undefined) {
                 throwError(`${target.constructor.name} - option['value'] : nullish를 허용하지 않는 세팅상태. / 입력값 : ${option['value']}`);
