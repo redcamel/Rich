@@ -45,8 +45,29 @@ let checkType = function (value, type, option) {
             }
             break;
         case DEFINE_TYPE.BOOLEAN :
+            if (typeof value == 'boolean') {
+            } else {
+                if (NULLISH_ABLE && VALUE_IS_NULLISH) {
+                    // 널리쉬 허용일경우 통과
+                } else {
+                    // 널리쉬 불허용일때 다잡아냄
+                    throwError(`boolean만 허용함. / 입력값 : ${value}`);
+                }
+            }
             break;
         case DEFINE_TYPE.STRING :
+            if (typeof value == 'string') {
+            } else {
+                if (NULLISH_ABLE && VALUE_IS_NULLISH) {
+                    // 널리쉬 허용일경우 통과
+                } else {
+                    // 널리쉬 불허용일때 다잡아냄
+                    throwError(`string만 허용함. / 입력값 : ${value}`);
+                }
+            }
+            break;
+        case DEFINE_TYPE.FUNCTION :
+            //TODO
             break;
         default :
             break;
