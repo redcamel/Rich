@@ -25,3 +25,7 @@ Rich.init(
     });
     checkState();
 });
+
+let testStruct = {
+    test: {type: 'STRING', allowList: []}
+}

@@ -25,14 +25,14 @@ Rich.init('asset/css.css').then(function () {
                 description: 'defineProperty를 한번에 하는 기능을 테스트함'
             },
             {
-                title: 'TODO - 순수데이터자체검증 하는 기능필요',
+                title: 'TODO - checkSchema method',
                 url: '',
                 description: 'TODO - 순수데이터자체를 검증하는 녀석도 필요함'
             },
             {
-                title: 'TODO - 매서드 내에서도 필요한데??',
+                title: 'TODO - checkType method',
                 url: '',
-                description: 'TODO - 이런식이면 매서드 내에서도 필요한데'
+                description: 'TODO - 매서드 내에서도 필요한데??'
             },
             {
                 title: 'Rich.defineProperty : NUMBER',
