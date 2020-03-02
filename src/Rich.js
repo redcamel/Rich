@@ -17,6 +17,7 @@ import defineProperty from "./core/defineProperty/defineProperty";
 import definePropertys from "./core/defineProperty/definePropertys";
 import queryAll from "./display/queryAll";
 import query from "./display/query";
+import DEFINE_TYPE from "./core/defineProperty/DEFINE_TYPE";
 
 
 const Rich = (_ => {
@@ -128,6 +129,7 @@ const Rich = (_ => {
     tempRich.addClass('Dom', Dom, false);
     tempRich.addClass('Css', Css, false);
     // static
+    tempRich.addStatic('DEFINE_TYPE', DEFINE_TYPE);
     tempRich.addStatic('DETECTOR', DETECTOR);
     tempRich.addStatic('KEY', KEY);
     tempRich.addStatic('LOOPER', LOOPER);

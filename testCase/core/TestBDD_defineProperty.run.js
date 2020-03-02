@@ -8,7 +8,7 @@ Rich.init(
                 it('입력값 : ' + target, function () {
                     var result = true;
                     try {
-                        Rich.defineProperty(target, 'keyName_' + target, Rich.defineProperty.NUMBER)
+                        Rich.defineProperty(target, 'keyName_' + target, Rich.DEFINE_TYPE.NUMBER)
                     } catch (e) {
                         result = false;
                     }
@@ -22,7 +22,7 @@ Rich.init(
                 it('입력값 : ' + target, function () {
                     var result = true;
                     try {
-                        Rich.defineProperty(target, 'keyName_' + target, Rich.defineProperty.NUMBER)
+                        Rich.defineProperty(target, 'keyName_' + target, Rich.DEFINE_TYPE.NUMBER)
                     } catch (e) {
                         result = false;
                     }
@@ -41,7 +41,7 @@ Rich.init(
                             Rich.defineProperty(
                                 function () {
                                 },
-                                keyName, Rich.defineProperty.NUMBER
+                                keyName, Rich.DEFINE_TYPE.NUMBER
                             )
                         } catch (e) {
                             result = false;
@@ -54,10 +54,10 @@ Rich.init(
                 it('keyName 중복 테스트', function () {
                     var testTarget = function () {
                     }
-                    Rich.defineProperty(testTarget.prototype, 'testKeyNameDuplication', Rich.defineProperty.NUMBER)
+                    Rich.defineProperty(testTarget.prototype, 'testKeyNameDuplication', Rich.DEFINE_TYPE.NUMBER)
                     var result = true;
                     try {
-                        Rich.defineProperty(testTarget.prototype, 'testKeyNameDuplication', Rich.defineProperty.NUMBER)
+                        Rich.defineProperty(testTarget.prototype, 'testKeyNameDuplication', Rich.DEFINE_TYPE.NUMBER)
                     } catch (e) {
                         result = false;
                     }
@@ -102,7 +102,7 @@ Rich.init(
                     Rich.defineProperty(
                         function () {
                         },
-                        'keyName_test', Rich.defineProperty.NUMBER, null
+                        'keyName_test', Rich.DEFINE_TYPE.NUMBER, null
                     )
                 } catch (e) {
                     result = false;
@@ -115,7 +115,7 @@ Rich.init(
                     Rich.defineProperty(
                         function () {
                         },
-                        'keyName_test', Rich.defineProperty.NUMBER, undefined
+                        'keyName_test', Rich.DEFINE_TYPE.NUMBER, undefined
                     )
                 } catch (e) {
                     result = false;
@@ -132,7 +132,7 @@ Rich.init(
                         Rich.defineProperty(
                             function () {
                             },
-                            'keyName_test', Rich.defineProperty.NUMBER, option
+                            'keyName_test', Rich.DEFINE_TYPE.NUMBER, option
                         )
                     } catch (e) {
                         result = false;
@@ -148,7 +148,7 @@ Rich.init(
                     Rich.defineProperty(
                         function () {
                         },
-                        'keyName_test', Rich.defineProperty.NUMBER, {}
+                        'keyName_test', Rich.DEFINE_TYPE.NUMBER, {}
                     )
                 } catch (e) {
                     result = false;

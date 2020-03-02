@@ -10,9 +10,9 @@ Rich.init(
                 Rich.definePropertys(
                     TestTarget.prototype,
                     [
-                        {keyName: 'testNumber', type: Rich.defineProperty.NUMBER, option: {}},
-                        {keyName: 'testInt', type: Rich.defineProperty.INT, option: {}},
-                        {keyName: 'testUint', type: Rich.defineProperty.UINT, option: {}}
+                        {keyName: 'testNumber', type: Rich.DEFINE_TYPE.NUMBER, option: {}},
+                        {keyName: 'testInt', type: Rich.DEFINE_TYPE.INT, option: {}},
+                        {keyName: 'testUint', type: Rich.DEFINE_TYPE.UINT, option: {}}
                     ]
                 )
             } catch (e) {

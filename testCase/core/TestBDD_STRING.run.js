@@ -11,7 +11,7 @@ Rich.init(
                     Rich.defineProperty(
                         target.prototype,
                         'keyName_test',
-                        Rich.defineProperty.STRING,
+                        Rich.DEFINE_TYPE.STRING,
                         {
                             value: "기본값",
                             nullishAble: false
@@ -35,7 +35,7 @@ Rich.init(
                     Rich.defineProperty(
                         target.prototype,
                         'keyName_test',
-                        Rich.defineProperty.STRING,
+                        Rich.DEFINE_TYPE.STRING,
                         {
                             nullishAble: true
                         }
@@ -61,7 +61,7 @@ Rich.init(
                     Rich.defineProperty(
                         target.prototype,
                         'keyName_test',
-                        Rich.defineProperty.STRING,
+                        Rich.DEFINE_TYPE.STRING,
                         {
                             value: '기본값',
                             nullishAble: false
@@ -86,7 +86,7 @@ Rich.init(
                     Rich.defineProperty(
                         target.prototype,
                         'keyName_test',
-                        Rich.defineProperty.STRING,
+                        Rich.DEFINE_TYPE.STRING,
                         {
                             nullishAble: true
                         }
@@ -110,7 +110,7 @@ Rich.init(
                     var target = function Test() {
                     }
                     try {
-                        Rich.defineProperty(target.prototype, 'keyName_test', Rich.defineProperty.STRING)
+                        Rich.defineProperty(target.prototype, 'keyName_test', Rich.DEFINE_TYPE.STRING)
                     } catch (e) {
                         result = false
                     }
@@ -122,7 +122,7 @@ Rich.init(
                     Rich.defineProperty(
                         target.prototype,
                         'keyName_test',
-                        Rich.defineProperty.STRING,
+                        Rich.DEFINE_TYPE.STRING,
                         {
                             value: "문자열"
                         }
@@ -139,7 +139,7 @@ Rich.init(
                     Rich.defineProperty(
                         target.prototype,
                         'keyName_test',
-                        Rich.defineProperty.STRING,
+                        Rich.DEFINE_TYPE.STRING,
                         {
                             nullishAble: true
                         }
@@ -154,7 +154,7 @@ Rich.init(
                     Rich.defineProperty(
                         target.prototype,
                         'keyName_test',
-                        Rich.defineProperty.STRING,
+                        Rich.DEFINE_TYPE.STRING,
                         {
                             value: '초기값이 지정되어라',
                             nullishAble: true
@@ -170,7 +170,7 @@ Rich.init(
                     Rich.defineProperty(
                         target.prototype,
                         'keyName_test',
-                        Rich.defineProperty.STRING,
+                        Rich.DEFINE_TYPE.STRING,
                         {
                             value: "초기값이 지정되어라",
                             nullishAble: true
@@ -195,7 +195,7 @@ Rich.init(
                     Rich.defineProperty(
                         target.prototype,
                         'keyName_test',
-                        Rich.defineProperty.STRING,
+                        Rich.DEFINE_TYPE.STRING,
                         {
                             nullishAble: true,
                             callback: function () {

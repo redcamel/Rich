@@ -1,108 +1,110 @@
 "use strict";
+import DEFINE_TYPE from "./defineProperty/DEFINE_TYPE";
+
 let checkSchema = function () {
 
 }
 let testData = [
     {
-        key: 'block',
-        type: 'uint',
+        keyName: 'block',
+        type: DEFINE_TYPE.UINT,
         description: '블록 식별자'
     },
     {
-        key: 'blockInfo',
+        keyName: 'blockInfo',
         type: 'array',
         description: '블럭구성 정보',
         subCheckList: [
             {
-                key: 'block',
-                type: 'string',
+                keyName: 'block',
+                type: DEFINE_TYPE.STRING,
                 description: '블록 식별자',
                 defaultValueList: ['A', 'B', 'C', 'D']
             },
             {
-                key: 'datSampleSn',
-                type: 'uint',
+                keyName: 'datSampleSn',
+                type: DEFINE_TYPE.UINT,
                 description: '순번'
             },
             {
-                key: 'pacmanSn',
-                type: 'uint',
+                keyName: 'pacmanSn',
+                type: DEFINE_TYPE.UINT,
                 description: '팩맨순번'
             },
             {
-                key: 'leftDirectionYn',
-                type: 'boolean',
+                keyName: 'leftDirectionYn',
+                type: DEFINE_TYPE.BOOLEAN,
                 defaultValueList: [true, false]
             }
         ]
     },
     {
-        key: 'datSampleSn',
-        type: 'uint',
+        keyName: 'datSampleSn',
+        type: DEFINE_TYPE.UINT,
         description: '샘플 순번'
     },
     {
-        key: 'itemList',
+        keyName: 'itemList',
         type: 'array',
         description: '아이템 출동정보!',
         subCheckList: [
             {
-                key: 'datSampleSn',
-                type: 'uint',
+                keyName: 'datSampleSn',
+                type: DEFINE_TYPE.UINT,
                 description: '순번'
             },
             {
-                key: 'duration',
+                keyName: 'duration',
                 type: 'number',
                 description: '지속시간'
             },
             {
-                key: 'left',
-                type: 'uint',
+                keyName: 'left',
+                type: DEFINE_TYPE.UINT,
                 description: '왼쪽 위치',
                 defaultValueList: [1, 2, 3, 4, 5, 6, 7, 8]
             },
             {
-                key: 'right',
-                type: 'uint',
+                keyName: 'right',
+                type: DEFINE_TYPE.UINT,
                 description: '오른쪽위치',
                 defaultValueList: [1, 2, 3, 4, 5, 6, 7, 8]
             },
             {
-                key: 'trialSn',
-                type: 'uint',
+                keyName: 'trialSn',
+                type: DEFINE_TYPE.UINT,
                 description: '시도 순번'
             }
         ]
     },
     {
-        key: 'limitTime',
-        type: 'uint',
+        keyName: 'limitTime',
+        type: DEFINE_TYPE.UINT,
         description: '<div style="color:red">사용하지않음</div>',
         nullAble: true
     },
     {
-        key: 'partNumber',
-        type: 'uint',
+        keyName: 'partNumber',
+        type: DEFINE_TYPE.UINT,
         description: '파트 식별자'
     },
     {
-        key: 'questionSn',
-        type: 'uint',
+        keyName: 'questionSn',
+        type: DEFINE_TYPE.UINT,
         description: '순번'
     },
     {
-        key: 'speedInfo',
+        keyName: 'speedInfo',
         type: 'object',
         description: '스피드정보 -_-?',
         subCheckList: [
             {
-                key: 'left',
+                keyName: 'left',
                 type: 'array',
                 description: '왼쪽 라인별 스피드정보'
             },
             {
-                key: 'right',
+                keyName: 'right',
                 type: 'array',
                 description: '오른쪽 라인별 스피드정보'
             }

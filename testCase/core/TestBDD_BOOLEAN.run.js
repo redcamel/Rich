@@ -8,7 +8,7 @@ Rich.init(
                 it('입력값 : ' + targetVAlue, function () {
                     var target = function Test() {
                     }
-                    Rich.defineProperty(target.prototype, 'keyName_test', Rich.defineProperty.BOOLEAN)
+                    Rich.defineProperty(target.prototype, 'keyName_test', Rich.DEFINE_TYPE.BOOLEAN)
                     var targetInstance = new target();
                     targetInstance.keyName_test = targetVAlue;
                     expect(targetInstance.keyName_test === targetVAlue).to.be.true;
@@ -21,7 +21,7 @@ Rich.init(
                 it('입력값 : ' + v, function () {
                     var target = function Test() {
                     }
-                    Rich.defineProperty(target.prototype, 'keyName_test', Rich.defineProperty.BOOLEAN)
+                    Rich.defineProperty(target.prototype, 'keyName_test', Rich.DEFINE_TYPE.BOOLEAN)
                     console.log(target)
                     var targetInstance = new target();
                     var result = true;
@@ -39,7 +39,7 @@ Rich.init(
                 it('초기값 옵션이 없을경우 false로 생성되는지', function () {
                     var target = function Test() {
                     }
-                    Rich.defineProperty(target.prototype, 'keyName_test', Rich.defineProperty.BOOLEAN)
+                    Rich.defineProperty(target.prototype, 'keyName_test', Rich.DEFINE_TYPE.BOOLEAN)
                     var targetInstance = new target();
                     expect(targetInstance.keyName_test === false).to.be.true;
                 });
@@ -49,7 +49,7 @@ Rich.init(
                     Rich.defineProperty(
                         target.prototype,
                         'keyName_test',
-                        Rich.defineProperty.BOOLEAN,
+                        Rich.DEFINE_TYPE.BOOLEAN,
                         {
                             value: true
                         }
@@ -66,7 +66,7 @@ Rich.init(
                     Rich.defineProperty(
                         target.prototype,
                         'keyName_test',
-                        Rich.defineProperty.BOOLEAN,
+                        Rich.DEFINE_TYPE.BOOLEAN,
                         {
                             nullishAble: true
                         }
@@ -81,7 +81,7 @@ Rich.init(
                     Rich.defineProperty(
                         target.prototype,
                         'keyName_test',
-                        Rich.defineProperty.BOOLEAN,
+                        Rich.DEFINE_TYPE.BOOLEAN,
                         {
                             value: true,
                             nullishAble: true
@@ -97,7 +97,7 @@ Rich.init(
                     Rich.defineProperty(
                         target.prototype,
                         'keyName_test',
-                        Rich.defineProperty.BOOLEAN,
+                        Rich.DEFINE_TYPE.BOOLEAN,
                         {
                             value: true,
                             nullishAble: true
@@ -122,7 +122,7 @@ Rich.init(
                     Rich.defineProperty(
                         target.prototype,
                         'keyName_test',
-                        Rich.defineProperty.BOOLEAN,
+                        Rich.DEFINE_TYPE.BOOLEAN,
                         {
                             callback: function () {
                                 result = true

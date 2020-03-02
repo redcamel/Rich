@@ -10,7 +10,7 @@ let defineProperty;
 defineProperty = (target, keyName, type, option, isCustomType = false) => {
     if (typeof keyName != 'string') throwError(`${keyName} : keyName은 문자열만 가능함`)
     if (!(target instanceof Object)) throwError(`${target} : Object 확장만 target이 될수있음.`)
-    if (!isCustomType && !defineProperty[type]) throwError(`${type} 은 정의 할수 없는 타입임.`)
+    if (!isCustomType && !DEFINE_TYPE[type]) throwError(`${type} 은 정의 할수 없는 타입임.`)
     if (!(option === undefined || option === null)) {
         if (!(option instanceof Object) || option instanceof Function) throwError(`${option} : option은 nullish와 Object만 허용`)
     }
@@ -22,15 +22,15 @@ defineProperty = (target, keyName, type, option, isCustomType = false) => {
         defineCustomType(target, keyName, type, option);
     } else {
         switch (type) {
-            case defineProperty.NUMBER :
-            case defineProperty.INT :
-            case defineProperty.UINT :
+            case DEFINE_TYPE.NUMBER :
+            case DEFINE_TYPE.INT :
+            case DEFINE_TYPE.UINT :
                 defineNumber(target, keyName, type, option);
                 break;
-            case defineProperty.STRING :
+            case DEFINE_TYPE.STRING :
                 defineString(target, keyName, type, option);
                 break;
-            case defineProperty.BOOLEAN :
+            case DEFINE_TYPE.BOOLEAN :
                 defineBoolean(target, keyName, type, option);
                 break;
             default :
@@ -38,7 +38,6 @@ defineProperty = (target, keyName, type, option, isCustomType = false) => {
         }
     }
 }
-for (const k in DEFINE_TYPE) defineProperty[k] = DEFINE_TYPE[k];
 Object.freeze(defineProperty);
 export default defineProperty;
 
@@ -46,9 +45,9 @@ export default defineProperty;
     TODO - definePropertys(
         target,
         [
-            { keyName : '키네임', type : defineProperty.NUMBER, option : {옵션정보객체} },
-            { keyName : '키네임', type : defineProperty.NUMBER, option : {옵션정보객체} },
-            { keyName : '키네임', type : defineProperty.NUMBER, option : {옵션정보객체} },
+            { keyName : '키네임', type : DEFINE_TYPE.NUMBER, option : {옵션정보객체} },
+            { keyName : '키네임', type : DEFINE_TYPE.NUMBER, option : {옵션정보객체} },
+            { keyName : '키네임', type : DEFINE_TYPE.NUMBER, option : {옵션정보객체} },
             ....
         ]
      )
@@ -64,7 +63,7 @@ export default defineProperty;
 // defineProperty(
 //     target.prototype,
 //     'keyName',
-//     defineProperty.NUMBER,
+//     DEFINE_TYPE.NUMBER,
 //     {
 //         value: 0,
 //         min: 0,
@@ -78,7 +77,7 @@ export default defineProperty;
 // defineProperty(
 //     target.prototype,
 //     'keyName',
-//     defineProperty.STRING,
+//     DEFINE_TYPE.STRING,
 //     {
 //         value: 0,
 //         allowList : [],
@@ -91,7 +90,7 @@ export default defineProperty;
 // defineProperty(
 //     target.prototype,
 //     'keyName',
-//     defineProperty.BOOLEAN,
+//     DEFINE_TYPE.BOOLEAN,
 //     {
 //         value: true,
 //         allowList : [],

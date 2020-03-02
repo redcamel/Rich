@@ -9,7 +9,7 @@ Rich.init(
                 it('입력값 : ' + v, function () {
                     var target = function Test() {
                     }
-                    Rich.defineProperty(target.prototype, 'keyName_test', Rich.defineProperty.INT)
+                    Rich.defineProperty(target.prototype, 'keyName_test', Rich.DEFINE_TYPE.INT)
                     var targetInstance = new target();
                     targetInstance.keyName_test = v;
                     expect(targetInstance.keyName_test === v).to.be.true;
@@ -22,7 +22,7 @@ Rich.init(
                 it('입력값 : ' + v, function () {
                     var target = function Test() {
                     }
-                    Rich.defineProperty(target.prototype, 'keyName_test', Rich.defineProperty.INT)
+                    Rich.defineProperty(target.prototype, 'keyName_test', Rich.DEFINE_TYPE.INT)
                     console.log(target)
                     var targetInstance = new target();
                     var result = true;
@@ -40,7 +40,7 @@ Rich.init(
                 it('초기값 옵션이 없을경우 0으로 생성되는지', function () {
                     var target = function Test() {
                     }
-                    Rich.defineProperty(target.prototype, 'keyName_test', Rich.defineProperty.INT)
+                    Rich.defineProperty(target.prototype, 'keyName_test', Rich.DEFINE_TYPE.INT)
                     var targetInstance = new target();
                     expect(targetInstance.keyName_test === 0).to.be.true;
                 });
@@ -50,7 +50,7 @@ Rich.init(
                     Rich.defineProperty(
                         target.prototype,
                         'keyName_test',
-                        Rich.defineProperty.INT,
+                        Rich.DEFINE_TYPE.INT,
                         {
                             value: -1
                         }
@@ -65,7 +65,7 @@ Rich.init(
                         Rich.defineProperty(
                             target.prototype,
                             'keyName_test',
-                            Rich.defineProperty.INT,
+                            Rich.DEFINE_TYPE.INT,
                             {
                                 value: v
                             }
@@ -83,7 +83,7 @@ Rich.init(
                             Rich.defineProperty(
                                 target.prototype,
                                 'keyName_test',
-                                Rich.defineProperty.INT,
+                                Rich.DEFINE_TYPE.INT,
                                 {
                                     value: v
                                 }
@@ -103,7 +103,7 @@ Rich.init(
                     Rich.defineProperty(
                         target.prototype,
                         'keyName_test',
-                        Rich.defineProperty.INT,
+                        Rich.DEFINE_TYPE.INT,
                         {
                             value: -10,
                             min: -1
@@ -120,7 +120,7 @@ Rich.init(
                     Rich.defineProperty(
                         target.prototype,
                         'keyName_test',
-                        Rich.defineProperty.INT,
+                        Rich.DEFINE_TYPE.INT,
                         {
                             min: -1
                         }
@@ -140,7 +140,7 @@ Rich.init(
                             Rich.defineProperty(
                                 target.prototype,
                                 'keyName_test',
-                                Rich.defineProperty.INT,
+                                Rich.DEFINE_TYPE.INT,
                                 {
                                     min: v
                                 }
@@ -159,7 +159,7 @@ Rich.init(
                     Rich.defineProperty(
                         target.prototype,
                         'keyName_test',
-                        Rich.defineProperty.INT,
+                        Rich.DEFINE_TYPE.INT,
                         {
                             value: 10,
                             max: 5
@@ -175,7 +175,7 @@ Rich.init(
                     Rich.defineProperty(
                         target.prototype,
                         'keyName_test',
-                        Rich.defineProperty.INT,
+                        Rich.DEFINE_TYPE.INT,
                         {
                             max: 5
                         }
@@ -194,7 +194,7 @@ Rich.init(
                             Rich.defineProperty(
                                 target.prototype,
                                 'keyName_test',
-                                Rich.defineProperty.INT,
+                                Rich.DEFINE_TYPE.INT,
                                 {
                                     max: v
                                 }
@@ -213,7 +213,7 @@ Rich.init(
                     Rich.defineProperty(
                         target.prototype,
                         'keyName_test',
-                        Rich.defineProperty.INT,
+                        Rich.DEFINE_TYPE.INT,
                         {
                             nullishAble: true
                         }
@@ -228,7 +228,7 @@ Rich.init(
                     Rich.defineProperty(
                         target.prototype,
                         'keyName_test',
-                        Rich.defineProperty.INT,
+                        Rich.DEFINE_TYPE.INT,
                         {
                             value: 5,
                             nullishAble: true
@@ -244,7 +244,7 @@ Rich.init(
                     Rich.defineProperty(
                         target.prototype,
                         'keyName_test',
-                        Rich.defineProperty.INT,
+                        Rich.DEFINE_TYPE.INT,
                         {
                             value: 5,
                             nullishAble: true
@@ -261,7 +261,7 @@ Rich.init(
                     Rich.defineProperty(
                         target.prototype,
                         'keyName_test',
-                        Rich.defineProperty.INT,
+                        Rich.DEFINE_TYPE.INT,
                         {
                             value: null,
                             min: 5,
@@ -287,7 +287,7 @@ Rich.init(
                     Rich.defineProperty(
                         target.prototype,
                         'keyName_test',
-                        Rich.defineProperty.INT,
+                        Rich.DEFINE_TYPE.INT,
                         {
                             callback: function () {
                                 result = true
