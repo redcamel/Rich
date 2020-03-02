@@ -6,30 +6,32 @@ Rich.init(
     var instanceTestCustomType = new TestCustomType();
     describe('Test - CUSTOM', function () {
         describe('Test - 허용범위 테스트', function () {
-            it('{ nullishAble : false, value : new TestCustomType() } 입력값 : ' + 'new TestCustomType()', function () {
-                var target = function Test() {}
-                Rich.defineProperty(
-                    target.prototype,
-                    'keyName_test',
-                    TestCustomType,
-                    {
-                        value: new TestCustomType(),
-                        nullishAble: false
-                    },
-                    true
-                )
-                console.log(target)
-                var targetInstance = new target();
-                var result = true;
-                try {
-                    targetInstance.keyName_test = instanceTestCustomType;
-                } catch (e) {
-                    result = false;
-                }
-                expect(result).to.be.true;
-            });
             [undefined, null, instanceTestCustomType].forEach(function (testValue) {
-                it('{ nullishAble : true } 입력값 : ' + (testValue ? testValue.constructor.name + ' instance' : testValue), function () {
+                it('입력값 : ' + (testValue ? testValue.constructor.name + ' instance' : testValue), function () {
+                    var target = function Test() {
+                    }
+                    Rich.defineProperty(
+                        target.prototype,
+                        'keyName_test',
+                        TestCustomType,
+                        null,
+                        true
+                    )
+                    console.log(target)
+                    var targetInstance = new target();
+                    var result = true;
+                    try {
+                        targetInstance.keyName_test = testValue;
+                    } catch (e) {
+                        result = false;
+                    }
+                    expect(result).to.be.true;
+                });
+            });
+        });
+        describe('Test - 허용범위 테스트  ( option.nullishAble = false일때 )', function () {
+            [instanceTestCustomType].forEach(function (testValue) {
+                it('option = { nullishAble : false, value : instanceTestCustomType } / 입력값 : ' + (testValue ? testValue.constructor.name + ' instance' : testValue), function () {
                     var target = function Test() {
                     }
                     Rich.defineProperty(
@@ -37,7 +39,8 @@ Rich.init(
                         'keyName_test',
                         TestCustomType,
                         {
-                            nullishAble: true
+                            value: instanceTestCustomType,
+                            nullishAble: false
                         },
                         true
                     )
@@ -53,10 +56,9 @@ Rich.init(
                 });
             });
         });
-        describe('Test - 허용범위 외 테스트', function () {
-            [undefined, null, -1.1, -1, 0, 1, 1.1, NaN, true, false, {}, function () {
-            }].forEach(function (testValue) {
-                it('{ nullishAble : false, value : new TestCustomType() } 입력값 : ' + testValue, function () {
+        describe('Test - 허용범위 외 테스트  ( option.nullishAble = false일때 )', function () {
+            [-1.1, -1, 0, 1, 1.1, NaN, true, false, {}, function () { }].forEach(function (testValue) {
+                it('option = { nullishAble : false, value : instanceTestCustomType } / 입력값 : ' + testValue, function () {
                     var target = function Test() {
                     }
                     Rich.defineProperty(
@@ -64,7 +66,7 @@ Rich.init(
                         'keyName_test',
                         TestCustomType,
                         {
-                            value: new TestCustomType(),
+                            value: instanceTestCustomType,
                             nullishAble: false
                         },
                         true
@@ -108,24 +110,20 @@ Rich.init(
             });
             describe('Test - option 테스트', function () {
                 describe('Test - option.value 테스트', function () {
-                    it('초기값 옵션이 없고 nullishAble : true 가 아닐경우', function () {
-                        var result = true
-                        var target = function Test() {
-                        }
-                        try {
-                            Rich.defineProperty(
-                                target.prototype,
-                                'keyName_test',
-                                TestCustomType,
-                                null,
-                                true
-                            )
-                        } catch (e) {
-                            result = false
-                        }
-                        expect(result).to.be.false;
+                    it('option = null / nullishAble 상태일때 초기값이 null로 세팅되나 체크', function () {
+                        var target = function Test() {}
+                        Rich.defineProperty(
+                            target.prototype,
+                            'keyName_test',
+                            TestCustomType,
+                            null,
+                            true
+                        )
+                        var targetInstance = new target();
+                        console.log(targetInstance)
+                        expect(targetInstance.keyName_test === null).to.be.true;
                     });
-                    it('{ value : new TestCustomType() } 초기값이 잘 지정되는지', function () {
+                    it('option = { nullishAble : true } / nullishAble 상태일때 초기값이 null로 세팅되나 체크 초기값이 잘 지정되는지', function () {
                         var target = function Test() {
                         }
                         Rich.defineProperty(
@@ -133,12 +131,30 @@ Rich.init(
                             'keyName_test',
                             TestCustomType,
                             {
-                                value: instanceTestCustomType
+                                nullishAble: true
                             },
                             true
                         )
                         var targetInstance = new target();
-                        expect(targetInstance.keyName_test === instanceTestCustomType).to.be.true;
+                        expect(targetInstance.keyName_test === null).to.be.true;
+                    });
+                    it('option = { nullishAble : false } /  nullishAble 상태가 아닐때 초기값이 없으면 에러가 나나!', function () {
+                        var target = function Test() {}
+                        var result = true;
+                        try {
+                            Rich.defineProperty(
+                                target.prototype,
+                                'keyName_test',
+                                TestCustomType,
+                                {
+                                    nullishAble: false
+                                },
+                                true
+                            )
+                        } catch (e) {
+                            result = false;
+                        }
+                        expect(result).to.be.false;
                     });
                 });
 
