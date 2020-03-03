@@ -19,6 +19,7 @@ import queryAll from "./display/queryAll";
 import query from "./display/query";
 import DEFINE_TYPE from "./core/defineProperty/DEFINE_TYPE";
 import checkType from "./core/checkType";
+import checkTypes from "./core/checkTypes";
 import checkInstanceof from "./core/checkInstanceof";
 
 
@@ -117,6 +118,7 @@ const Rich = (_ => {
     tempRich.addMethod('defineProperty', defineProperty);
     tempRich.addMethod('definePropertys', definePropertys);
     tempRich.addMethod('checkType', checkType);
+    tempRich.addMethod('checkTypes', checkTypes);
     tempRich.addMethod('checkInstanceof', checkInstanceof);
     tempRich.addMethod('getParam', getParam);
     tempRich.addMethod('dispatcher', dispatcher);

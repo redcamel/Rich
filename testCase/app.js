@@ -36,6 +36,12 @@ Rich.init('asset/css.css').then(function () {
                 banner: 'Type'
             },
             {
+                title: 'checkTypes method',
+                url: 'core/TestBDD_checkTypes.html',
+                description: 'checkType을 한번에 수행하는 매서드',
+                banner: 'Type'
+            },
+            {
                 title: 'checkInstanceof method',
                 url: 'core/TestBDD_checkInstanceof.html',
                 description: '진행중 - 단순값을 타입 평가하는 테스트',
