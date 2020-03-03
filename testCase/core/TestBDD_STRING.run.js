@@ -11,7 +11,7 @@ Rich.init(
                     Rich.defineProperty(
                         target.prototype,
                         'keyName_test',
-                        Rich.DEFINE_TYPE.STRING,
+                        Rich.DEFINE_TYPE.STRING
                     )
                     console.log(target)
                     var targetInstance = new target();

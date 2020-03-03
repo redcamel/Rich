@@ -3,7 +3,7 @@ Rich.init('asset/css.css').then(function () {
     {
         var containerRoot;
         var containerCurrentState, containerStatePass, containerStateFail, containerStateDuration;
-        const testList = [
+        var testList = [
             {
                 title: 'Main',
                 url: 'main/TestBDD_Main.html?testParams=1&testParams2=test',
@@ -146,7 +146,7 @@ Rich.init('asset/css.css').then(function () {
                 description: '스토리지 관리 테스트함'
             }
         ]
-        const IFRAME_LIST = []
+        var IFRAME_LIST = []
         containerRoot = Rich.Dom('div').S(
             '>', Rich.Dom('div').S(
                 '@className', 'containerCurrentState',
