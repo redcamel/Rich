@@ -21,6 +21,7 @@ import DEFINE_TYPE from "./core/defineProperty/DEFINE_TYPE";
 import checkType from "./core/checkType";
 import checkTypes from "./core/checkTypes";
 import checkInstanceof from "./core/checkInstanceof";
+import checkSchema from "./core/checkSchema";
 
 
 const Rich = (_ => {
@@ -119,6 +120,7 @@ const Rich = (_ => {
     tempRich.addMethod('definePropertys', definePropertys);
     tempRich.addMethod('checkType', checkType);
     tempRich.addMethod('checkTypes', checkTypes);
+    tempRich.addMethod('checkSchema', checkSchema);
     tempRich.addMethod('checkInstanceof', checkInstanceof);
     tempRich.addMethod('getParam', getParam);
     tempRich.addMethod('dispatcher', dispatcher);

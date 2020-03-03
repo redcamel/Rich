@@ -25,18 +25,18 @@ Rich.init('asset/css.css').then(function () {
                 description: 'defineProperty를 한번에 하는 기능을 테스트함'
             },
             {
-                title: 'TODO - checkSchema method',
-                url: '',
-                description: 'TODO - 순수데이터자체를 검증하는 녀석도 필요함'
+                title: 'ING - Rich.checkSchema method',
+                url: 'core/TestBDD_checkSchema.html',
+                description: '스키마검증 테스트 케이스 - 이녀석은 너무 귀찮아...'
             },
             {
-                title: 'ING - checkType method',
+                title: 'ING - Rich.checkType method',
                 url: 'core/TestBDD_checkType.html',
                 description: '진행중 min,max테스트 추가해야함 - 단순값을 타입 평가하는 테스트',
                 banner: 'Type'
             },
             {
-                title: 'checkTypes method',
+                title: 'Rich.checkTypes method',
                 url: 'core/TestBDD_checkTypes.html',
                 description: 'checkType을 한번에 수행하는 매서드',
                 banner: 'Type'
