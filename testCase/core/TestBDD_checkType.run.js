@@ -327,8 +327,5 @@ Rich.init(
             });
         });
     });
-    describe('Test - CUSTOM', function () {
-        it('TODO', function () {})
-    })
     checkState();
 });

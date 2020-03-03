@@ -30,8 +30,14 @@ Rich.init('asset/css.css').then(function () {
                 description: 'TODO - 순수데이터자체를 검증하는 녀석도 필요함'
             },
             {
-                title: 'ING - checkType method',
+                title: 'checkType method',
                 url: 'core/TestBDD_checkType.html',
+                description: '진행중 - 단순값을 타입 평가하는 테스트',
+                banner: 'Type'
+            },
+            {
+                title: 'checkInstanceof method',
+                url: 'core/TestBDD_checkInstanceof.html',
                 description: '진행중 - 단순값을 타입 평가하는 테스트',
                 banner: 'Type'
             },
