@@ -84,6 +84,35 @@ Rich.init(
                 expect(result).to.be.false;
             });
         });
+        describe('Test - option.max ', function () {
+            it('Rich.checkType( 1, Rich.DEFINE_TYPE.NUMBER, { max : 1 } ) / 성공해야함', function () {
+                var result = true;
+                try {
+                    Rich.checkType(1, Rich.DEFINE_TYPE.NUMBER)
+                } catch (e) {
+                    result = false
+                }
+                expect(result).to.be.true;
+            });
+            it('Rich.checkType( -2, Rich.DEFINE_TYPE.NUMBER, { max : -1 } ) / 성공해야함', function () {
+                var result = true;
+                try {
+                    Rich.checkType(-2, Rich.DEFINE_TYPE.NUMBER, {max: -1})
+                } catch (e) {
+                    result = false
+                }
+                expect(result).to.be.true;
+            });
+            it('Rich.checkType( 6, Rich.DEFINE_TYPE.NUMBER, { max : 5 } ) / 실패해야함', function () {
+                var result = true;
+                try {
+                    Rich.checkType(6, Rich.DEFINE_TYPE.NUMBER, {max: 5})
+                } catch (e) {
+                    result = false
+                }
+                expect(result).to.be.false;
+            });
+        });
     });
     describe('Test - INT', function () {
 
@@ -139,6 +168,64 @@ Rich.init(
                 });
             });
         });
+        describe('Test - option.min ', function () {
+            it('Rich.checkType( 1, Rich.DEFINE_TYPE.INT, { min : 1 } ) / 성공해야함', function () {
+                var result = true;
+                try {
+                    Rich.checkType(1, Rich.DEFINE_TYPE.INT)
+                } catch (e) {
+                    result = false
+                }
+                expect(result).to.be.true;
+            });
+            it('Rich.checkType( -2, Rich.DEFINE_TYPE.INT, { min : -1 } ) / 실패해야함', function () {
+                var result = true;
+                try {
+                    Rich.checkType(-2, Rich.DEFINE_TYPE.INT, {min: -1})
+                } catch (e) {
+                    result = false
+                }
+                expect(result).to.be.false;
+            });
+            it('Rich.checkType( 4, Rich.DEFINE_TYPE.INT, { min : 5 } ) / 실패해야함', function () {
+                var result = true;
+                try {
+                    Rich.checkType(4, Rich.DEFINE_TYPE.INT, {min: 5})
+                } catch (e) {
+                    result = false
+                }
+                expect(result).to.be.false;
+            });
+        });
+        describe('Test - option.max ', function () {
+            it('Rich.checkType( 1, Rich.DEFINE_TYPE.INT, { max : 1 } ) / 성공해야함', function () {
+                var result = true;
+                try {
+                    Rich.checkType(1, Rich.DEFINE_TYPE.INT)
+                } catch (e) {
+                    result = false
+                }
+                expect(result).to.be.true;
+            });
+            it('Rich.checkType( -2, Rich.DEFINE_TYPE.INT, { max : -1 } ) / 성공해야함', function () {
+                var result = true;
+                try {
+                    Rich.checkType(-2, Rich.DEFINE_TYPE.INT, {max: -1})
+                } catch (e) {
+                    result = false
+                }
+                expect(result).to.be.true;
+            });
+            it('Rich.checkType( 6, Rich.DEFINE_TYPE.INT, { max : 5 } ) / 실패해야함', function () {
+                var result = true;
+                try {
+                    Rich.checkType(6, Rich.DEFINE_TYPE.INT, {max: 5})
+                } catch (e) {
+                    result = false
+                }
+                expect(result).to.be.false;
+            });
+        });
     });
     describe('Test - UINT', function () {
         describe('Test - 기본 허용범위 테스트', function () {
@@ -191,6 +278,64 @@ Rich.init(
                     }
                     expect(result).to.be.false;
                 });
+            });
+        });
+        describe('Test - option.min ', function () {
+            it('Rich.checkType( 1, Rich.DEFINE_TYPE.UINT, { min : 1 } ) / 성공해야함', function () {
+                var result = true;
+                try {
+                    Rich.checkType(1, Rich.DEFINE_TYPE.UINT)
+                } catch (e) {
+                    result = false
+                }
+                expect(result).to.be.true;
+            });
+            it('Rich.checkType( 1, Rich.DEFINE_TYPE.UINT, { min : 2 } ) / 실패해야함', function () {
+                var result = true;
+                try {
+                    Rich.checkType(1, Rich.DEFINE_TYPE.UINT, {min: 2})
+                } catch (e) {
+                    result = false
+                }
+                expect(result).to.be.false;
+            });
+            it('Rich.checkType( 4, Rich.DEFINE_TYPE.UINT, { min : 5 } ) / 실패해야함', function () {
+                var result = true;
+                try {
+                    Rich.checkType(4, Rich.DEFINE_TYPE.UINT, {min: 5})
+                } catch (e) {
+                    result = false
+                }
+                expect(result).to.be.false;
+            });
+        });
+        describe('Test - option.max ', function () {
+            it('Rich.checkType( 1, Rich.DEFINE_TYPE.UINT, { max : 1 } ) / 성공해야함', function () {
+                var result = true;
+                try {
+                    Rich.checkType(1, Rich.DEFINE_TYPE.UINT)
+                } catch (e) {
+                    result = false
+                }
+                expect(result).to.be.true;
+            });
+            it('Rich.checkType( 2, Rich.DEFINE_TYPE.UINT, { max : 1 } ) / 실패해야함', function () {
+                var result = true;
+                try {
+                    Rich.checkType(2, Rich.DEFINE_TYPE.UINT, {max: 1})
+                } catch (e) {
+                    result = false
+                }
+                expect(result).to.be.false;
+            });
+            it('Rich.checkType( 6, Rich.DEFINE_TYPE.UINT, { max : 5 } ) / 실패해야함', function () {
+                var result = true;
+                try {
+                    Rich.checkType(6, Rich.DEFINE_TYPE.UINT, {max: 5})
+                } catch (e) {
+                    result = false
+                }
+                expect(result).to.be.false;
             });
         });
     });

@@ -3,6 +3,90 @@ Rich.init(
     "../checkState.js"
 ).then(function () {
     describe('Test - 단위 유닛만 있을때 검증', function () {
+
+        it('UINT', function () {
+            var testData = {
+                uintCheck: 12
+            }
+            var result = true;
+            try {
+                Rich.checkSchema(testData, {
+                    uintCheck: {
+                        type: Rich.DEFINE_TYPE.UINT
+                    }
+                })
+            } catch (e) {
+                result = false;
+            }
+            expect(result).to.be.true;
+            console.log(this)
+
+        });
+        it('INT', function () {
+            var testData = {
+                intCheck: -13
+            }
+            var result = true;
+            try {
+                Rich.checkSchema(testData, {
+                    intCheck: {
+                        type: Rich.DEFINE_TYPE.INT
+                    }
+                })
+            } catch (e) {
+                result = false;
+            }
+            expect(result).to.be.true;
+        });
+        it('NUMBER', function () {
+            var testData = {
+                numberCheck: 14.1
+            }
+            var result = true;
+            try {
+                Rich.checkSchema(testData, {
+                    numberCheck: {
+                        type: Rich.DEFINE_TYPE.NUMBER
+                    }
+                })
+            } catch (e) {
+                result = false;
+            }
+            expect(result).to.be.true;
+        });
+        it('BOOLEAN', function () {
+            var testData = {
+                trueCheck: true
+            }
+            var result = true;
+            try {
+                Rich.checkSchema(testData, {
+                    trueCheck: {
+                        type: Rich.DEFINE_TYPE.BOOLEAN
+                    }
+                })
+            } catch (e) {
+                result = false;
+            }
+            expect(result).to.be.true;
+        });
+        it('BOOLEAN', function () {
+            var testData = {
+                falseCheck: false
+            }
+            var result = true;
+            try {
+                Rich.checkSchema(testData, {
+                    falseCheck: {
+                        type: Rich.DEFINE_TYPE.BOOLEAN
+                    }
+                })
+            } catch (e) {
+                result = e;
+            }
+            expect(result).to.be.true;
+        });
+
         describe('허용값 테스트', function () {
             ['문자열', null, undefined].forEach(function (testValue) {
                 it('입력값 : ' + testValue, function () {
@@ -110,8 +194,9 @@ Rich.init(
                         type: Rich.DEFINE_TYPE.BOOLEAN
                     }
                 })
+
             } catch (e) {
-                result = false;
+                result = e
             }
             expect(result).to.be.true;
         });
@@ -147,88 +232,14 @@ Rich.init(
                 result = false;
             }
             expect(result).to.be.false;
+
+        });
+        describe('TODO - 배열이 있을떄 어떻게 처리해야하나', function () {
+            it('TODO', function () {
+
+            });
         });
     });
-    // it('UINT', function () {
-    //     var testData = {
-    //         uintCheck: 12
-    //     }
-    //     var result = true;
-    //     try {
-    //         Rich.checkSchema(testData, {
-    //             uintCheck: {
-    //                 type: Rich.DEFINE_TYPE.UINT
-    //             }
-    //         })
-    //     } catch (e) {
-    //         result = false;
-    //     }
-    //     expect(result).to.be.true;
-    // });
-    // it('INT', function () {
-    //     var testData = {
-    //         intCheck: -13
-    //     }
-    //     var result = true;
-    //     try {
-    //         Rich.checkSchema(testData, {
-    //             intCheck: {
-    //                 type: Rich.DEFINE_TYPE.INT
-    //             }
-    //         })
-    //     } catch (e) {
-    //         result = false;
-    //     }
-    //     expect(result).to.be.true;
-    // });
-    // it('NUMBER', function () {
-    //     var testData = {
-    //         numberCheck: 14.1
-    //     }
-    //     var result = true;
-    //     try {
-    //         Rich.checkSchema(testData, {
-    //             numberCheck: {
-    //                 type: Rich.DEFINE_TYPE.NUMBER
-    //             }
-    //         })
-    //     } catch (e) {
-    //         result = false;
-    //     }
-    //     expect(result).to.be.true;
-    // });
-    // it('BOOLEAN', function () {
-    //     var testData = {
-    //         trueCheck: true
-    //     }
-    //     var result = true;
-    //     try {
-    //         Rich.checkSchema(testData, {
-    //             trueCheck: {
-    //                 type: Rich.DEFINE_TYPE.BOOLEAN
-    //             }
-    //         })
-    //     } catch (e) {
-    //         result = false;
-    //     }
-    //     expect(result).to.be.true;
-    // });
-    // it('BOOLEAN', function () {
-    //     var testData = {
-    //         falseCheck: false
-    //     }
-    //     var result = true;
-    //     try {
-    //         Rich.checkSchema(testData, {
-    //             falseCheck: {
-    //                 type: Rich.DEFINE_TYPE.BOOLEAN
-    //             }
-    //         })
-    //     } catch (e) {
-    //         result = false;
-    //     }
-    //     expect(result).to.be.true;
-    // });
 
 
     checkState();

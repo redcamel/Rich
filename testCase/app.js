@@ -27,12 +27,13 @@ Rich.init('asset/css.css').then(function () {
             {
                 title: 'ING - Rich.checkSchema method',
                 url: 'core/TestBDD_checkSchema.html',
-                description: '스키마검증 테스트 케이스 - 이녀석은 너무 귀찮아...'
+                description: '스키마검증 테스트 케이스 - 이녀석은 너무 귀찮아...',
+                banner: 'Type'
             },
             {
-                title: 'ING - Rich.checkType method',
+                title: 'Rich.checkType method',
                 url: 'core/TestBDD_checkType.html',
-                description: '진행중 min,max테스트 추가해야함 - 단순값을 타입 평가하는 테스트',
+                description: '단순값을 타입 평가하는 테스트',
                 banner: 'Type'
             },
             {

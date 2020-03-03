@@ -1628,8 +1628,15 @@
 
       for (k in data) {
         if (structInfo.hasOwnProperty(k)) {
-          console.log(data[k], structInfo[k].type, structInfo[k]['option']);
-          Rich.checkType(data[k], structInfo[k].type, structInfo[k]['option']);
+          var tStruct = structInfo[k];
+          var tValue = data[k];
+
+          if (DEFINE_TYPE[tStruct['type']]) {
+            // console.log(tValue, tStruct['type'], tStruct['option'])
+            Rich.checkType(tValue, tStruct['type'], tStruct['option']);
+          } else {
+            throwError("".concat(tStruct['type'], "\uC740 \uAC80\uC99D\uD560\uC218 \uC5C6\uB294 \uD0C0\uC785\uC784\uAD6C\uC870\uCCB4\uC5D0 \uC874\uC7AC\uD558\uC9C0 \uC54A\uB294 \uD0A4\uB97C \uAC80\uC99D\uD558\uB824\uACE0\uD568 / \uC785\uB825\uAC12 : ").concat(tStruct['type']));
+          }
         } else throwError("\uAD6C\uC870\uCCB4\uC5D0 \uC874\uC7AC\uD558\uC9C0 \uC54A\uB294 \uD0A4\uB97C \uAC80\uC99D\uD558\uB824\uACE0\uD568 / \uC785\uB825\uAC12 : ".concat(k));
       }
     };
