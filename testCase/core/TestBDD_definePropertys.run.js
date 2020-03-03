@@ -18,9 +18,24 @@ Rich.init(
             } catch (e) {
                 result = false;
             }
-            let testInstance = new TestTarget()
-            console.log(testInstance)
             expect(result).to.be.true
+        });
+        it('지원하지않는 타입이 들어왔을때 체크', function () {
+            var result = true
+            var TestTarget = function TestTarget() {};
+            try {
+                Rich.definePropertys(
+                    TestTarget.prototype,
+                    [
+                        {keyName: 'testNumber', type: Rich.DEFINE_TYPE.NUMBER2, option: {}},
+                        {keyName: 'testInt', type: Rich.DEFINE_TYPE.INT2, option: {}},
+                        {keyName: 'testUint', type: Rich.DEFINE_TYPE.UINT2, option: {}}
+                    ]
+                )
+            } catch (e) {
+                result = false;
+            }
+            expect(result).to.be.false
         })
     });
     checkState();

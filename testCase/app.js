@@ -20,7 +20,7 @@ Rich.init('asset/css.css').then(function () {
                 description: '객체에 타입별 getter/setter 기능을 테스트함'
             },
             {
-                title: 'TODO - Rich.definePropertys',
+                title: 'Rich.definePropertys',
                 url: 'core/TestBDD_definePropertys.html',
                 description: 'defineProperty를 한번에 하는 기능을 테스트함'
             },
