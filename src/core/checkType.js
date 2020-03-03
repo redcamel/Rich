@@ -8,6 +8,7 @@ let checkType = function (value, type, option) {
     let hasMax = option.hasOwnProperty('max');
     let MIN = hasMin ? option['min'] : null;
     let MAX = hasMax ? option['max'] : null;
+    if(!option.hasOwnProperty('nullishAble')) option['nullishAble'] = true;
     let NULLISH_ABLE = option['nullishAble']
     let VALUE_IS_NULLISH = (value === null || value === undefined)
     switch (type) {
