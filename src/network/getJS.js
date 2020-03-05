@@ -10,6 +10,7 @@ export default function getJS(...urlList) {
                 resolve()
             } else {
                 let t0 = document.createElement('script');
+                t0.type = 'text/javascript'
                 t0.src = urlList[i]
                 t0.onload = callNext;
                 t0.onerror = reject
