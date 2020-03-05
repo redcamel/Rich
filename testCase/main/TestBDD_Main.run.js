@@ -9,7 +9,7 @@ Rich.init(
             })
         })
         it('Test - 기본 초기화 체크 : js파일 실패후 catch로 처리되는지', function () {
-            return Rich.init('Test.js', 'Test23.js')
+            return Rich.init('Test23.js')
                 .then(function (response) {
                     console.log(response)
                     console.log(new Rich.Test('test'))
@@ -17,8 +17,8 @@ Rich.init(
                     expect(new Rich.Test('test') instanceof Rich.Test).to.be.true
                 })
                 .catch(function (failRes) {
-                    console.log('실패테스트')
-                    expect(failRes.ok).to.be.false
+                    console.log('실패테스트',failRes)
+                    expect(failRes.type==='error').to.be.true
                 })
         })
         it('Test - 기본 초기화 체크 : js파일 로딩하고 초기화 되는지 확인', function () {
