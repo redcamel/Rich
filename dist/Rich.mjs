@@ -6,7 +6,9 @@ function getJS() {
   return new Promise(function (resolve, reject) {
     var failRes;
     Promise.all([].concat(urlList).map(function (src) {
-      return fetch(src);
+      return fetch(src, {
+        method: 'GET'
+      });
     })).then(function (response) {
       response.forEach(function (res) {
         if (res.ok === false) failRes = res;
@@ -980,7 +982,9 @@ function getCSS() {
   return new Promise(function (resolve, reject) {
     var failRes;
     Promise.all([].concat(urlList).map(function (src) {
-      return fetch(src);
+      return fetch(src, {
+        method: 'GET'
+      });
     })).then(function (response) {
       response.forEach(function (res) {
         if (res.ok === false) failRes = res;

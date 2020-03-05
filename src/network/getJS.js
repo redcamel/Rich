@@ -3,7 +3,7 @@
 export default function getJS(...urlList) {
     return new Promise((resolve, reject) => {
         let failRes;
-        Promise.all([...urlList].map(src => fetch(src)))
+        Promise.all([...urlList].map(src => fetch(src,{method : 'GET'})))
             .then(response => {
                 response.forEach(res => {
                     if (res.ok === false) failRes = res;
