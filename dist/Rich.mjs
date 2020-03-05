@@ -4,52 +4,33 @@ function getJS() {
   }
 
   return new Promise(function (resolve, reject) {
-    var i = -1;
-    var MAX = urlList.length;
+    var failRes;
+    Promise.all([].concat(urlList).map(function (src) {
+      return fetch(src);
+    })).then(function (response) {
+      response.forEach(function (res) {
+        if (res.ok === false) failRes = res;
+      });
 
-    var callNext = function callNext() {
-      i++;
-
-      if (i === MAX) {
-        resolve();
+      if (failRes) {
+        if (reject) reject(failRes);
       } else {
-        var t0 = document.createElement('script');
-        t0.src = urlList[i];
-        t0.onload = callNext;
-        t0.onerror = reject;
-        document.head.appendChild(t0);
+        var result = [];
+        Promise.all(response.map(function (res, index) {
+          return res.text().then(function (source) {
+            var t0 = document.createElement('script');
+            t0.setAttribute('targetSRC', res.url);
+            t0.innerHTML = source;
+            result[index] = t0;
+          });
+        })).then(function (_) {
+          result.forEach(function (v) {
+            return document.head.appendChild(v);
+          });
+          resolve(response);
+        });
       }
-    };
-
-    callNext(); // urlList.forEach(src=>{
-    //     let t0 = document.createElement('script');
-    //     t0.src = src
-    //     document.head.appendChild(t0)
-    // })
-    // let failRes;
-    // Promise.all([...urlList].map(src => fetch(src)))
-    //     .then(response => {
-    //         response.forEach(res => {
-    //             if (res.ok === false) failRes = res;
-    //         });
-    //         if (failRes) {
-    //             if (reject) reject(failRes);
-    //         } else {
-    //             let result = []
-    //             Promise.all(response.map((res, index) => {
-    //                 return res.text().then(source => {
-    //                     let t0 = document.createElement('script');
-    //                     t0.setAttribute('targetSRC', res.url)
-    //                     t0.innerHTML = source;
-    //                     result[index] = t0
-    //
-    //                 })
-    //             })).then(_ => {
-    //                 result.forEach(v => document.head.appendChild(v))
-    //                 resolve(response)
-    //             })
-    //         }
-    //     })
+    });
   });
 }
 
