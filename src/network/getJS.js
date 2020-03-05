@@ -3,7 +3,7 @@
 export default function getJS(...urlList) {
     return new Promise((resolve, reject) => {
         let failRes;
-        Promise.all([...urlList].map(src => fetch(src,{method : 'GET'})))
+        Promise.all([...urlList].map(src => fetch(src,{method : 'GET', mode : "no-cors"})))
             .then(response => {
                 response.forEach(res => {
                     if (res.ok === false) failRes = res;

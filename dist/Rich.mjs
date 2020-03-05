@@ -7,7 +7,8 @@ function getJS() {
     var failRes;
     Promise.all([].concat(urlList).map(function (src) {
       return fetch(src, {
-        method: 'GET'
+        method: 'GET',
+        mode: "no-cors"
       });
     })).then(function (response) {
       response.forEach(function (res) {
@@ -983,7 +984,8 @@ function getCSS() {
     var failRes;
     Promise.all([].concat(urlList).map(function (src) {
       return fetch(src, {
-        method: 'GET'
+        method: 'GET',
+        mode: "no-cors"
       });
     })).then(function (response) {
       response.forEach(function (res) {

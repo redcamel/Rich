@@ -13,7 +13,8 @@
         var failRes;
         Promise.all([].concat(urlList).map(function (src) {
           return fetch(src, {
-            method: 'GET'
+            method: 'GET',
+            mode: "no-cors"
           });
         })).then(function (response) {
           response.forEach(function (res) {
@@ -989,7 +990,8 @@
         var failRes;
         Promise.all([].concat(urlList).map(function (src) {
           return fetch(src, {
-            method: 'GET'
+            method: 'GET',
+            mode: "no-cors"
           });
         })).then(function (response) {
           response.forEach(function (res) {
