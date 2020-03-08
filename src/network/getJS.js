@@ -2,6 +2,7 @@
 
 export default function getJS(...urlList) {
     return new Promise((resolve, reject) => {
+        //TODO - 다시 script 기반으로 돌아가야할듯
         let failRes;
         Promise.all([...urlList].map(src => fetch(src)))
             .then(response => {
