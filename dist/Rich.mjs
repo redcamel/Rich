@@ -36,15 +36,16 @@ function getJS() {
 }
 
 function makeAjax() {
-  var option = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-  return function (url, body) {
+  var baseOption = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  return function (url) {
+    var option = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
     var newOption = {};
 
-    for (var k in option) {
-      newOption[k] = option[k];
+    for (var k in baseOption) {
+      newOption[k] = baseOption[k];
     }
 
-    if (body) newOption.body = body;
+    if (option['body']) newOption.body = option['body'];
     return fetch(url, newOption);
   };
 }
