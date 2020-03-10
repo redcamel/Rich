@@ -4,34 +4,78 @@ function getJS() {
   }
 
   return new Promise(function (resolve, reject) {
-    //TODO - 다시 script 기반으로 돌아가야할듯
-    var failRes;
-    Promise.all([].concat(urlList).map(function (src) {
-      return fetch(src);
-    })).then(function (response) {
-      response.forEach(function (res) {
-        if (res.ok === false) failRes = res;
-      });
+    var startTime = performance.now();
+    var checkedNum = 0;
+    var check, makeScriptNode;
+    var successInfo = [];
 
-      if (failRes) {
-        if (reject) reject(failRes);
-      } else {
-        var result = [];
-        Promise.all(response.map(function (res, index) {
-          return res.text().then(function (source) {
-            var t0 = document.createElement('script');
-            t0.setAttribute('targetSRC', res.url);
-            t0.innerHTML = source;
-            result[index] = t0;
-          });
-        })).then(function (_) {
-          result.forEach(function (v) {
-            return document.head.appendChild(v);
-          });
-          resolve(response);
-        });
-      }
-    });
+    var resolveFunction = function resolveFunction() {
+      console.log(resolve);
+      if (resolve) resolve({
+        ok: true,
+        urlList: urlList,
+        successInfo: successInfo,
+        totalTime: performance.now() - startTime
+      });
+    };
+
+    var rejectFunction = function rejectFunction(e) {
+      if (reject) reject({
+        ok: false,
+        failInfo: {
+          src: urlList[checkedNum],
+          eventType: e['type'],
+          time: performance.now() - startTime
+        },
+        urlList: urlList,
+        successInfo: successInfo
+      });
+    };
+
+    check = function check(e) {
+      successInfo.push({
+        src: urlList[checkedNum],
+        eventType: e['type'],
+        time: performance.now() - startTime
+      });
+      checkedNum++;
+      if (urlList[checkedNum]) makeScriptNode(urlList[checkedNum]);else resolveFunction();
+    };
+
+    makeScriptNode = function makeScriptNode(src) {
+      console.log('jsLoaded :', src);
+      var t0;
+      var HEAD = document.head;
+      t0 = document.createElement('script');
+      t0.onload = check;
+      t0.onerror = rejectFunction;
+      t0.src = src, HEAD.appendChild(t0);
+    };
+
+    if (urlList.length) makeScriptNode(urlList[checkedNum]);else resolveFunction(); // let failRes;
+    // Promise.all([...urlList].map(src => fetch(src)))
+    //     .then(response => {
+    //         response.forEach(res => {
+    //             if (res.ok === false) failRes = res;
+    //         });
+    //         if (failRes) {
+    //             if (reject) reject(failRes);
+    //         } else {
+    //             let successInfo = []
+    //             Promise.all(response.map((res, index) => {
+    //                 return res.text().then(source => {
+    //                     let t0 = document.createElement('script');
+    //                     t0.setAttribute('targetSRC', res.url)
+    //                     t0.innerHTML = source;
+    //                     successInfo[index] = t0
+    //
+    //                 })
+    //             })).then(_ => {
+    //                 successInfo.forEach(v => document.head.appendChild(v))
+    //                 resolve(response)
+    //             })
+    //         }
+    //     })
   });
 }
 
@@ -980,35 +1024,56 @@ function getCSS() {
   }
 
   return new Promise(function (resolve, reject) {
-    var failRes;
-    Promise.all([].concat(urlList).map(function (src) {
-      return fetch(src, {
-        method: 'GET',
-        mode: "no-cors"
-      });
-    })).then(function (response) {
-      response.forEach(function (res) {
-        if (res.ok === false) failRes = res;
-      });
+    var startTime = performance.now();
+    var checkedNum = 0;
+    var check, makeScriptNode;
+    var successInfo = [];
 
-      if (failRes) {
-        if (reject) reject(failRes);
-      } else {
-        var result = [];
-        Promise.all(response.map(function (res, index) {
-          return res.text().then(function (source) {
-            var t0 = document.createElement('style');
-            t0.innerHTML = source;
-            result[index] = t0;
-          });
-        })).then(function (_) {
-          result.forEach(function (v) {
-            return document.head.appendChild(v);
-          });
-          resolve(response);
-        });
-      }
-    });
+    var resolveFunction = function resolveFunction() {
+      console.log(resolve);
+      if (resolve) resolve({
+        ok: true,
+        urlList: urlList,
+        successInfo: successInfo
+      });
+    };
+
+    var rejectFunction = function rejectFunction(e) {
+      if (reject) reject({
+        ok: false,
+        failInfo: {
+          src: urlList[checkedNum],
+          eventType: e['type'],
+          time: performance.now() - startTime
+        },
+        urlList: urlList,
+        successInfo: successInfo
+      });
+    };
+
+    check = function check(e) {
+      successInfo.push({
+        src: urlList[checkedNum],
+        eventType: e['type'],
+        time: performance.now() - startTime
+      });
+      checkedNum++;
+      if (urlList[checkedNum]) makeScriptNode(urlList[checkedNum]);else resolveFunction();
+    };
+
+    makeScriptNode = function makeScriptNode(src) {
+      console.log('jsLoaded :', src);
+      var t0;
+      var HEAD = document.head;
+      t0 = document.createElement('link');
+      t0.rel = 'stylesheet';
+      t0.href = src;
+      t0.onload = check;
+      t0.onerror = rejectFunction;
+      t0.src = src, HEAD.appendChild(t0);
+    };
+
+    if (urlList.length) makeScriptNode(urlList[checkedNum]);else resolveFunction();
   });
 }
 

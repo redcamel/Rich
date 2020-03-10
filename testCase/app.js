@@ -112,6 +112,11 @@ Rich.init('asset/css.css').then(function () {
                 banner: 'Visual'
             },
             {
+                title: 'Rich.getJS',
+                url: 'network/TestBDD_getJS.html',
+                description: 'getJS 매서드 테스트함'
+            },
+            {
                 title: 'Test Dom Events',
                 url: 'display/TestDomEvents.html',
                 description: 'Dom 이벤트 처리 시각화',

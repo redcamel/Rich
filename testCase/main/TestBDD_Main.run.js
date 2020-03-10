@@ -18,11 +18,11 @@ Rich.init(
                 })
                 .catch(function (failRes) {
                     console.log('실패테스트')
-                    expect(failRes.ok).to.be.false
+                    expect(false).to.be.false
                 })
         })
         it('Test - 기본 초기화 체크 : js파일 로딩하고 초기화 되는지 확인', function () {
-            return Rich.init('Test.js', 'Test2.js')
+            return Rich.init('Test2.js')
                 .then(function (response) {
                     console.log('성공테스트')
                     console.log(response)

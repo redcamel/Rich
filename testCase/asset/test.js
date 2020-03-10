@@ -1,3 +1,1 @@
-var test = function () {
-    console.log('야호')
-}
+console.log('getJSTest 성공 - URL : test.js')

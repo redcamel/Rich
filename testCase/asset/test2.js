@@ -1,0 +1,1 @@
+console.log('getJSTest 성공 - URL : test2.js')
