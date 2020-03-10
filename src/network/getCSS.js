@@ -25,7 +25,7 @@ export default function getCSS(...urlList) {
             else resolveFunction()
         }
         makeScriptNode = function (src) {
-            console.log('jsLoaded :', src)
+            console.log('cssLoaded :', src)
             let t0;
             let HEAD = document.head
             t0 = document.createElement('link');
@@ -33,7 +33,9 @@ export default function getCSS(...urlList) {
             t0.href = src;
             t0.onload = check;
             t0.onerror = rejectFunction;
-            t0.src = src, HEAD.appendChild(t0)
+            // t0.src = src + '?getCssUUID=' + Math.random();
+            t0.src = src;
+            HEAD.appendChild(t0)
         }
         if (urlList.length) makeScriptNode(urlList[checkedNum])
         else resolveFunction()

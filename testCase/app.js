@@ -112,9 +112,9 @@ Rich.init('asset/css.css').then(function () {
                 banner: 'Visual'
             },
             {
-                title: 'Rich.getJS',
-                url: 'network/TestBDD_getJS.html',
-                description: 'getJS 매서드 테스트함'
+                title: 'Rich.getJS & Rich.getCSS',
+                url: 'network/TestBDD_getJS_getCSS.html',
+                description: 'getJS, getCSS 매서드 테스트함'
             },
             {
                 title: 'Test Dom Events',
@@ -180,7 +180,11 @@ Rich.init('asset/css.css').then(function () {
                     t0 = v.dom.contentWindow.document.querySelector('.failures em');
                     if (t0) {
                         fail += +t0.textContent
-                        if (+t0.textContent) itemContainer.S('opacity', 1)
+                        if (+t0.textContent) {
+                            itemContainer.S('opacity', 1)
+                            itemContainer.S('height',500)
+                            Rich.Dom(itemContainer.dom.querySelector('iframe')).S('height','100%')
+                        }
                     }
                     t0 = v.dom.contentWindow.document.querySelector('.duration em');
                     if (t0) duration += +t0.textContent

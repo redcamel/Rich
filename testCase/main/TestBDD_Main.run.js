@@ -219,8 +219,5 @@ Rich.init(
     describe('TODO - ajaxJsonPost', function () {
         it('TODO')
     });
-    describe('TODO - getJS', function () {
-        it('TODO')
-    });
     checkState();
 })

@@ -1068,15 +1068,17 @@
         };
 
         makeScriptNode = function makeScriptNode(src) {
-          console.log('jsLoaded :', src);
+          console.log('cssLoaded :', src);
           var t0;
           var HEAD = document.head;
           t0 = document.createElement('link');
           t0.rel = 'stylesheet';
           t0.href = src;
           t0.onload = check;
-          t0.onerror = rejectFunction;
-          t0.src = src, HEAD.appendChild(t0);
+          t0.onerror = rejectFunction; // t0.src = src + '?getCssUUID=' + Math.random();
+
+          t0.src = src;
+          HEAD.appendChild(t0);
         };
 
         if (urlList.length) makeScriptNode(urlList[checkedNum]);else resolveFunction();

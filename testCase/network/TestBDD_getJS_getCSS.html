@@ -2,25 +2,25 @@
 <html lang="en">
 <head>
     <meta charset="utf-8"/>
-    <title>Rich.getJS TestCase</title>
+    <title>Rich.getJS & Rich.getCSS TestCase</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <link rel="stylesheet" href="https://unpkg.com/mocha/mocha.css"/>
     <script src="https://unpkg.com/chai/chai.js"></script>
     <script src="https://unpkg.com/mocha/mocha.js"></script>
     <script src='https://polyfill.io/v3/polyfill.min.js?features=es2019%2Ces2018%2Ces2017%2Ces2016%2Ces2015%2Cfetch'></script>
-<!--    <script src='http://dapi.kakao.com/v2/maps/sdk.js?appkey=8b7cc64aca68952e309d7d4733e5ec69&libraries=services,clusterer,drawing'></script>-->
+
     <script src="../../dist/Rich.min.js"></script>
 </head>
 <body>
 <div id="mocha">
-    <h1>Rich.getJS TestCase</h1>
+    <h1>Rich.getJS & Rich.getCSS TestCase</h1>
 </div>
 <script class="mocha-init">
     var expect = chai.expect;
     var assert = chai.assert;
     mocha.setup('bdd');
-    mocha.checkLeaks();
+    // mocha.checkLeaks();
 </script>
-<script src="TestBDD_getJS.run.js"></script>
+<script src="TestBDD_getJS_getCSS.run.js"></script>
 </body>
 </html>
