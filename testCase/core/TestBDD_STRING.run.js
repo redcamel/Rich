@@ -1,11 +1,14 @@
 Rich.init(
+    'https://unpkg.com/mocha/mocha.css',
+    "https://unpkg.com/chai/chai.js",
+    "https://unpkg.com/mocha/mocha.js",
     "../asset/cssPage.css",
     "../checkState.js"
 ).then(function () {
     describe('Test - STRING', function () {
         describe('Test - 허용범위 테스트', function () {
-            ['-1', '1','문자열', null, undefined].forEach(function (testValue) {
-                it('입력값 : ' +  (typeof testValue == 'string' ? '"'+testValue+'"' : testValue), function () {
+            ['-1', '1', '문자열', null, undefined].forEach(function (testValue) {
+                it('입력값 : ' + (typeof testValue == 'string' ? '"' + testValue + '"' : testValue), function () {
                     var target = function Test() {
                     }
                     Rich.defineProperty(
@@ -27,7 +30,7 @@ Rich.init(
         });
         describe('Test - 허용범위 테스트  ( option.nullishAble = false일때 )', function () {
             ['-1', '1', '문자열'].forEach(function (testValue) {
-                it('{ nullishAble : false, value : "기본값" } / 입력값 : ' + (typeof testValue == 'string' ? '"'+testValue+'"' : testValue), function () {
+                it('{ nullishAble : false, value : "기본값" } / 입력값 : ' + (typeof testValue == 'string' ? '"' + testValue + '"' : testValue), function () {
                     var target = function Test() {
                     }
                     Rich.defineProperty(
@@ -98,7 +101,7 @@ Rich.init(
                         'keyName_test',
                         Rich.DEFINE_TYPE.STRING,
                         {
-                            nullishAble : true
+                            nullishAble: true
                         }
                     )
                     var targetInstance = new target();

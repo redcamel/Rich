@@ -1,4 +1,7 @@
 Rich.init(
+    'https://unpkg.com/mocha/mocha.css',
+    "https://unpkg.com/chai/chai.js",
+    "https://unpkg.com/mocha/mocha.js",
     "../asset/cssPage.css",
     "../checkState.js"
 ).then(function () {
@@ -166,7 +169,7 @@ Rich.init(
             })
             describe('Test - option의 세부항목의 기본값 테스트', function () {
                 it('option 미설정시 option.nullishAble의 기본값은 true', function () {
-                    var Target = function Target(){}
+                    var Target = function Target() {}
                     var resultOption = Rich.defineProperty(
                         Target.prototype,
                         'keyName_test',

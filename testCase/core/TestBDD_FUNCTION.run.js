@@ -1,4 +1,7 @@
 Rich.init(
+    'https://unpkg.com/mocha/mocha.css',
+    "https://unpkg.com/chai/chai.js",
+    "https://unpkg.com/mocha/mocha.js",
     "../asset/cssPage.css",
     "../checkState.js"
 ).then(function () {

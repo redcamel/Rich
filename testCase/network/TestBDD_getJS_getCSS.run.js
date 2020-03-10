@@ -1,4 +1,7 @@
 Rich.init(
+    'https://unpkg.com/mocha/mocha.css',
+    "https://unpkg.com/chai/chai.js",
+    "https://unpkg.com/mocha/mocha.js",
     "../asset/cssPage.css",
     "../checkState.js"
 ).then(function () {
@@ -134,20 +137,20 @@ Rich.init(
             });
 
         });
-        describe('Test 외부사이트 스크립트 로드', function () {
-            it('외부js로드테스트 - 로드URL : https://cdnjs.cloudflare.com/ajax/libs/gsap/3.2.4/gsap.min.css', function () {
-                return Rich.getCSS('https://cdnjs.cloudflare.com/ajax/libs/gsap/3.2.4/gsap.min.css')
-                    .then(function (response) {
-                        console.log('여기로와야함', response)
-                        expect(response.ok).to.be.true
-                    })
-                    .catch(function (response) {
-                        console.log('여기로오면안됨', response)
-                        expect(response.ok).to.be.false
-                    });
-            });
-
-        });
+        // describe('Test 외부사이트 스크립트 로드', function () {
+        //     it('외부js로드테스트 - 로드URL : https://unpkg.com/mocha/mocha.css', function () {
+        //         return Rich.getCSS('https://unpkg.com/mocha/mocha.css')
+        //             .then(function (response) {
+        //                 console.log('여기로와야함', response)
+        //                 expect(response.ok).to.be.true
+        //             })
+        //             .catch(function (response) {
+        //                 console.log('여기로오면안됨', response)
+        //                 expect(response.ok).to.be.false
+        //             });
+        //     });
+        //
+        // });
         describe('Test urlList가 없을때', function () {
             it('urlList가 없을때 ', function () {
                 return Rich.getCSS()

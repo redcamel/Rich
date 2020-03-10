@@ -1,3 +1,22 @@
+var expect = chai.expect;
+var assert = chai.assert;
+mocha.setup('bdd');
+(function () {
+// <div id="mocha">
+//     <h1>Rich.getJS & Rich.getCSS TestCase</h1>
+// </div>
+    var t0 = document.createElement('div')
+    var t1 = location.href.split('/')
+    t1 = t1[t1.length - 1];
+    t1 = t1.split('?');
+    t1 = t1[0];
+    t1 = t1.replace('.html', '')
+    t0.setAttribute('id', 'mocha')
+    t0.innerHTML = '<h1>' + t1 + ' TestCase</h1>'
+    document.body.appendChild(t0)
+})();
+
+// mocha.checkLeaks();
 var checkState = function () {
     mocha.run(function (failures) {
         console.log(failures)

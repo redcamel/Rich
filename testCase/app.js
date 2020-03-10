@@ -182,8 +182,8 @@ Rich.init('asset/css.css').then(function () {
                         fail += +t0.textContent
                         if (+t0.textContent) {
                             itemContainer.S('opacity', 1)
-                            itemContainer.S('height',500)
-                            Rich.Dom(itemContainer.dom.querySelector('iframe')).S('height','100%')
+                            itemContainer.S('height', 500)
+                            Rich.Dom(itemContainer.dom.querySelector('iframe')).S('height', '100%')
                         }
                     }
                     t0 = v.dom.contentWindow.document.querySelector('.duration em');

@@ -1,4 +1,7 @@
 Rich.init(
+    'https://unpkg.com/mocha/mocha.css',
+    "https://unpkg.com/chai/chai.js",
+    "https://unpkg.com/mocha/mocha.js",
     "../asset/cssPage.css",
     "../checkState.js"
 ).then(function () {
@@ -11,7 +14,7 @@ Rich.init(
         it('Test - 기본 초기화 체크 : js파일 실패후 catch로 처리되는지', function () {
             return Rich.init('Test23.js')
                 .catch(function (failRes) {
-                    console.log('실패테스트',failRes)
+                    console.log('실패테스트', failRes)
                     expect(failRes.ok).to.be.false
                 })
         })
