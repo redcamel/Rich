@@ -3,7 +3,7 @@ Rich.init(
     "https://unpkg.com/chai/chai.js",
     "https://unpkg.com/mocha/mocha.js",
     "../asset/cssPage.css",
-    "../checkState.js"
+    "../TEST_HELPER.js"
 ).then(function () {
     describe('Test - 단위 유닛만 있을때 검증', function () {
 
@@ -238,12 +238,42 @@ Rich.init(
 
         });
         describe('TODO - 배열이 있을떄 어떻게 처리해야하나', function () {
-            it('TODO', function () {
+            it('TODO - 배열이 있을떄 어떻게 처리해야하나', function () {
+                // var testData = {
+                //     stringCheck: '이름',
+                //     arrayTest: [
+                //         1, 2, 3, 4
+                //     ]
+                // }
+                // var result = true;
+                // try {
+                //     Rich.checkSchema(testData, {
+                //         stringCheck: {
+                //             type: Rich.DEFINE_TYPE.STRING
+                //         },
+                //         arrayTest: {
+                //             type : Rich.DEFINE_TYPE.ARRAY,
+                //             children : {
+                //                 item_name: {
+                //                     type: Rich.DEFINE_TYPE.STRING
+                //                 },
+                //                 item_age: {
+                //                     type: Rich.DEFINE_TYPE.UINT
+                //                 }
+                //             }
+                //         }
+                //     })
+                // } catch (e) {
+                //     console.log(e)
+                //     result = false;
+                // }
+                // expect(result).to.be.true;
+
 
             });
         });
     });
 
 
-    checkState();
+    TEST_HELPER();
 });

@@ -131,6 +131,9 @@ const Rich = (_ => {
     tempRich.addMethod('getCSS', getCSS);
     tempRich.addMethod('query', query);
     tempRich.addMethod('queryAll', queryAll);
+    tempRich.addMethod('valueToText', function (v) {
+        return v === undefined ? 'undefined' : v === null ? 'null' : v.toString() == 'NaN' ? 'NaN' : typeof v == 'function' ? v.toString() : JSON.stringify(v)
+    })
     // class
     tempRich.addClass('ClassUUID', ClassUUID);
     tempRich.addClass('Dom', Dom, false);

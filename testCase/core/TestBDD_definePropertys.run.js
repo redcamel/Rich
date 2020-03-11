@@ -3,7 +3,7 @@ Rich.init(
     "https://unpkg.com/chai/chai.js",
     "https://unpkg.com/mocha/mocha.js",
     "../asset/cssPage.css",
-    "../checkState.js"
+    "../TEST_HELPER.js"
 ).then(function () {
     describe('Test Rich.definePropertys - 기본테스트', function () {
         it('기본테스트', function () {
@@ -41,7 +41,7 @@ Rich.init(
             expect(result).to.be.false
         })
     });
-    checkState();
+    TEST_HELPER();
 });
 
 let testStruct = {

@@ -3,7 +3,7 @@ Rich.init(
     "https://unpkg.com/chai/chai.js",
     "https://unpkg.com/mocha/mocha.js",
     "../asset/cssPage.css",
-    "../checkState.js"
+    "../TEST_HELPER.js"
 ).then(function () {
     describe('Test - checkInstanceof( value, type, nullishAble = true )', function () {
         describe('Test - 기본 허용범위 테스트', function () {
@@ -65,5 +65,5 @@ Rich.init(
             });
         });
     });
-    checkState();
+    TEST_HELPER();
 });

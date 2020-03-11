@@ -3,7 +3,7 @@ Rich.init(
     "https://unpkg.com/chai/chai.js",
     "https://unpkg.com/mocha/mocha.js",
     "../asset/cssPage.css",
-    "../checkState.js"
+    "../TEST_HELPER.js"
 ).then(function () {
     describe('Test Rich.defineProperty( target, keyName, type, option, isCustomType = false )', function () {
         describe('Test - target : Object 확장이 아닐경우 테스트 ( [1, "string", true, false, null, undefined] ) => 전부 실패해야함', function () {
@@ -90,9 +90,10 @@ Rich.init(
                             Rich.defineProperty(
                                 function () {},
                                 'keyName_' + k,
-                                Rich.DEFINE_TYPE[k]
+                                Rich.DEFINE_TYPE[k],
                             )
                         } catch (e) {
+                            console.log(e)
                             result = false;
                         }
                         expect(result).to.be.true;
@@ -180,5 +181,5 @@ Rich.init(
             })
         });
     });
-    checkState();
+    TEST_HELPER();
 });

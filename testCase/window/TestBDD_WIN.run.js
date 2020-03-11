@@ -4,7 +4,7 @@ Rich.init(
     "https://unpkg.com/chai/chai.js",
     "https://unpkg.com/mocha/mocha.js",
     "../asset/cssPage.css",
-    "../checkState.js"
+    "../TEST_HELPER.js"
 ).then(function () {
     var tMap = {}
     var tBox;
@@ -29,7 +29,7 @@ Rich.init(
             tMap[k].S('html', k + ' : ' + Rich.WIN[k])
         }
     })
-    checkState();
+    TEST_HELPER();
 })
 var pre_test_one, pre_test_multi;
 var HD_test1, HD_test2, HD_null

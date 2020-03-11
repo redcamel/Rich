@@ -3,7 +3,7 @@ Rich.init(
     "https://unpkg.com/chai/chai.js",
     "https://unpkg.com/mocha/mocha.js",
     "../asset/cssPage.css",
-    "../checkState.js"
+    "../TEST_HELPER.js"
 ).then(function () {
     describe('Test - Rich.checkTypes( ...arg ) / 기본 실행 테스트 ', function () {
         it('Rich.checkTypes( [0.1, Rich.DEFINE_TYPE.NUMBER], [-1, Rich.DEFINE_TYPE.INT], [1, Rich.DEFINE_TYPE.UINT]  )', function () {
@@ -33,5 +33,5 @@ Rich.init(
             expect(result).to.be.true;
         });
     });
-    checkState();
+    TEST_HELPER();
 });

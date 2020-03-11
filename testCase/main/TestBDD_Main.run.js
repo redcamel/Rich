@@ -3,7 +3,7 @@ Rich.init(
     "https://unpkg.com/chai/chai.js",
     "https://unpkg.com/mocha/mocha.js",
     "../asset/cssPage.css",
-    "../checkState.js"
+    "../TEST_HELPER.js"
 ).then(function () {
     describe('Test init', function () {
         it('Test - 기본 초기화 체크', function () {
@@ -210,5 +210,5 @@ Rich.init(
     describe('TODO - ajaxJsonPost', function () {
         it('TODO')
     });
-    checkState();
+    TEST_HELPER();
 })

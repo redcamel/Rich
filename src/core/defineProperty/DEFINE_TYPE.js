@@ -1,5 +1,4 @@
 "use strict";
-import defineProperty from "./defineProperty";
 
 const DEFINE_TYPE = {};
 DEFINE_TYPE.NUMBER = 'NUMBER';
@@ -8,4 +7,5 @@ DEFINE_TYPE.UINT = 'UINT';
 DEFINE_TYPE.STRING = 'STRING';
 DEFINE_TYPE.BOOLEAN = 'BOOLEAN';
 DEFINE_TYPE.FUNCTION = 'FUNCTION';
+DEFINE_TYPE.ARRAY = 'ARRAY';
 export default DEFINE_TYPE;

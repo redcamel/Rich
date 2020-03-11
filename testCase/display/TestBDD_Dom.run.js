@@ -3,7 +3,7 @@ Rich.init(
     "https://unpkg.com/chai/chai.js",
     "https://unpkg.com/mocha/mocha.js",
     "../asset/cssPage.css",
-    "../checkState.js"
+    "../TEST_HELPER.js"
 ).then(function () {
     describe('Test Rich.Dom', function () {
         ['div', 'button', 'ul', 'li', 'table', 'input'].forEach(function (tagName) {
@@ -430,5 +430,5 @@ Rich.init(
             })
         })
     });
-    checkState();
+    TEST_HELPER();
 })

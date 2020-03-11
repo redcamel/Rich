@@ -6,6 +6,7 @@ import defineString from "./defineString";
 import defineBoolean from "./defineBoolean";
 import defineCustomType from "./defineCustomType";
 import defineFunction from "./defineFunction";
+import defineArray from "./defineArray";
 
 let defineProperty;
 defineProperty = (target, keyName, type, option, isCustomType = false) => {
@@ -39,8 +40,11 @@ defineProperty = (target, keyName, type, option, isCustomType = false) => {
             case DEFINE_TYPE.FUNCTION :
                 defineFunction(target, keyName, type, option);
                 break;
+            case DEFINE_TYPE.ARRAY :
+                defineArray(target, keyName, type, option);
+                break;
             default :
-                throwError('정의할수 없는 타입')
+                throwError(`${type} : 정의할수 없는 타입`)
         }
     }
     return option

@@ -3,7 +3,7 @@ Rich.init(
     "https://unpkg.com/chai/chai.js",
     "https://unpkg.com/mocha/mocha.js",
     "../asset/cssPage.css",
-    "../checkState.js"
+    "../TEST_HELPER.js"
 ).then(function () {
     describe('Test dispatcher : body', function () {
         ['down', 'up', 'over', 'out', 'click', 'move'].forEach(function (key, index) {
@@ -43,5 +43,5 @@ Rich.init(
             })
         })
     });
-    checkState();
+    TEST_HELPER();
 })

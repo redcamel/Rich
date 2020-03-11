@@ -3,7 +3,7 @@ Rich.init(
     "https://unpkg.com/chai/chai.js",
     "https://unpkg.com/mocha/mocha.js",
     "../asset/cssPage.css",
-    "../checkState.js"
+    "../TEST_HELPER.js"
 ).then(function () {
     describe('Test - FUNCTION', function () {
         describe('Test - 허용범위 테스트', function () {
@@ -204,5 +204,5 @@ Rich.init(
 
 
     });
-    checkState();
+    TEST_HELPER();
 });

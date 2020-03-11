@@ -1086,6 +1086,7 @@ DEFINE_TYPE.UINT = 'UINT';
 DEFINE_TYPE.STRING = 'STRING';
 DEFINE_TYPE.BOOLEAN = 'BOOLEAN';
 DEFINE_TYPE.FUNCTION = 'FUNCTION';
+DEFINE_TYPE.ARRAY = 'ARRAY';
 
 var _this = undefined;
 
@@ -1390,6 +1391,61 @@ var defineFunction = function defineFunction(target, keyName, type, option) {
   if (tempDefineInfo) Object.defineProperty(target, keyName, tempDefineInfo);
 };
 
+var _this$5 = undefined;
+
+var defineArray = function defineArray(target, keyName, type, option) {
+  var tempDefineInfo; // 옵션 상태 체크
+
+  var hasCallback = option.hasOwnProperty('callback');
+  var CALLBACK = hasCallback ? option['callback'] : null;
+  var NULLISH_ABLE = option['nullishAble']; // get/set 함수 설정
+
+  tempDefineInfo = {
+    get: function get() {
+      return this['_' + keyName];
+    },
+    set: function set(v) {
+      if (!(v instanceof Array)) {
+        if (!(NULLISH_ABLE && (v === null || v === undefined))) {
+          if (v === null || v === undefined) throwError("".concat(target.constructor.name, " - v : nullish\uB97C \uD5C8\uC6A9\uD558\uC9C0 \uC54A\uB294 \uC138\uD305\uC0C1\uD0DC. / \uC785\uB825\uAC12 : ").concat(v));else throwError("".concat(target.constructor.name, " - v : Array\uB9CC \uD5C8\uC6A9\uD568. / \uC785\uB825\uAC12 : ").concat(v));
+        }
+      }
+
+      this['_' + keyName] = v; // 콜백 옵션실행
+
+      if (hasCallback) CALLBACK.call(this, v);
+    }
+  }; // 기본값 생성
+
+  if (NULLISH_ABLE) {
+    if (option.hasOwnProperty('value')) {
+      if (!(option['value'] instanceof Array)) throwError("".concat(target.constructor.name, " - option['value'] : Array\uB9CC \uD5C8\uC6A9\uD568. / \uC785\uB825\uAC12 : ").concat(option['value']));
+    } else option['value'] = null;
+  } else {
+    if (!(option['value'] instanceof Array)) throwError("".concat(target.constructor.name, " - option['value'] : Array\uB9CC \uD5C8\uC6A9\uD568. / \uC785\uB825\uAC12 : ").concat(option['value']));
+  } // 타입형 체크
+
+
+  if (option['value'] instanceof Array) {
+    if (NULLISH_ABLE && (option['value'] === null || option['value'] === undefined)) ; else {
+      if (option['value'] == null || option['value'] === undefined) {
+        throwError("".concat(target.constructor.name, " - option['value'] : nullish\uB97C \uD5C8\uC6A9\uD558\uC9C0 \uC54A\uB294 \uC138\uD305\uC0C1\uD0DC. / \uC785\uB825\uAC12 : ").concat(option['value']));
+      } else {
+        throwError("".concat(target.constructor.name, " - option['value'] : Array\uB9CC \uD5C8\uC6A9\uD568. / \uC785\uB825\uAC12 : ").concat(option['value']));
+      }
+    }
+  } // 초기값 지정
+
+
+  target['_' + keyName] = option['value']; // 콜백 옵션실행
+
+  if (hasCallback) {
+    if (CALLBACK instanceof Function) CALLBACK.call(_this$5, option['value']);else throwError("".concat(target.constructor.name, " - option['callback'] : Function\uB9CC \uD5C8\uC6A9\uD568. / \uC785\uB825\uAC12 : ").concat(CALLBACK));
+  }
+
+  if (tempDefineInfo) Object.defineProperty(target, keyName, tempDefineInfo);
+};
+
 var defineProperty;
 
 defineProperty = function defineProperty(target, keyName, type, option) {
@@ -1431,8 +1487,12 @@ defineProperty = function defineProperty(target, keyName, type, option) {
         defineFunction(target, keyName, type, option);
         break;
 
+      case DEFINE_TYPE.ARRAY:
+        defineArray(target, keyName, type, option);
+        break;
+
       default:
-        throwError('정의할수 없는 타입');
+        throwError("".concat(type, " : \uC815\uC758\uD560\uC218 \uC5C6\uB294 \uD0C0\uC785"));
     }
   }
 
@@ -1581,6 +1641,16 @@ var checkType = function checkType(value, type, option) {
         if (NULLISH_ABLE && VALUE_IS_NULLISH) ; else {
           // 널리쉬 불허용일때 다잡아냄
           throwError("function\uB9CC \uD5C8\uC6A9\uD568. / \uC785\uB825\uAC12 : ".concat(value));
+        }
+      }
+
+      break;
+
+    case DEFINE_TYPE.ARRAY:
+      if (value instanceof Array) ; else {
+        if (NULLISH_ABLE && VALUE_IS_NULLISH) ; else {
+          // 널리쉬 불허용일때 다잡아냄
+          throwError("ARRAY\uB9CC \uD5C8\uC6A9\uD568. / \uC785\uB825\uAC12 : ".concat(value));
         }
       }
 
@@ -1826,7 +1896,10 @@ var Rich$1 = function (_) {
   tempRich.addMethod('getJS', getJS);
   tempRich.addMethod('getCSS', getCSS);
   tempRich.addMethod('query', query);
-  tempRich.addMethod('queryAll', queryAll); // class
+  tempRich.addMethod('queryAll', queryAll);
+  tempRich.addMethod('valueToText', function (v) {
+    return v === undefined ? 'undefined' : v === null ? 'null' : v.toString() == 'NaN' ? 'NaN' : typeof v == 'function' ? v.toString() : JSON.stringify(v);
+  }); // class
 
   tempRich.addClass('ClassUUID', ClassUUID);
   tempRich.addClass('Dom', Dom$1, false);

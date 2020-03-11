@@ -3,7 +3,7 @@ Rich.init(
     "https://unpkg.com/chai/chai.js",
     "https://unpkg.com/mocha/mocha.js",
     "../asset/cssPage.css",
-    "../checkState.js"
+    "../TEST_HELPER.js"
 ).then(function () {
     Rich.Css('#test-id::before').S('content', '"beforeTest"', 'background', 'red');
     Rich.Css('#test-id::after').S('content', '"afterTest"', 'background', 'red');
@@ -125,5 +125,5 @@ Rich.init(
             });
         });
     });
-    checkState()
+    TEST_HELPER()
 })
