@@ -5,21 +5,22 @@ Rich.init(
     "../asset/cssPage.css",
     "../TEST_HELPER.js"
 ).then(function () {
-    describe('Test - BOOLEAN', function () {
+    describe('Test - ARRAY', function () {
         describe('Test - 허용범위 테스트', function () {
             TEST_HELPER.makeTestByList(
-                TEST_HELPER.TYPE_LIST.BOOLEAN_NULLISH,
+                TEST_HELPER.TYPE_LIST.ARRAY_NULLISH,
                 function () {
                     it('입력값 : $testValue', function () {
                         var target = function Test() {}
+                        var realTestValue = $testValue;
                         Rich.defineProperty(
                             target.prototype,
                             'keyName_test',
-                            Rich.DEFINE_TYPE.BOOLEAN
+                            Rich.DEFINE_TYPE.ARRAY
                         )
                         var targetInstance = new target();
-                        targetInstance.keyName_test = $testValue;
-                        expect(targetInstance.keyName_test).to.equal($testValue);
+                        targetInstance.keyName_test = realTestValue;
+                        expect(targetInstance.keyName_test).to.equal(realTestValue);
                     });
                 }
             )
@@ -28,7 +29,7 @@ Rich.init(
             TEST_HELPER.makeTestByList(
                 TEST_HELPER.removeItem(
                     TEST_HELPER.TYPE_LIST.ALL,
-                    TEST_HELPER.TYPE_LIST.BOOLEAN_NULLISH
+                    TEST_HELPER.TYPE_LIST.ARRAY_NULLISH
                 ),
                 function () {
                     it('입력값 : $testValue', function () {
@@ -37,7 +38,7 @@ Rich.init(
                             Rich.defineProperty(
                                 target.prototype,
                                 'keyName_test',
-                                Rich.DEFINE_TYPE.BOOLEAN
+                                Rich.DEFINE_TYPE.ARRAY
                             )
                             var targetInstance = new target();
                             targetInstance.keyName_test = $testValue;
@@ -48,22 +49,23 @@ Rich.init(
         });
         describe('Test - 허용범위 테스트 ( option.nullishAble = false일때 )', function () {
             TEST_HELPER.makeTestByList(
-                TEST_HELPER.TYPE_LIST.BOOLEAN,
+                TEST_HELPER.TYPE_LIST.ARRAY,
                 function () {
-                    it('{ nullishAble : false, value : true } / 입력값 : $testValue', function () {
+                    it('{ nullishAble : false, value : [] } / 입력값 : $testValue', function () {
                         var target = function Test() {}
+                        var realTestValue = $testValue;
                         Rich.defineProperty(
                             target.prototype,
                             'keyName_test',
-                            Rich.DEFINE_TYPE.BOOLEAN,
+                            Rich.DEFINE_TYPE.ARRAY,
                             {
-                                value: true,
+                                value: [],
                                 nullishAble: false
                             }
                         )
                         var targetInstance = new target();
-                        targetInstance.keyName_test = $testValue;
-                        expect(targetInstance.keyName_test).to.equal($testValue);
+                        targetInstance.keyName_test = realTestValue;
+                        expect(targetInstance.keyName_test).to.equal(realTestValue);
                     });
                 }
             );
@@ -72,24 +74,25 @@ Rich.init(
             TEST_HELPER.makeTestByList(
                 TEST_HELPER.removeItem(
                     TEST_HELPER.TYPE_LIST.ALL,
-                    TEST_HELPER.TYPE_LIST.BOOLEAN
+                    TEST_HELPER.TYPE_LIST.ARRAY
                 ),
                 function () {
-                    it('{ nullishAble : false, value : true } / 입력값 : $testValue', function () {
+                    it('{ nullishAble : false, value : [] } / 입력값 : $testValue', function () {
                         expect(function () {
                             var target = function Test() {}
+                            var realTestValue = $testValue;
                             Rich.defineProperty(
                                 target.prototype,
                                 'keyName_test',
-                                Rich.DEFINE_TYPE.BOOLEAN,
+                                Rich.DEFINE_TYPE.ARRAY,
                                 {
                                     nullishAble: false,
-                                    value: true
+                                    value: []
                                 }
                             )
                             console.log(target)
                             var targetInstance = new target();
-                            targetInstance.keyName_test = $testValue;
+                            targetInstance.keyName_test = realTestValue;
                         }).to.throw();
                     });
                 }
@@ -99,32 +102,33 @@ Rich.init(
             describe('Test - option.value 테스트', function () {
                 it('초기값 옵션이 없을경우 null로 생성되는지', function () {
                     var target = function Test() {}
-                    Rich.defineProperty(target.prototype, 'keyName_test', Rich.DEFINE_TYPE.BOOLEAN)
+                    Rich.defineProperty(target.prototype, 'keyName_test', Rich.DEFINE_TYPE.ARRAY)
                     var targetInstance = new target();
                     expect(targetInstance.keyName_test).to.equal(null);
                 });
                 TEST_HELPER.makeTestByList(
-                    TEST_HELPER.TYPE_LIST.BOOLEAN,
+                    TEST_HELPER.TYPE_LIST.ARRAY,
                     function () {
-                        it('{ value : true } / 초기값이 잘 지정되는지', function () {
+                        it('{ value : [] } / 초기값이 잘 지정되는지', function () {
                             var target = function Test() {}
+                            var realTestValue = $testValue;
                             Rich.defineProperty(
                                 target.prototype,
                                 'keyName_test',
-                                Rich.DEFINE_TYPE.BOOLEAN,
+                                Rich.DEFINE_TYPE.ARRAY,
                                 {
-                                    value: $testValue
+                                    value: realTestValue
                                 }
                             )
                             var targetInstance = new target();
-                            expect(targetInstance.keyName_test).to.equal($testValue);
+                            expect(targetInstance.keyName_test).to.equal(realTestValue);
                         });
                     }
                 )
                 TEST_HELPER.makeTestByList(
                     TEST_HELPER.removeItem(
                         TEST_HELPER.TYPE_LIST.ALL,
-                        TEST_HELPER.TYPE_LIST.BOOLEAN_NULLISH
+                        TEST_HELPER.TYPE_LIST.ARRAY_NULLISH
                     ),
                     function () {
                         it('{ nullishAble : false, value : $testValue } / 초기값이 boolean or nullish 아닐때 에러가 나는지', function () {
@@ -133,7 +137,7 @@ Rich.init(
                                 Rich.defineProperty(
                                     target.prototype,
                                     'keyName_test',
-                                    Rich.DEFINE_TYPE.BOOLEAN,
+                                    Rich.DEFINE_TYPE.ARRAY,
                                     {
                                         nullishAble: false,
                                         value: $testValue
@@ -151,7 +155,7 @@ Rich.init(
                     Rich.defineProperty(
                         target.prototype,
                         'keyName_test',
-                        Rich.DEFINE_TYPE.BOOLEAN,
+                        Rich.DEFINE_TYPE.ARRAY,
                         {
                             nullishAble: true
                         }
@@ -167,7 +171,7 @@ Rich.init(
                         Rich.defineProperty(
                             target.prototype,
                             'keyName_test',
-                            Rich.DEFINE_TYPE.BOOLEAN,
+                            Rich.DEFINE_TYPE.ARRAY,
                             {
                                 nullishAble: false
                             }
@@ -178,36 +182,37 @@ Rich.init(
             describe('Test - option.nullishAble = true 일때 테스트', function () {
                 describe('Test - option.nullishAble = true 일때 초기값이 세팅대로 되나 체크', function () {
                     TEST_HELPER.makeTestByList(
-                        TEST_HELPER.TYPE_LIST.BOOLEAN_NULLISH,
+                        TEST_HELPER.TYPE_LIST.ARRAY_NULLISH,
                         function () {
                             it('{ nullishAble : true, value : $testValue }', function () {
                                 var target = function Test() {}
+                                var realTestValue = $testValue;
                                 Rich.defineProperty(
                                     target.prototype,
                                     'keyName_test',
-                                    Rich.DEFINE_TYPE.BOOLEAN,
+                                    Rich.DEFINE_TYPE.ARRAY,
                                     {
-                                        value: $testValue,
+                                        value: realTestValue,
                                         nullishAble: true
                                     }
                                 )
                                 var targetInstance = new target();
                                 console.log(targetInstance)
-                                expect(targetInstance.keyName_test).to.equal($testValue);
+                                expect(targetInstance.keyName_test).to.equal(realTestValue);
                             });
                         }
                     );
                 });
                 describe('Test - option.nullishAble = true 일때 실제 set을 null로 지정했을때 null이 허용되나 체크', function () {
                     TEST_HELPER.makeTestByList(
-                        TEST_HELPER.TYPE_LIST.BOOLEAN_NULLISH,
+                        TEST_HELPER.TYPE_LIST.ARRAY_NULLISH,
                         function () {
                             it('{ nullishAble : true, value : $testValue } / 입력값 : null', function () {
                                 var target = function Test() {}
                                 Rich.defineProperty(
                                     target.prototype,
                                     'keyName_test',
-                                    Rich.DEFINE_TYPE.BOOLEAN,
+                                    Rich.DEFINE_TYPE.ARRAY,
                                     {
                                         value: $testValue,
                                         nullishAble: true
@@ -226,29 +231,30 @@ Rich.init(
             describe('Test - option.nullishAble = false 일때 테스트', function () {
                 describe('Test - option.nullishAble = false 일때 초기값이 세팅대로 되나 체크', function () {
                     TEST_HELPER.makeTestByList(
-                        TEST_HELPER.TYPE_LIST.BOOLEAN,
+                        TEST_HELPER.TYPE_LIST.ARRAY,
                         function () {
                             it('{ nullishAble : true, value : $testValue }', function () {
                                 var target = function Test() {}
+                                var realTestValue = $testValue;
                                 Rich.defineProperty(
                                     target.prototype,
                                     'keyName_test',
-                                    Rich.DEFINE_TYPE.BOOLEAN,
+                                    Rich.DEFINE_TYPE.ARRAY,
                                     {
-                                        value: $testValue,
+                                        value: realTestValue,
                                         nullishAble: false
                                     }
                                 )
                                 var targetInstance = new target();
                                 console.log(targetInstance)
-                                expect(targetInstance.keyName_test).to.equal($testValue);
+                                expect(targetInstance.keyName_test).to.equal(realTestValue);
                             });
                         }
                     );
                 });
                 describe('Test - option.nullishAble = false 일때 실제 set을 null로 지정했을때 에러가 나나 테스트', function () {
                     TEST_HELPER.makeTestByList(
-                        TEST_HELPER.TYPE_LIST.BOOLEAN,
+                        TEST_HELPER.TYPE_LIST.ARRAY,
                         function () {
                             it('{ nullishAble : true, value : $testValue } / 입력값 : null', function () {
                                 expect(function () {
@@ -256,7 +262,7 @@ Rich.init(
                                     Rich.defineProperty(
                                         target.prototype,
                                         'keyName_test',
-                                        Rich.DEFINE_TYPE.BOOLEAN,
+                                        Rich.DEFINE_TYPE.ARRAY,
                                         {
                                             value: $testValue,
                                             nullishAble: false
@@ -284,7 +290,7 @@ Rich.init(
                     Rich.defineProperty(
                         target.prototype,
                         'keyName_test',
-                        Rich.DEFINE_TYPE.BOOLEAN,
+                        Rich.DEFINE_TYPE.ARRAY,
                         {
                             callback: function () {
                                 result = true
@@ -292,9 +298,9 @@ Rich.init(
                         }
                     )
                     var targetInstance = new target();
-                    targetInstance.keyName_test = true
+                    targetInstance.keyName_test = []
                     console.log(targetInstance)
-                    expect(result).to.be.true;
+                    expect(result).to.equal(true);
                 })
             });
         });

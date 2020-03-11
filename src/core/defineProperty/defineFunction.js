@@ -28,7 +28,7 @@ let defineFunction = (target, keyName, type, option) => {
     // 기본값 생성
     if (NULLISH_ABLE) {
         if (option.hasOwnProperty('value')) {
-            if (typeof option['value'] != 'function') throwError(`${target.constructor.name} - option['value'] : function만 허용함. / 입력값 : ${option['value']}`);
+            if (typeof option['value'] != 'function'&& !(option['value'] === null || option['value'] === undefined)) throwError(`${target.constructor.name} - option['value'] : function or nullish만 허용함. / 입력값 : ${option['value']}`);
         } else option['value'] = null;
     } else {
         if (typeof option['value'] != 'function') throwError(`${target.constructor.name} - option['value'] : function만 허용함. / 입력값 : ${option['value']}`);

@@ -31,6 +31,16 @@ input, select, option, button, textarea {
     color: #888;
 }
 
+#mocha code .string {
+    color: #ff8d00;
+    font-size: 16px;
+}
+
+#mocha code .number {
+    color: #ff8d00;
+    font-size: 16px;
+}
+
 #mocha-stats em {
     color: #f2a971
 }

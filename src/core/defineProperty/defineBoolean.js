@@ -28,7 +28,7 @@ let defineBoolean = (target, keyName, type, option) => {
     // 기본값 생성
     if (NULLISH_ABLE) {
         if (option.hasOwnProperty('value')) {
-            if (typeof option['value'] != 'boolean') throwError(`${target.constructor.name} - option['value'] : boolean만 허용함. / 입력값 : ${option['value']}`);
+            if (typeof option['value'] != 'boolean' && !(option['value'] === null || option['value'] === undefined)) throwError(`${target.constructor.name} - option['value'] : boolean or nullish만 허용함. / 입력값 : ${option['value']}`);
         } else option['value'] = null;
     } else {
         if (typeof option['value'] != 'boolean') throwError(`${target.constructor.name} - option['value'] : boolean만 허용함. / 입력값 : ${option['value']}`);

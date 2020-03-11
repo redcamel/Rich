@@ -1267,7 +1267,7 @@
 
       if (NULLISH_ABLE) {
         if (option.hasOwnProperty('value')) {
-          if (typeof option['value'] != 'boolean') throwError("".concat(target.constructor.name, " - option['value'] : boolean\uB9CC \uD5C8\uC6A9\uD568. / \uC785\uB825\uAC12 : ").concat(option['value']));
+          if (typeof option['value'] != 'boolean' && !(option['value'] === null || option['value'] === undefined)) throwError("".concat(target.constructor.name, " - option['value'] : boolean or nullish\uB9CC \uD5C8\uC6A9\uD568. / \uC785\uB825\uAC12 : ").concat(option['value']));
         } else option['value'] = null;
       } else {
         if (typeof option['value'] != 'boolean') throwError("".concat(target.constructor.name, " - option['value'] : boolean\uB9CC \uD5C8\uC6A9\uD568. / \uC785\uB825\uAC12 : ").concat(option['value']));
@@ -1370,7 +1370,7 @@
 
       if (NULLISH_ABLE) {
         if (option.hasOwnProperty('value')) {
-          if (typeof option['value'] != 'function') throwError("".concat(target.constructor.name, " - option['value'] : function\uB9CC \uD5C8\uC6A9\uD568. / \uC785\uB825\uAC12 : ").concat(option['value']));
+          if (typeof option['value'] != 'function' && !(option['value'] === null || option['value'] === undefined)) throwError("".concat(target.constructor.name, " - option['value'] : function or nullish\uB9CC \uD5C8\uC6A9\uD568. / \uC785\uB825\uAC12 : ").concat(option['value']));
         } else option['value'] = null;
       } else {
         if (typeof option['value'] != 'function') throwError("".concat(target.constructor.name, " - option['value'] : function\uB9CC \uD5C8\uC6A9\uD568. / \uC785\uB825\uAC12 : ").concat(option['value']));
@@ -1425,14 +1425,14 @@
 
       if (NULLISH_ABLE) {
         if (option.hasOwnProperty('value')) {
-          if (!(option['value'] instanceof Array)) throwError("".concat(target.constructor.name, " - option['value'] : Array\uB9CC \uD5C8\uC6A9\uD568. / \uC785\uB825\uAC12 : ").concat(option['value']));
+          if (!(option['value'] instanceof Array) && !(option['value'] === null || option['value'] === undefined)) throwError("".concat(target.constructor.name, " - option['value'] : Array or nullish \uB9CC \uD5C8\uC6A9\uD568. / \uC785\uB825\uAC12 : ").concat(option['value']));
         } else option['value'] = null;
       } else {
         if (!(option['value'] instanceof Array)) throwError("".concat(target.constructor.name, " - option['value'] : Array\uB9CC \uD5C8\uC6A9\uD568. / \uC785\uB825\uAC12 : ").concat(option['value']));
       } // 타입형 체크
 
 
-      if (option['value'] instanceof Array) {
+      if (!(option['value'] instanceof Array)) {
         if (NULLISH_ABLE && (option['value'] === null || option['value'] === undefined)) ; else {
           if (option['value'] == null || option['value'] === undefined) {
             throwError("".concat(target.constructor.name, " - option['value'] : nullish\uB97C \uD5C8\uC6A9\uD558\uC9C0 \uC54A\uB294 \uC138\uD305\uC0C1\uD0DC. / \uC785\uB825\uAC12 : ").concat(option['value']));

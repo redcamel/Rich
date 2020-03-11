@@ -28,13 +28,13 @@ let defineArray = (target, keyName, type, option) => {
     // 기본값 생성
     if (NULLISH_ABLE) {
         if (option.hasOwnProperty('value')) {
-            if (!(option['value'] instanceof Array)) throwError(`${target.constructor.name} - option['value'] : Array만 허용함. / 입력값 : ${option['value']}`);
+            if (!(option['value'] instanceof Array)  && !(option['value'] === null || option['value'] === undefined)) throwError(`${target.constructor.name} - option['value'] : Array or nullish 만 허용함. / 입력값 : ${option['value']}`);
         } else option['value'] = null;
     } else {
         if (!(option['value'] instanceof Array)) throwError(`${target.constructor.name} - option['value'] : Array만 허용함. / 입력값 : ${option['value']}`);
     }
     // 타입형 체크
-    if (option['value'] instanceof Array) {
+    if (!(option['value'] instanceof Array)) {
         if (NULLISH_ABLE && (option['value'] === null || option['value'] === undefined)) {
         } else {
             if (option['value'] == null || option['value'] === undefined) {

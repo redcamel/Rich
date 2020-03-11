@@ -15,10 +15,10 @@ Rich.init(
                             TEST_HELPER.getTestTypeList(TEST_HELPER.TYPE_LIST.NUMBER_NULLISH),
                             function () {
                                 it(
-                                    'Rich.checkType( testValue, Rich.DEFINE_TYPE.NUMBER )',
+                                    'Rich.checkType( $testValue, Rich.DEFINE_TYPE.NUMBER )',
                                     function () {
                                         expect(function () {
-                                            Rich.checkType(testValue, Rich.DEFINE_TYPE.NUMBER)
+                                            Rich.checkType($testValue, Rich.DEFINE_TYPE.NUMBER)
                                         }).to.not.throw();
                                     }
                                 );
@@ -36,10 +36,10 @@ Rich.init(
                             function () {
 
                                 it(
-                                    'Rich.checkType( testValue, Rich.DEFINE_TYPE.NUMBER )',
+                                    'Rich.checkType( $testValue, Rich.DEFINE_TYPE.NUMBER )',
                                     function () {
                                         expect(function () {
-                                            Rich.checkType(testValue, Rich.DEFINE_TYPE.NUMBER)
+                                            Rich.checkType($testValue, Rich.DEFINE_TYPE.NUMBER)
                                         }).to.throw();
                                     }
                                 );
@@ -56,10 +56,10 @@ Rich.init(
                             function () {
 
                                 it(
-                                    'option = { nullishAble : false } / Rich.checkType( testValue, Rich.DEFINE_TYPE.NUMBER )'
+                                    'option = { nullishAble : false } / Rich.checkType( $testValue, Rich.DEFINE_TYPE.NUMBER )'
                                     , function () {
                                         expect(function () {
-                                            Rich.checkType(testValue, Rich.DEFINE_TYPE.NUMBER, {nullishAble: false})
+                                            Rich.checkType($testValue, Rich.DEFINE_TYPE.NUMBER, {nullishAble: false})
                                         }).to.not.throw();
                                     }
                                 );
@@ -78,10 +78,10 @@ Rich.init(
                             function () {
 
                                 it(
-                                    'option = { nullishAble : false } / Rich.checkType( testValue, Rich.DEFINE_TYPE.NUMBER )',
+                                    'option = { nullishAble : false } / Rich.checkType( $testValue, Rich.DEFINE_TYPE.NUMBER )',
                                     function () {
                                         expect(function () {
-                                            Rich.checkType(testValue, Rich.DEFINE_TYPE.NUMBER, {nullishAble: false})
+                                            Rich.checkType($testValue, Rich.DEFINE_TYPE.NUMBER, {nullishAble: false})
                                         }).to.throw();
                                     }
                                 );
@@ -158,12 +158,11 @@ Rich.init(
                         TEST_HELPER.makeTestByList(
                             TEST_HELPER.getTestTypeList(TEST_HELPER.TYPE_LIST.INT_NULLISH),
                             function () {
-
                                 it(
-                                    'Rich.checkType( testValue, Rich.DEFINE_TYPE.INT )',
+                                    'Rich.checkType( $testValue, Rich.DEFINE_TYPE.INT )',
                                     function () {
                                         expect(function () {
-                                            Rich.checkType(testValue, Rich.DEFINE_TYPE.INT)
+                                            Rich.checkType($testValue, Rich.DEFINE_TYPE.INT)
                                         }).to.not.throw();
                                     }
                                 );
@@ -182,10 +181,10 @@ Rich.init(
                             function () {
 
                                 it(
-                                    'Rich.checkType( testValue, Rich.DEFINE_TYPE.INT )',
+                                    'Rich.checkType( $testValue, Rich.DEFINE_TYPE.INT )',
                                     function () {
                                         expect(function () {
-                                            Rich.checkType(testValue, Rich.DEFINE_TYPE.INT)
+                                            Rich.checkType($testValue, Rich.DEFINE_TYPE.INT)
                                         }).to.throw();
                                     }
                                 );
@@ -202,10 +201,10 @@ Rich.init(
                             function () {
 
                                 it(
-                                    'option = { nullishAble : false } / Rich.checkType( testValue, Rich.DEFINE_TYPE.INT )',
+                                    'option = { nullishAble : false } / Rich.checkType( $testValue, Rich.DEFINE_TYPE.INT )',
                                     function () {
                                         expect(function () {
-                                            Rich.checkType(testValue, Rich.DEFINE_TYPE.INT, {nullishAble: false})
+                                            Rich.checkType($testValue, Rich.DEFINE_TYPE.INT, {nullishAble: false})
                                         }).to.not.throw();
                                     }
                                 );
@@ -224,10 +223,10 @@ Rich.init(
                             function () {
 
                                 it(
-                                    'option = { nullishAble : false } / Rich.checkType( testValue, Rich.DEFINE_TYPE.INT )',
+                                    'option = { nullishAble : false } / Rich.checkType( $testValue, Rich.DEFINE_TYPE.INT )',
                                     function () {
                                         expect(function () {
-                                            Rich.checkType(testValue, Rich.DEFINE_TYPE.INT, {nullishAble: false})
+                                            Rich.checkType($testValue, Rich.DEFINE_TYPE.INT, {nullishAble: false})
                                         }).to.throw();
                                     }
                                 );
@@ -307,10 +306,10 @@ Rich.init(
                             function () {
 
                                 it(
-                                    'Rich.checkType( testValue, Rich.DEFINE_TYPE.UINT )',
+                                    'Rich.checkType( $testValue, Rich.DEFINE_TYPE.UINT )',
                                     function () {
                                         expect(function () {
-                                            Rich.checkType(testValue, Rich.DEFINE_TYPE.UINT)
+                                            Rich.checkType($testValue, Rich.DEFINE_TYPE.UINT)
                                         }).to.not.throw();
                                     }
                                 );
@@ -329,10 +328,10 @@ Rich.init(
                             function () {
 
                                 it(
-                                    'Rich.checkType( testValue, Rich.DEFINE_TYPE.UINT )',
+                                    'Rich.checkType( $testValue, Rich.DEFINE_TYPE.UINT )',
                                     function () {
                                         expect(function () {
-                                            Rich.checkType(testValue, Rich.DEFINE_TYPE.UINT)
+                                            Rich.checkType($testValue, Rich.DEFINE_TYPE.UINT)
                                         }).to.throw();
                                     }
                                 );
@@ -349,10 +348,10 @@ Rich.init(
                             function () {
 
                                 it(
-                                    'Rich.checkType(testValue, Rich.DEFINE_TYPE.UINT, {nullishAble: false})',
+                                    'Rich.checkType($testValue, Rich.DEFINE_TYPE.UINT, {nullishAble: false})',
                                     function () {
                                         expect(function () {
-                                            Rich.checkType(testValue, Rich.DEFINE_TYPE.UINT, {nullishAble: false})
+                                            Rich.checkType($testValue, Rich.DEFINE_TYPE.UINT, {nullishAble: false})
                                         }).to.not.throw();
                                     }
                                 );
@@ -371,10 +370,10 @@ Rich.init(
                             function () {
 
                                 it(
-                                    'option = { nullishAble : false } / Rich.checkType( testValue, Rich.DEFINE_TYPE.UINT )',
+                                    'option = { nullishAble : false } / Rich.checkType( $testValue, Rich.DEFINE_TYPE.UINT )',
                                     function () {
                                         expect(function () {
-                                            Rich.checkType(testValue, Rich.DEFINE_TYPE.UINT, {nullishAble: false})
+                                            Rich.checkType($testValue, Rich.DEFINE_TYPE.UINT, {nullishAble: false})
                                         }).to.throw();
                                     }
                                 );
@@ -449,57 +448,54 @@ Rich.init(
                 describe(
                     'Test - 기본 허용범위 테스트',
                     function () {
-                        ['문자열', '1', null, undefined].forEach(function (testValue) {
+                        TEST_HELPER.makeTestByList(
+                            TEST_HELPER.getTestTypeList(TEST_HELPER.TYPE_LIST.STRING_NULLISH),
+                            function () {
                                 it(
-                                    'Rich.checkType( ' + (typeof testValue === 'string' ? '"' + testValue + '"' : testValue) + ', Rich.DEFINE_TYPE.STRING )',
+                                    'Rich.checkType( $testValue, Rich.DEFINE_TYPE.STRING )',
                                     function () {
-                                        var result = true;
-                                        try {
-                                            Rich.checkType(testValue, Rich.DEFINE_TYPE.STRING)
-                                        } catch (e) {
-                                            result = false
-                                        }
-                                        expect(result).to.be.true;
+                                        expect(function () {
+                                            Rich.checkType($testValue, Rich.DEFINE_TYPE.STRING)
+                                        }).to.not.throw();
                                     }
                                 );
                             }
-                        );
+                        )
                     }
                 );
                 describe(
                     'Test - 기본 허용범위외 테스트',
                     function () {
-                        [true, false, -1.1, -1, 0, 1, 1.1, NaN, function () {}, {}].forEach(function (testValue) {
+                        var testList = TEST_HELPER.getTestTypeList(TEST_HELPER.TYPE_LIST.ALL)
+                        testList = TEST_HELPER.removeItem(testList, TEST_HELPER.TYPE_LIST.STRING_NULLISH);
+                        TEST_HELPER.makeTestByList(
+                            testList,
+                            function () {
                                 it(
-                                    'Rich.checkType( testValue, Rich.DEFINE_TYPE.STRING )',
+                                    'Rich.checkType( $testValue, Rich.DEFINE_TYPE.STRING )',
                                     function () {
-                                        var result = true;
-                                        try {
-                                            Rich.checkType(testValue, Rich.DEFINE_TYPE.STRING)
-                                        } catch (e) {
-                                            result = false
-                                        }
-                                        expect(result).to.be.false;
+                                        expect(function () {
+                                            Rich.checkType($testValue, Rich.DEFINE_TYPE.STRING)
+                                        }).to.throw();
                                     }
                                 );
                             }
                         );
+
                     }
                 );
                 describe(
                     'Test - 기본 허용범위 테스트 ( nullishAble = false 일 경우 )',
                     function () {
-                        ['문자열', '1',].forEach(function (testValue) {
+                        TEST_HELPER.makeTestByList(
+                            TEST_HELPER.getTestTypeList(TEST_HELPER.TYPE_LIST.STRING),
+                            function () {
                                 it(
-                                    'option = { nullishAble : false } / Rich.checkType( testValue, Rich.DEFINE_TYPE.STRING )',
+                                    'option = { nullishAble : false } / Rich.checkType( $testValue, Rich.DEFINE_TYPE.STRING )',
                                     function () {
-                                        var result = true;
-                                        try {
-                                            Rich.checkType(testValue, Rich.DEFINE_TYPE.STRING, {nullishAble: false})
-                                        } catch (e) {
-                                            result = false
-                                        }
-                                        expect(result).to.be.true;
+                                        expect(function () {
+                                            Rich.checkType($testValue, Rich.DEFINE_TYPE.STRING, {nullishAble: false})
+                                        }).to.not.throw();
                                     }
                                 );
                             }
@@ -509,17 +505,17 @@ Rich.init(
                 describe(
                     'Test - 기본 허용범위외 테스트 ( nullishAble = false 일 경우 )',
                     function () {
-                        [-1.1, -1, 0, 1, 1.1, NaN, function () {}, {}, null, undefined].forEach(function (testValue) {
+                        var testList = TEST_HELPER.getTestTypeList(TEST_HELPER.TYPE_LIST.ALL)
+                        testList = TEST_HELPER.removeItem(testList, TEST_HELPER.TYPE_LIST.STRING);
+                        TEST_HELPER.makeTestByList(
+                            testList,
+                            function () {
                                 it(
-                                    'option = { nullishAble : false } / Rich.checkType( testValue, Rich.DEFINE_TYPE.STRING )',
+                                    'option = { nullishAble : false } / Rich.checkType( $testValue, Rich.DEFINE_TYPE.STRING )',
                                     function () {
-                                        var result = true;
-                                        try {
-                                            Rich.checkType(testValue, Rich.DEFINE_TYPE.STRING, {nullishAble: false})
-                                        } catch (e) {
-                                            result = false
-                                        }
-                                        expect(result).to.be.false;
+                                        expect(function () {
+                                            Rich.checkType($testValue, Rich.DEFINE_TYPE.STRING, {nullishAble: false})
+                                        }).to.throw();
                                     }
                                 );
                             }
@@ -534,17 +530,15 @@ Rich.init(
                 describe(
                     'Test - 기본 허용범위 테스트',
                     function () {
-                        [true, false, null, undefined].forEach(function (testValue) {
+                        TEST_HELPER.makeTestByList(
+                            TEST_HELPER.getTestTypeList(TEST_HELPER.TYPE_LIST.BOOLEAN_NULLISH),
+                            function () {
                                 it(
-                                    'Rich.checkType( ' + (typeof testValue === 'string' ? '"' + testValue + '"' : testValue) + ', Rich.DEFINE_TYPE.BOOLEAN )',
+                                    'Rich.checkType( $testValue, Rich.DEFINE_TYPE.BOOLEAN )',
                                     function () {
-                                        var result = true;
-                                        try {
-                                            Rich.checkType(testValue, Rich.DEFINE_TYPE.BOOLEAN)
-                                        } catch (e) {
-                                            result = false
-                                        }
-                                        expect(result).to.be.true;
+                                        expect(function () {
+                                            Rich.checkType($testValue, Rich.DEFINE_TYPE.BOOLEAN)
+                                        }).to.not.throw();
                                     }
                                 );
                             }
@@ -554,17 +548,17 @@ Rich.init(
                 describe(
                     'Test - 기본 허용범위외 테스트',
                     function () {
-                        [-1.1, -1, 0, 1, 1.1, NaN, function () {}, {}].forEach(function (testValue) {
+                        var testList = TEST_HELPER.getTestTypeList(TEST_HELPER.TYPE_LIST.ALL)
+                        testList = TEST_HELPER.removeItem(testList, TEST_HELPER.TYPE_LIST.BOOLEAN_NULLISH);
+                        TEST_HELPER.makeTestByList(
+                            testList,
+                            function () {
                                 it(
-                                    'Rich.checkType( testValue, Rich.DEFINE_TYPE.BOOLEAN )',
+                                    'Rich.checkType( $testValue, Rich.DEFINE_TYPE.BOOLEAN )',
                                     function () {
-                                        var result = true;
-                                        try {
-                                            Rich.checkType(testValue, Rich.DEFINE_TYPE.BOOLEAN)
-                                        } catch (e) {
-                                            result = false
-                                        }
-                                        expect(result).to.be.false;
+                                        expect(function () {
+                                            Rich.checkType($testValue, Rich.DEFINE_TYPE.BOOLEAN)
+                                        }).to.throw();
                                     }
                                 );
                             }
@@ -574,17 +568,15 @@ Rich.init(
                 describe(
                     'Test - 기본 허용범위 테스트 ( nullishAble = false 일 경우 )',
                     function () {
-                        [true, false].forEach(function (testValue) {
+                        TEST_HELPER.makeTestByList(
+                            TEST_HELPER.getTestTypeList(TEST_HELPER.TYPE_LIST.BOOLEAN),
+                            function () {
                                 it(
-                                    'option = { nullishAble : false } / Rich.checkType( testValue, Rich.DEFINE_TYPE.BOOLEAN )',
+                                    'option = { nullishAble : false } / Rich.checkType( $testValue, Rich.DEFINE_TYPE.BOOLEAN )',
                                     function () {
-                                        var result = true;
-                                        try {
-                                            Rich.checkType(testValue, Rich.DEFINE_TYPE.BOOLEAN, {nullishAble: false})
-                                        } catch (e) {
-                                            result = false
-                                        }
-                                        expect(result).to.be.true;
+                                        expect(function () {
+                                            Rich.checkType($testValue, Rich.DEFINE_TYPE.BOOLEAN, {nullishAble: false})
+                                        }).to.not.throw();
                                     }
                                 );
                             }
@@ -594,18 +586,17 @@ Rich.init(
                 describe(
                     'Test - 기본 허용범위외 테스트 ( nullishAble = false 일 경우 )',
                     function () {
-                        [-1.1, -1, 0, 1, 1.1, NaN, '문자열',
-                            function () {}, {}, null, undefined].forEach(function (testValue) {
+                        var testList = TEST_HELPER.getTestTypeList(TEST_HELPER.TYPE_LIST.ALL)
+                        testList = TEST_HELPER.removeItem(testList, TEST_HELPER.TYPE_LIST.BOOLEAN);
+                        TEST_HELPER.makeTestByList(
+                            testList,
+                            function () {
                                 it(
-                                    'option = { nullishAble : false } / Rich.checkType( testValue, Rich.DEFINE_TYPE.BOOLEAN )',
+                                    'option = { nullishAble : false } / Rich.checkType( $testValue, Rich.DEFINE_TYPE.BOOLEAN )',
                                     function () {
-                                        var result = true;
-                                        try {
-                                            Rich.checkType(testValue, Rich.DEFINE_TYPE.BOOLEAN, {nullishAble: false})
-                                        } catch (e) {
-                                            result = false
-                                        }
-                                        expect(result).to.be.false;
+                                        expect(function () {
+                                            expect(result).to.be.false;
+                                        }).to.throw();
                                     }
                                 );
                             }
@@ -620,17 +611,15 @@ Rich.init(
                 describe(
                     'Test - 기본 허용범위 테스트',
                     function () {
-                        [function () {}, null, undefined].forEach(function (testValue) {
+                        TEST_HELPER.makeTestByList(
+                            TEST_HELPER.getTestTypeList(TEST_HELPER.TYPE_LIST.FUNCTION_NULLISH),
+                            function () {
                                 it(
-                                    'Rich.checkType( ' + (typeof testValue === 'string' ? '"' + testValue + '"' : testValue) + ', Rich.DEFINE_TYPE.FUNCTION )',
+                                    'Rich.checkType( $testValue, Rich.DEFINE_TYPE.FUNCTION )',
                                     function () {
-                                        var result = true;
-                                        try {
-                                            Rich.checkType(testValue, Rich.DEFINE_TYPE.FUNCTION)
-                                        } catch (e) {
-                                            result = false
-                                        }
-                                        expect(result).to.be.true;
+                                        expect(function () {
+                                            Rich.checkType($testValue, Rich.DEFINE_TYPE.FUNCTION)
+                                        }).to.not.throw();
                                     }
                                 );
                             }
@@ -640,17 +629,17 @@ Rich.init(
                 describe(
                     'Test - 기본 허용범위외 테스트',
                     function () {
-                        [true, false - 1.1, -1, 0, 1, 1.1, NaN, {}].forEach(function (testValue) {
+                        var testList = TEST_HELPER.getTestTypeList(TEST_HELPER.TYPE_LIST.ALL)
+                        testList = TEST_HELPER.removeItem(testList, TEST_HELPER.TYPE_LIST.FUNCTION_NULLISH);
+                        TEST_HELPER.makeTestByList(
+                            testList,
+                            function () {
                                 it(
-                                    'Rich.checkType( testValue, Rich.DEFINE_TYPE.FUNCTION )',
+                                    'Rich.checkType( $testValue, Rich.DEFINE_TYPE.FUNCTION )',
                                     function () {
-                                        var result = true;
-                                        try {
-                                            Rich.checkType(testValue, Rich.DEFINE_TYPE.FUNCTION)
-                                        } catch (e) {
-                                            result = false
-                                        }
-                                        expect(result).to.be.false;
+                                        expect(function () {
+                                            Rich.checkType($testValue, Rich.DEFINE_TYPE.FUNCTION)
+                                        }).to.throw();
                                     }
                                 );
                             }
@@ -660,17 +649,15 @@ Rich.init(
                 describe(
                     'Test - 기본 허용범위 테스트 ( nullishAble = false 일 경우 )',
                     function () {
-                        [function () {}].forEach(function (testValue) {
+                        TEST_HELPER.makeTestByList(
+                            TEST_HELPER.getTestTypeList(TEST_HELPER.TYPE_LIST.FUNCTION),
+                            function () {
                                 it(
-                                    'option = { nullishAble : false } / Rich.checkType( testValue, Rich.DEFINE_TYPE.FUNCTION )',
+                                    'option = { nullishAble : false } / Rich.checkType( $testValue, Rich.DEFINE_TYPE.FUNCTION )',
                                     function () {
-                                        var result = true;
-                                        try {
-                                            Rich.checkType(testValue, Rich.DEFINE_TYPE.FUNCTION, {nullishAble: false})
-                                        } catch (e) {
-                                            result = false
-                                        }
-                                        expect(result).to.be.true;
+                                        expect(function () {
+                                            Rich.checkType($testValue, Rich.DEFINE_TYPE.FUNCTION, {nullishAble: false})
+                                        }).to.not.throw();
                                     }
                                 );
                             }
@@ -680,21 +667,22 @@ Rich.init(
                 describe(
                     'Test - 기본 허용범위외 테스트 ( nullishAble = false 일 경우 )',
                     function () {
-                        [true, false, -1.1, -1, 0, 1, 1.1, NaN, '문자열', {}, null, undefined].forEach(function (testValue) {
+                        var testList = TEST_HELPER.getTestTypeList(TEST_HELPER.TYPE_LIST.ALL)
+                        testList = TEST_HELPER.removeItem(testList, TEST_HELPER.TYPE_LIST.FUNCTION);
+                        TEST_HELPER.makeTestByList(
+                            testList,
+                            function () {
                                 it(
-                                    'option = { nullishAble : false } / Rich.checkType( testValue, Rich.DEFINE_TYPE.FUNCTION )',
+                                    'option = { nullishAble : false } / Rich.checkType( $testValue, Rich.DEFINE_TYPE.FUNCTION )',
                                     function () {
-                                        var result = true;
-                                        try {
-                                            Rich.checkType(testValue, Rich.DEFINE_TYPE.FUNCTION, {nullishAble: false})
-                                        } catch (e) {
-                                            result = false
-                                        }
-                                        expect(result).to.be.false;
+                                        expect(function () {
+                                            Rich.checkType($testValue, Rich.DEFINE_TYPE.FUNCTION, {nullishAble: false})
+                                        }).to.throw();
                                     }
                                 );
                             }
                         );
+
                     }
                 );
             }
@@ -705,17 +693,15 @@ Rich.init(
                 describe(
                     'Test - 기본 허용범위 테스트',
                     function () {
-                        [[], null, undefined].forEach(function (testValue) {
+                        TEST_HELPER.makeTestByList(
+                            TEST_HELPER.getTestTypeList(TEST_HELPER.TYPE_LIST.ARRAY_NULLISH),
+                            function () {
                                 it(
-                                    'Rich.checkType( testValue, Rich.DEFINE_TYPE.ARRAY )',
+                                    'Rich.checkType( $testValue, Rich.DEFINE_TYPE.ARRAY )',
                                     function () {
-                                        var result = true;
-                                        try {
-                                            Rich.checkType(testValue, Rich.DEFINE_TYPE.ARRAY)
-                                        } catch (e) {
-                                            result = false
-                                        }
-                                        expect(result).to.be.true;
+                                        expect(function () {
+                                            Rich.checkType($testValue, Rich.DEFINE_TYPE.ARRAY)
+                                        }).to.not.throw();
                                     }
                                 );
                             }
@@ -725,17 +711,17 @@ Rich.init(
                 describe(
                     'Test - 기본 허용범위외 테스트',
                     function () {
-                        [true, false, -1.1, -1, 0, 1, 1.1, NaN, {}, function () {}].forEach(function (testValue) {
+                        var testList = TEST_HELPER.getTestTypeList(TEST_HELPER.TYPE_LIST.ALL)
+                        testList = TEST_HELPER.removeItem(testList, TEST_HELPER.TYPE_LIST.ARRAY_NULLISH);
+                        TEST_HELPER.makeTestByList(
+                            testList,
+                            function () {
                                 it(
-                                    'Rich.checkType( testValue, Rich.DEFINE_TYPE.ARRAY )',
+                                    'Rich.checkType( $testValue, Rich.DEFINE_TYPE.ARRAY )',
                                     function () {
-                                        var result = true;
-                                        try {
-                                            Rich.checkType(testValue, Rich.DEFINE_TYPE.ARRAY)
-                                        } catch (e) {
-                                            result = false
-                                        }
-                                        expect(result).to.be.false;
+                                        expect(function () {
+                                            Rich.checkType($testValue, Rich.DEFINE_TYPE.ARRAY)
+                                        }).to.throw();
                                     }
                                 );
                             }
@@ -745,37 +731,36 @@ Rich.init(
                 describe(
                     'Test - 기본 허용범위 테스트 ( nullishAble = false 일 경우 )',
                     function () {
-                        [[]].forEach(function (testValue) {
+                        TEST_HELPER.makeTestByList(
+                            TEST_HELPER.getTestTypeList(TEST_HELPER.TYPE_LIST.ARRAY),
+                            function () {
                                 it(
-                                    'option = { nullishAble : false } / Rich.checkType( testValue, Rich.DEFINE_TYPE.ARRAY )',
+                                    'option = { nullishAble : false } / Rich.checkType( $testValue, Rich.DEFINE_TYPE.ARRAY )',
                                     function () {
-                                        var result = true;
-                                        try {
-                                            Rich.checkType(testValue, Rich.DEFINE_TYPE.ARRAY, {nullishAble: false})
-                                        } catch (e) {
-                                            result = false
-                                        }
-                                        expect(result).to.be.true;
+                                        expect(function () {
+                                            Rich.checkType($testValue, Rich.DEFINE_TYPE.ARRAY, {nullishAble: false})
+                                        }).to.not.throw();
                                     }
                                 );
                             }
                         );
+
                     }
                 );
                 describe(
                     'Test - 기본 허용범위외 테스트 ( nullishAble = false 일 경우 )',
                     function () {
-                        [true, false, -1.1, -1, 0, 1, 1.1, NaN, '문자열', {}, null, undefined, function () {}].forEach(function (testValue) {
+                        var testList = TEST_HELPER.getTestTypeList(TEST_HELPER.TYPE_LIST.ALL)
+                        testList = TEST_HELPER.removeItem(testList, TEST_HELPER.TYPE_LIST.ARRAY);
+                        TEST_HELPER.makeTestByList(
+                            testList,
+                            function () {
                                 it(
-                                    'option = { nullishAble : false } / Rich.checkType( testValue, Rich.DEFINE_TYPE.ARRAY )',
+                                    'option = { nullishAble : false } / Rich.checkType( $testValue, Rich.DEFINE_TYPE.ARRAY )',
                                     function () {
-                                        var result = true;
-                                        try {
-                                            Rich.checkType(testValue, Rich.DEFINE_TYPE.ARRAY, {nullishAble: false})
-                                        } catch (e) {
-                                            result = false
-                                        }
-                                        expect(result).to.be.false;
+                                        expect(function () {
+                                            Rich.checkType($testValue, Rich.DEFINE_TYPE.ARRAY, {nullishAble: false})
+                                        }).to.throw();
                                     }
                                 );
                             }

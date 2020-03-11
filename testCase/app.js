@@ -85,8 +85,8 @@ Rich.init('asset/css.css').then(function () {
                 banner: 'Type'
             },
             {
-                title: 'TODO - Rich.defineProperty : ARRAY',
-                url: '',//'core/TestBDD_ARRAY.html',
+                title: 'Rich.defineProperty : ARRAY',
+                url: 'core/TestBDD_ARRAY.html',
                 description: 'defineProperty.ARRAY 유형을 테스트함',
                 banner: 'Type'
             },

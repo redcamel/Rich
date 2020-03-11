@@ -7,59 +7,95 @@ Rich.init(
 ).then(function () {
     describe('Test - FUNCTION', function () {
         describe('Test - 허용범위 테스트', function () {
-            [function () {}, undefined, null].forEach(function (targetValue) {
-                it('입력값 : ' + targetValue, function () {
-                    var target = function Test() {}
-                    Rich.defineProperty(target.prototype, 'keyName_test', Rich.DEFINE_TYPE.FUNCTION)
-                    var targetInstance = new target();
-                    targetInstance.keyName_test = targetValue;
-                    expect(targetInstance.keyName_test === targetValue).to.be.true;
-                });
-            });
+            TEST_HELPER.makeTestByList(
+                TEST_HELPER.TYPE_LIST.FUNCTION_NULLISH,
+                function () {
+                    it('입력값 : $testValue', function () {
+                        var target = function Test() {}
+                        Rich.defineProperty(
+                            target.prototype,
+                            'keyName_test',
+                            Rich.DEFINE_TYPE.FUNCTION
+                        )
+                        var targetInstance = new target();
+                        var realTestValue = $testValue
+                        targetInstance.keyName_test = realTestValue;
+                        expect(targetInstance.keyName_test).to.equal(realTestValue);
+                    });
+                }
+            )
+        });
+        describe('Test - 허용범위외 테스트', function () {
+            TEST_HELPER.makeTestByList(
+                TEST_HELPER.removeItem(
+                    TEST_HELPER.TYPE_LIST.ALL,
+                    TEST_HELPER.TYPE_LIST.FUNCTION_NULLISH
+                ),
+                function () {
+                    it('입력값 : $testValue', function () {
+                        expect(function () {
+                            var target = function Test() {}
+                            Rich.defineProperty(
+                                target.prototype,
+                                'keyName_test',
+                                Rich.DEFINE_TYPE.FUNCTION
+                            )
+                            var targetInstance = new target();
+                            targetInstance.keyName_test = $testValue;
+                        }).to.throw();
+                    });
+                }
+            )
         });
         describe('Test - 허용범위 테스트 ( option.nullishAble = false일때 )', function () {
-            [function () {}].forEach(function (targetValue) {
-                it('{ nullishAble : false, value : function () {} } / 입력값 : ' + function () {}, function () {
-                    var target = function Test() {}
-                    Rich.defineProperty(
-                        target.prototype,
-                        'keyName_test',
-                        Rich.DEFINE_TYPE.FUNCTION,
-                        {
-                            value: function () {},
-                            nullishAble: false
-                        }
-                    )
-                    var targetInstance = new target();
-                    targetInstance.keyName_test = targetValue;
-                    expect(targetInstance.keyName_test === targetValue).to.be.true;
-                });
-            });
+            TEST_HELPER.makeTestByList(
+                TEST_HELPER.TYPE_LIST.FUNCTION,
+                function () {
+                    it('{ nullishAble : false, value : $testValue } / 입력값 : $testValue', function () {
+                        var target = function Test() {}
+                        Rich.defineProperty(
+                            target.prototype,
+                            'keyName_test',
+                            Rich.DEFINE_TYPE.FUNCTION,
+                            {
+                                value: $testValue,
+                                nullishAble: false
+                            }
+                        )
+                        var targetInstance = new target();
+                        var realTestValue = $testValue
+                        targetInstance.keyName_test = realTestValue;
+                        expect(targetInstance.keyName_test).to.equal(realTestValue);
+                    });
+                }
+            );
         });
         describe('Test - 허용범위 외 테스트 ( option.nullishAble = false일때 )', function () {
-            [NaN, null, undefined, -1, 0, 1, '문자열', {},].forEach(function (v) {
-                it('{ nullishAble : false, value : function () {} } / 입력값 : ' + v, function () {
-                    var target = function Test() {}
-                    Rich.defineProperty(
-                        target.prototype,
-                        'keyName_test',
-                        Rich.DEFINE_TYPE.FUNCTION,
-                        {
-                            nullishAble: false,
-                            value: function () {}
-                        }
-                    )
-                    console.log(target)
-                    var targetInstance = new target();
-                    var result = true;
-                    try {
-                        targetInstance.keyName_test = v;
-                    } catch (e) {
-                        result = false;
-                    }
-                    expect(result).to.be.false;
-                });
-            });
+            TEST_HELPER.makeTestByList(
+                TEST_HELPER.removeItem(
+                    TEST_HELPER.TYPE_LIST.ALL,
+                    TEST_HELPER.TYPE_LIST.FUNCTION
+                ),
+                function () {
+                    it('{ nullishAble : false, value : $testValue } / 입력값 : $testValue', function () {
+                        expect(function () {
+                            var target = function Test() {}
+                            Rich.defineProperty(
+                                target.prototype,
+                                'keyName_test',
+                                Rich.DEFINE_TYPE.FUNCTION,
+                                {
+                                    nullishAble: false,
+                                    value: $testValue
+                                }
+                            )
+                            console.log(target)
+                            var targetInstance = new target();
+                            targetInstance.keyName_test = $testValue;
+                        }).to.throw();
+                    });
+                }
+            );
         });
         describe('Test - option', function () {
             describe('Test - option.value 테스트', function () {
@@ -67,63 +103,49 @@ Rich.init(
                     var target = function Test() {}
                     Rich.defineProperty(target.prototype, 'keyName_test', Rich.DEFINE_TYPE.FUNCTION)
                     var targetInstance = new target();
-                    expect(targetInstance.keyName_test === null).to.be.true;
+                    expect(targetInstance.keyName_test).to.equal(null);
                 });
-                it('{ value : true } / 초기값이 잘 지정되는지', function () {
-                    var target = function Test() {}
-                    var testValue = function TestValue() {}
-                    Rich.defineProperty(
-                        target.prototype,
-                        'keyName_test',
-                        Rich.DEFINE_TYPE.FUNCTION,
-                        {
-                            value: testValue
-                        }
-                    )
-                    var targetInstance = new target();
-                    expect(targetInstance.keyName_test === testValue).to.be.true;
-                });
-
-                [NaN, null, undefined, -1, 0, 1, '문자열', {}].forEach(function (v) {
-                    it('{ nullishAble : false, value : ' + v + ' } / 초기값이 Function이 아닐때 에러가 나는지', function () {
-                        var target = function Test() {}
-                        var result = true;
-                        try {
+                TEST_HELPER.makeTestByList(
+                    TEST_HELPER.TYPE_LIST.FUNCTION,
+                    function () {
+                        it('{ value : true } / 초기값이 잘 지정되는지', function () {
+                            var target = function Test() {}
+                            var realTestValue = $testValue;
                             Rich.defineProperty(
                                 target.prototype,
                                 'keyName_test',
                                 Rich.DEFINE_TYPE.FUNCTION,
                                 {
-                                    nullishAble: false,
-                                    value: v
+                                    value: realTestValue
                                 }
                             )
-                        } catch (e) {
-                            result = false;
-                        }
-                        expect(result).to.be.false;
-                    });
-                });
-                [NaN, null, undefined, -1, 0, 1, '문자열', {}].forEach(function (v) {
-                    it('{ nullishAble : true, value : ' + v + ' } / 초기값이 Function이 아닐때 에러가 나는지', function () {
-                        var target = function Test() {}
-                        var result = true;
-                        try {
-                            Rich.defineProperty(
-                                target.prototype,
-                                'keyName_test',
-                                Rich.DEFINE_TYPE.FUNCTION,
-                                {
-                                    nullishAble: true,
-                                    value: v
-                                }
-                            )
-                        } catch (e) {
-                            result = false;
-                        }
-                        expect(result).to.be.false;
-                    });
-                });
+                            var targetInstance = new target();
+                            expect(targetInstance.keyName_test).to.equal(realTestValue);
+                        });
+                    }
+                )
+                TEST_HELPER.makeTestByList(
+                    TEST_HELPER.removeItem(
+                        TEST_HELPER.TYPE_LIST.ALL,
+                        TEST_HELPER.TYPE_LIST.FUNCTION_NULLISH
+                    ),
+                    function () {
+                        it('{ nullishAble : false, value : $testValue } / 초기값이 boolean or nullish 아닐때 에러가 나는지', function () {
+                            expect(function () {
+                                var target = function Test() {}
+                                Rich.defineProperty(
+                                    target.prototype,
+                                    'keyName_test',
+                                    Rich.DEFINE_TYPE.FUNCTION,
+                                    {
+                                        nullishAble: false,
+                                        value: $testValue
+                                    }
+                                )
+                            }).to.throw();
+                        });
+                    }
+                );
             });
 
             describe('Test - option.nullishAble 테스트', function () {
@@ -139,40 +161,120 @@ Rich.init(
                     )
                     var targetInstance = new target();
                     console.log(targetInstance)
-                    expect(targetInstance.keyName_test == null).to.be.true;
+                    expect(targetInstance.keyName_test).to.equal(null);
                 });
-                it('{ value : function () {}, nullishAble : true } : nullishAble 상태일때 초기값이 세팅이 옵션대로 되는지 체크', function () {
-                    var target = function Test() {}
-                    var testValue = function TestValue() {}
-                    Rich.defineProperty(
-                        target.prototype,
-                        'keyName_test',
-                        Rich.DEFINE_TYPE.FUNCTION,
-                        {
-                            value: testValue,
-                            nullishAble: true
+                it('{   nullishAble : false } : nullishAble 허용하지 않을때 초기값 없으면 에러가 나는지 체크', function () {
+
+                    expect(function () {
+                        var target = function Test() {}
+                        Rich.defineProperty(
+                            target.prototype,
+                            'keyName_test',
+                            Rich.DEFINE_TYPE.FUNCTION,
+                            {
+                                nullishAble: false
+                            }
+                        )
+                    }).to.throw();
+                });
+            });
+            describe('Test - option.nullishAble = true 일때 테스트', function () {
+                describe('Test - option.nullishAble = true 일때 초기값이 세팅대로 되나 체크', function () {
+                    TEST_HELPER.makeTestByList(
+                        TEST_HELPER.TYPE_LIST.FUNCTION_NULLISH,
+                        function () {
+                            it('{ nullishAble : true, value : $testValue }', function () {
+                                var target = function Test() {}
+                                var realTestValue = $testValue;
+                                Rich.defineProperty(
+                                    target.prototype,
+                                    'keyName_test',
+                                    Rich.DEFINE_TYPE.FUNCTION,
+                                    {
+                                        value: realTestValue,
+                                        nullishAble: true
+                                    }
+                                )
+                                var targetInstance = new target();
+                                console.log(targetInstance)
+                                expect(targetInstance.keyName_test).to.equal(realTestValue);
+                            });
+                        }
+                    );
+                });
+                describe('Test - option.nullishAble = true 일때 실제 set을 null로 지정했을때 null이 허용되나 체크', function () {
+                    TEST_HELPER.makeTestByList(
+                        TEST_HELPER.TYPE_LIST.FUNCTION_NULLISH,
+                        function () {
+                            it('{ nullishAble : true, value : $testValue } / 입력값 : null', function () {
+                                var target = function Test() {}
+                                Rich.defineProperty(
+                                    target.prototype,
+                                    'keyName_test',
+                                    Rich.DEFINE_TYPE.FUNCTION,
+                                    {
+                                        value: $testValue,
+                                        nullishAble: true
+                                    }
+                                )
+                                var targetInstance = new target();
+                                targetInstance.keyName_test = null
+                                console.log(targetInstance)
+                                expect(targetInstance.keyName_test).to.equal(null);
+                            });
                         }
                     )
-                    var targetInstance = new target();
-                    console.log(targetInstance)
-                    expect(targetInstance.keyName_test == testValue).to.be.true;
+
                 });
-                it('{ value : function () {}, nullishAble : true } : nullishAble 실제 값을 set 했을때 허용되는지 체크', function () {
-                    var target = function Test() {}
-                    var testValue = function TestValue() {}
-                    Rich.defineProperty(
-                        target.prototype,
-                        'keyName_test',
-                        Rich.DEFINE_TYPE.FUNCTION,
-                        {
-                            value: testValue,
-                            nullishAble: true
+            });
+            describe('Test - option.nullishAble = false 일때 테스트', function () {
+                describe('Test - option.nullishAble = false 일때 초기값이 세팅대로 되나 체크', function () {
+                    TEST_HELPER.makeTestByList(
+                        TEST_HELPER.TYPE_LIST.FUNCTION,
+                        function () {
+                            it('{ nullishAble : true, value : $testValue }', function () {
+                                var target = function Test() {}
+                                var realTestValue = $testValue
+                                Rich.defineProperty(
+                                    target.prototype,
+                                    'keyName_test',
+                                    Rich.DEFINE_TYPE.FUNCTION,
+                                    {
+                                        value: realTestValue,
+                                        nullishAble: false
+                                    }
+                                )
+                                var targetInstance = new target();
+                                console.log(targetInstance)
+                                expect(targetInstance.keyName_test).to.equal(realTestValue);
+                            });
+                        }
+                    );
+                });
+                describe('Test - option.nullishAble = false 일때 실제 set을 null로 지정했을때 에러가 나나 테스트', function () {
+                    TEST_HELPER.makeTestByList(
+                        TEST_HELPER.TYPE_LIST.FUNCTION,
+                        function () {
+                            it('{ nullishAble : true, value : $testValue } / 입력값 : null', function () {
+                                expect(function () {
+                                    var target = function Test() {}
+                                    Rich.defineProperty(
+                                        target.prototype,
+                                        'keyName_test',
+                                        Rich.DEFINE_TYPE.FUNCTION,
+                                        {
+                                            value: $testValue,
+                                            nullishAble: false
+                                        }
+                                    )
+                                    var targetInstance = new target();
+                                    targetInstance.keyName_test = null
+                                    console.log(targetInstance)
+                                }).to.throw();
+                            });
                         }
                     )
-                    var targetInstance = new target();
-                    targetInstance.keyName_test = null
-                    console.log(targetInstance)
-                    expect(targetInstance.keyName_test == null).to.be.true;
+
                 });
             });
             describe('Test - option.allowList 테스트', function () {
@@ -195,7 +297,7 @@ Rich.init(
                         }
                     )
                     var targetInstance = new target();
-                    targetInstance.keyName_test = function () {}
+                    targetInstance.keyName_test = function(){}
                     console.log(targetInstance)
                     expect(result).to.be.true;
                 })
