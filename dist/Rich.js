@@ -1794,64 +1794,71 @@
       }
     };
 
-    var _check;
+    var check;
+    var checkStruct;
 
-    _check = function check(data, structInfo) {
-      console.log('check', data, structInfo);
+    check = function check(checkValue, structInfo) {
+      var checkTYPE = structInfo['type'];
+
+      if (DEFINE_TYPE[checkTYPE]) {
+        switch (DEFINE_TYPE[checkTYPE]) {
+          case DEFINE_TYPE.ARRAY:
+            // 일단 배열인지 검증
+            Rich.checkType(checkValue, checkTYPE, structInfo['option']);
+
+            if (structInfo['childItem']) {
+              var childItemStruct = structInfo['childItem'];
+              var childItemType = childItemStruct['type'];
+              checkValue.forEach(function (v) {
+                console.log(v);
+                Rich.checkType(v, childItemType, childItemStruct['option']); // 오브젝트일때
+
+                if (childItemStruct['struct']) checkStruct(v, childItemStruct['struct']);
+
+                if (childItemStruct['childItem']) {
+                  console.log('여기걸려야할텐데?', v, childItemStruct['childItem']);
+                  checkStruct(v, childItemStruct['childItem'], true);
+                } // 배열일떄
+
+              });
+            }
+
+            break;
+
+          case DEFINE_TYPE.OBJECT:
+            Rich.checkType(checkValue, checkTYPE, structInfo['option']);
+            checkStruct(checkValue, structInfo['struct']);
+            break;
+
+          default:
+            Rich.checkType(checkValue, checkTYPE, structInfo['option']);
+            break;
+        }
+      } else {
+        throwError("".concat(checkTYPE, "\uC740 \uAC80\uC99D\uD560\uC218 \uC5C6\uB294 \uD0C0\uC785\uC784\uAD6C\uC870\uCCB4\uC5D0 \uC874\uC7AC\uD558\uC9C0 \uC54A\uB294 \uD0A4\uB97C \uAC80\uC99D\uD558\uB824\uACE0\uD568 / \uC785\uB825\uAC12 : ").concat(checkTYPE));
+      }
+    };
+
+    checkStruct = function checkStruct(data, structInfo) {
+      var isArrayTest = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
       var k;
 
-      for (k in data) {
-        if (structInfo.hasOwnProperty(k)) {
-          var tStruct = structInfo[k];
-          var tValue = data[k];
-          var checkTYPE = tStruct['type'];
-
-          if (DEFINE_TYPE[checkTYPE]) {
-            switch (DEFINE_TYPE[checkTYPE]) {
-              case DEFINE_TYPE.ARRAY:
-                console.log('배열 데이터 검증', k, tValue, tStruct); // 일단 배열인지 검증
-
-                Rich.checkType(tValue, checkTYPE, tStruct['option']); // childItem이 정의 되어 있으면 어떻게 순환 할까...
-
-                if (tStruct['childItem']) {
-                  (function () {
-                    var childItemStruct = tStruct['childItem'];
-                    var childItemType = childItemStruct['type'];
-                    tValue.forEach(function (v) {
-                      console.log(v);
-                      Rich.checkType(v, childItemType, childItemStruct['option']);
-
-                      _check(v, childItemStruct['struct']);
-                    });
-                  })();
-                }
-
-                break;
-
-              case DEFINE_TYPE.OBJECT:
-                console.log('오브젝트 데이터 검증', k, tValue, tStruct);
-                Rich.checkType(tValue, checkTYPE, tStruct['option']);
-
-                _check(tValue, tStruct['struct']);
-
-                break;
-
-              default:
-                console.log('단일 데이터 검증', k, tValue, tStruct);
-                Rich.checkType(tValue, checkTYPE, tStruct['option']);
-                break;
-            }
-          } else {
-            throwError("".concat(checkTYPE, "\uC740 \uAC80\uC99D\uD560\uC218 \uC5C6\uB294 \uD0C0\uC785\uC784\uAD6C\uC870\uCCB4\uC5D0 \uC874\uC7AC\uD558\uC9C0 \uC54A\uB294 \uD0A4\uB97C \uAC80\uC99D\uD558\uB824\uACE0\uD568 / \uC785\uB825\uAC12 : ").concat(checkTYPE));
-          }
-        } else throwError("\uAD6C\uC870\uCCB4\uC5D0 \uC874\uC7AC\uD558\uC9C0 \uC54A\uB294 \uD0A4\uB97C \uAC80\uC99D\uD558\uB824\uACE0\uD568 / \uC785\uB825\uAC12 : ".concat(k));
+      if (isArrayTest) {
+        data.forEach(function (v) {
+          check(v, structInfo);
+        });
+      } else {
+        for (k in data) {
+          if (structInfo.hasOwnProperty(k)) {
+            check(data[k], structInfo[k]);
+          } else throwError("\uAD6C\uC870\uCCB4\uC5D0 \uC874\uC7AC\uD558\uC9C0 \uC54A\uB294 \uD0A4\uB97C \uAC80\uC99D\uD558\uB824\uACE0\uD568 / \uC785\uB825\uAC12 : ".concat(k));
+        }
       }
     };
 
     var checkSchema = function checkSchema(data, structInfo) {
       if (!data instanceof Object) throwError('checkSchema : Object만 검증가능');
-
-      _check(data, structInfo);
+      checkStruct(data, structInfo);
     };
 
     var Rich$1 = function (_) {
