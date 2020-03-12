@@ -107,6 +107,22 @@
       return temp === null ? undefined : decodeURIComponent(temp[1].replace(/\+/g, " "));
     }
 
+    function _typeof(obj) {
+      "@babel/helpers - typeof";
+
+      if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") {
+        _typeof = function (obj) {
+          return typeof obj;
+        };
+      } else {
+        _typeof = function (obj) {
+          return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
+        };
+      }
+
+      return _typeof(obj);
+    }
+
     function _classCallCheck(instance, Constructor) {
       if (!(instance instanceof Constructor)) {
         throw new TypeError("Cannot call a class as a function");
@@ -1093,6 +1109,7 @@
     DEFINE_TYPE.BOOLEAN = 'BOOLEAN';
     DEFINE_TYPE.FUNCTION = 'FUNCTION';
     DEFINE_TYPE.ARRAY = 'ARRAY';
+    DEFINE_TYPE.OBJECT = 'OBJECT';
 
     var _this = undefined;
 
@@ -1661,6 +1678,20 @@
           }
 
           break;
+
+        case DEFINE_TYPE.OBJECT:
+          if (_typeof(value) === 'object' && !(value instanceof Array)) ; else {
+            if (NULLISH_ABLE && VALUE_IS_NULLISH) ; else {
+              // 널리쉬 불허용일때 다잡아냄
+              throwError("\uC21C\uC218 OBJECT\uB9CC \uD5C8\uC6A9\uD568. / \uC785\uB825\uAC12 : ".concat(value));
+            }
+          }
+
+          break;
+
+        default:
+          throwError("\uD5C8\uC6A9\uD558\uC9C0\uC54A\uB294 \uD0C0\uC785\uC744 \uCCB4\uD06C\uD558\uB824\uACE0\uD568. / \uC785\uB825\uAC12 : ".concat(value));
+          break;
       }
     };
 
@@ -1763,21 +1794,55 @@
       }
     };
 
-    var check;
+    var _check;
 
-    check = function check(data, structInfo) {
+    _check = function check(data, structInfo) {
+      console.log('check', data, structInfo);
       var k;
 
       for (k in data) {
         if (structInfo.hasOwnProperty(k)) {
           var tStruct = structInfo[k];
           var tValue = data[k];
+          var checkTYPE = tStruct['type'];
 
-          if (DEFINE_TYPE[tStruct['type']]) {
-            // console.log(tValue, tStruct['type'], tStruct['option'])
-            Rich.checkType(tValue, tStruct['type'], tStruct['option']);
+          if (DEFINE_TYPE[checkTYPE]) {
+            switch (DEFINE_TYPE[checkTYPE]) {
+              case DEFINE_TYPE.ARRAY:
+                console.log('배열 데이터 검증', k, tValue, tStruct); // 일단 배열인지 검증
+
+                Rich.checkType(tValue, checkTYPE, tStruct['option']); // childItem이 정의 되어 있으면 어떻게 순환 할까...
+
+                if (tStruct['childItem']) {
+                  (function () {
+                    var childItemStruct = tStruct['childItem'];
+                    var childItemType = childItemStruct['type'];
+                    tValue.forEach(function (v) {
+                      console.log(v);
+                      Rich.checkType(v, childItemType, childItemStruct['option']);
+
+                      _check(v, childItemStruct['struct']);
+                    });
+                  })();
+                }
+
+                break;
+
+              case DEFINE_TYPE.OBJECT:
+                console.log('오브젝트 데이터 검증', k, tValue, tStruct);
+                Rich.checkType(tValue, checkTYPE, tStruct['option']);
+
+                _check(tValue, tStruct['struct']);
+
+                break;
+
+              default:
+                console.log('단일 데이터 검증', k, tValue, tStruct);
+                Rich.checkType(tValue, checkTYPE, tStruct['option']);
+                break;
+            }
           } else {
-            throwError("".concat(tStruct['type'], "\uC740 \uAC80\uC99D\uD560\uC218 \uC5C6\uB294 \uD0C0\uC785\uC784\uAD6C\uC870\uCCB4\uC5D0 \uC874\uC7AC\uD558\uC9C0 \uC54A\uB294 \uD0A4\uB97C \uAC80\uC99D\uD558\uB824\uACE0\uD568 / \uC785\uB825\uAC12 : ").concat(tStruct['type']));
+            throwError("".concat(checkTYPE, "\uC740 \uAC80\uC99D\uD560\uC218 \uC5C6\uB294 \uD0C0\uC785\uC784\uAD6C\uC870\uCCB4\uC5D0 \uC874\uC7AC\uD558\uC9C0 \uC54A\uB294 \uD0A4\uB97C \uAC80\uC99D\uD558\uB824\uACE0\uD568 / \uC785\uB825\uAC12 : ").concat(checkTYPE));
           }
         } else throwError("\uAD6C\uC870\uCCB4\uC5D0 \uC874\uC7AC\uD558\uC9C0 \uC54A\uB294 \uD0A4\uB97C \uAC80\uC99D\uD558\uB824\uACE0\uD568 / \uC785\uB825\uAC12 : ".concat(k));
       }
@@ -1785,7 +1850,8 @@
 
     var checkSchema = function checkSchema(data, structInfo) {
       if (!data instanceof Object) throwError('checkSchema : Object만 검증가능');
-      check(data, structInfo);
+
+      _check(data, structInfo);
     };
 
     var Rich$1 = function (_) {

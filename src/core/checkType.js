@@ -8,7 +8,7 @@ let checkType = function (value, type, option) {
     let hasMax = option.hasOwnProperty('max');
     let MIN = hasMin ? option['min'] : null;
     let MAX = hasMax ? option['max'] : null;
-    if(!option.hasOwnProperty('nullishAble')) option['nullishAble'] = true;
+    if (!option.hasOwnProperty('nullishAble')) option['nullishAble'] = true;
     let NULLISH_ABLE = option['nullishAble']
     let VALUE_IS_NULLISH = (value === null || value === undefined)
     switch (type) {
@@ -90,7 +90,19 @@ let checkType = function (value, type, option) {
                 }
             }
             break;
+        case DEFINE_TYPE.OBJECT :
+            if (typeof value === 'object' && !(value instanceof Array)) {
+            } else {
+                if (NULLISH_ABLE && VALUE_IS_NULLISH) {
+                    // 널리쉬 허용일경우 통과
+                } else {
+                    // 널리쉬 불허용일때 다잡아냄
+                    throwError(`순수 OBJECT만 허용함. / 입력값 : ${value}`);
+                }
+            }
+            break;
         default :
+            throwError(`허용하지않는 타입을 체크하려고함. / 입력값 : ${value}`);
             break;
     }
 }

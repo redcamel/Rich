@@ -84,15 +84,17 @@ Rich.init(
                 TEST_HELPER.makeTestByList(
                     TEST_LIST,
                     function () {
-                        it('type = $testValue', function () {
-                            expect(function () {
-                                Rich.defineProperty(
-                                    function () {},
-                                    'keyName_' + $testValue,
-                                    Rich.DEFINE_TYPE[$testValue],
-                                )
-                            }).to.not.throw();
-                        });
+                        if ($testValue !== Rich.DEFINE_TYPE.OBJECT) {
+                            it('type = $testValue', function () {
+                                expect(function () {
+                                    Rich.defineProperty(
+                                        function () {},
+                                        'keyName_' + $testValue,
+                                        Rich.DEFINE_TYPE[$testValue],
+                                    )
+                                }).to.not.throw();
+                            });
+                        }
                     }
                 )
             });
