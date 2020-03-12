@@ -271,63 +271,47 @@ Rich.init(
 
             expect(function () {
                 Rich.checkSchema(testData, {
-                    stringCheck: {
-                        type: Rich.DEFINE_TYPE.STRING
-                    },
+                    stringCheck: {type: 'STRING'},
                     objectTest: {
-                        type: Rich.DEFINE_TYPE.OBJECT,
+                        type: 'OBJECT',
                         struct: {
-                            test: {
-                                type: Rich.DEFINE_TYPE.INT
-                            },
-                            test2: {
-                                type: Rich.DEFINE_TYPE.UINT
-                            }
+                            test: {type: 'INT'},
+                            test2: {type: 'UINT'}
                         }
                     },
                     objectTest2: {
-                        type: Rich.DEFINE_TYPE.OBJECT,
+                        type: 'OBJECT',
                         struct: {
                             test1: {
-                                type: Rich.DEFINE_TYPE.OBJECT,
+                                type: 'OBJECT',
                                 struct: {
-                                    test1_1: {
-                                        type: Rich.DEFINE_TYPE.NUMBER
-                                    }
+                                    test1_1: {type: 'NUMBER'}
                                 }
                             },
-                            test2: {
-                                type: Rich.DEFINE_TYPE.UINT
-                            }
+                            test2: {type: 'UINT'}
                         }
                     },
                     arrayTest: {
-                        type: Rich.DEFINE_TYPE.ARRAY,
-                        childItem: {
-                            type: Rich.DEFINE_TYPE.INT
-                        }
+                        type: 'ARRAY',
+                        childItem: {type: 'INT'}
                     },
                     arrayTest2: {
-                        type: Rich.DEFINE_TYPE.ARRAY,
+                        type: 'ARRAY',
                         childItem: {
-                            type: Rich.DEFINE_TYPE.OBJECT,
+                            type: 'OBJECT',
                             struct: {
-                                testData: {
-                                    type: Rich.DEFINE_TYPE.INT
-                                }
+                                testData: {type: 'INT'}
                             }
                         }
                     },
                     arrayTest3: {
-                        type: Rich.DEFINE_TYPE.ARRAY,
+                        type: 'ARRAY',
                         childItem: {
-                            type: Rich.DEFINE_TYPE.OBJECT,
+                            type: 'OBJECT',
                             struct: {
                                 testData: {
-                                    type: Rich.DEFINE_TYPE.ARRAY,
-                                    childItem: {
-                                        type: Rich.DEFINE_TYPE.INT
-                                    }
+                                    type: 'ARRAY',
+                                    childItem: {type: 'INT'}
                                 }
                             }
                         }
