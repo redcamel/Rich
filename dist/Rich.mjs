@@ -1455,7 +1455,7 @@ defineProperty = function defineProperty(target, keyName, type, option) {
   if (!isCustomType && !DEFINE_TYPE[type]) throwError("".concat(type, " \uC740 \uC815\uC758 \uD560\uC218 \uC5C6\uB294 \uD0C0\uC785\uC784."));
 
   if (!(option === undefined || option === null)) {
-    if (!(option instanceof Object) || option instanceof Function) throwError("".concat(option, " : option\uC740 nullish\uC640 Object\uB9CC \uD5C8\uC6A9"));
+    if (!(option instanceof Object) || option instanceof Function || option instanceof Array) throwError("".concat(option, " : option\uC740 nullish\uC640 Object\uB9CC \uD5C8\uC6A9"));
   }
 
   option = option || {}; // nullishAble 지정안하면 기본값 : true
@@ -1818,7 +1818,7 @@ var Rich$1 = function (_) {
       };
     }(),
     addStatic: function addStatic(name, staticObj) {
-      if (!(staticObj instanceof Function) && staticObj instanceof Object) {
+      if (!(staticObj instanceof Function) && staticObj instanceof Object && !(staticObj instanceof Array)) {
         if (name !== name.toUpperCase()) throwError("".concat(name, " : \uC2A4\uD0C0\uD2F1 \uC624\uBE0C\uC81D\uD2B8 \uB124\uC784\uC740 \uB300\uBB38\uC790\uB9CC \uD5C8\uC6A9\uD568"));
         if (tempRich[name]) throwError("".concat(name, " : \uC774\uBBF8 \uC874\uC7AC\uD558\uB294 \uC624\uBE0C\uC81D\uD2B8 \uB124\uC784"));else tempRich[name] = staticObj;
       } else throwError("".concat(name, " : \uC624\uBE0C\uC81D\uD2B8\uB9CC \uC2A4\uD0C0\uD2F1\uC73C\uB85C\uB85C \uB4F1\uB85D\uAC00\uB2A5"));

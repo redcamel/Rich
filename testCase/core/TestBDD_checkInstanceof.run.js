@@ -22,47 +22,44 @@ Rich.init(
             });
         });
         describe('Test - 기본 허용범외 테스트', function () {
-            var TestClass = function () {this.name = 'TestClass'};
-            [-1.1, -1, 0, 1, 1.1, true, false, NaN, '문자열', function () {}, {}].forEach(function (testValue) {
-                it('Rich.checkInstanceof( ' + testValue + ', TestClass )', function () {
-                    var result = true;
-                    try {
-                        Rich.checkInstanceof(testValue, TestClass)
-                    } catch (e) {
-                        result = false
-                    }
-                    expect(result).to.be.false;
-                });
-            });
+
+            TEST_HELPER.makeTestByList(
+                TEST_HELPER.removeItem(
+                    TEST_HELPER.TYPE_LIST.ALL,
+                    TEST_HELPER.TYPE_LIST.NULLISH
+                ),
+                function () {
+                    it('Rich.checkInstanceof( $testValue, TestClass )', function () {
+                        expect(function () {
+                            var TestClass = function () {this.name = 'TestClass'};
+                            Rich.checkInstanceof($testValue, TestClass)
+                        }).to.throw();
+                    });
+                }
+            )
+
         });
         describe('Test - 기본 허용범위 테스트 ( nullishAble = false )', function () {
             var TestClass = function () {this.name = 'TestClass'}
             var testInstance = new TestClass();
-            [testInstance].forEach(function (testValue) {
-                it('Rich.checkInstanceof( ' + (testValue ? testValue.constructor.name + ' instance' : testValue) + ', TestClass )', function () {
-                    var result = true;
-                    try {
-                        Rich.checkInstanceof(testValue, TestClass, false)
-                    } catch (e) {
-                        result = false
-                    }
-                    expect(result).to.be.true;
-                });
+            it('Rich.checkInstanceof( ' + testInstance.constructor.name + ' instance' + ', TestClass )', function () {
+                expect(function () {
+                    Rich.checkInstanceof(testValue, TestClass, false);
+                }).to.throw();
             });
         });
         describe('Test - 기본 허용범외 테스트 ( nullishAble = false )', function () {
-            var TestClass = function () {this.name = 'TestClass'};
-            [null, undefined, -1.1, -1, 0, 1, 1.1, true, false, NaN, '문자열', function () {}, {}].forEach(function (testValue) {
-                it('Rich.checkInstanceof( ' + testValue + ', TestClass )', function () {
-                    var result = true;
-                    try {
-                        Rich.checkInstanceof(testValue, TestClass, false)
-                    } catch (e) {
-                        result = false
-                    }
-                    expect(result).to.be.false;
-                });
-            });
+            TEST_HELPER.makeTestByList(
+                TEST_HELPER.TYPE_LIST.ALL,
+                function () {
+                    it('Rich.checkInstanceof( $testValue, TestClass )', function () {
+                        expect(function () {
+                            var TestClass = function () {this.name = 'TestClass'};
+                            Rich.checkInstanceof($testValue, TestClass, false)
+                        }).to.throw();
+                    });
+                }
+            )
         });
     });
     TEST_HELPER();

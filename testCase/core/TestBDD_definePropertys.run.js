@@ -7,9 +7,8 @@ Rich.init(
 ).then(function () {
     describe('Test Rich.definePropertys - 기본테스트', function () {
         it('기본테스트', function () {
-            var result = true
-            var TestTarget = function TestTarget() {};
-            try {
+            expect(function () {
+                var TestTarget = function TestTarget() {};
                 Rich.definePropertys(
                     TestTarget.prototype,
                     [
@@ -18,27 +17,21 @@ Rich.init(
                         {keyName: 'testUint', type: Rich.DEFINE_TYPE.UINT, option: {}}
                     ]
                 )
-            } catch (e) {
-                result = false;
-            }
-            expect(result).to.be.true
+            }).to.not.throw();
         });
         it('지원하지않는 타입이 들어왔을때 체크', function () {
-            var result = true
-            var TestTarget = function TestTarget() {};
-            try {
+
+            expect(function () {
+                var TestTarget = function TestTarget() {};
                 Rich.definePropertys(
                     TestTarget.prototype,
                     [
-                        {keyName: 'testNumber', type: Rich.DEFINE_TYPE.NUMBER2, option: {}},
-                        {keyName: 'testInt', type: Rich.DEFINE_TYPE.INT2, option: {}},
-                        {keyName: 'testUint', type: Rich.DEFINE_TYPE.UINT2, option: {}}
+                        {keyName: 'testNumber', type: Rich.DEFINE_TYPE.__NUMBER__, option: {}},
+                        {keyName: 'testInt', type: Rich.DEFINE_TYPE.__INT__, option: {}},
+                        {keyName: 'testUint', type: Rich.DEFINE_TYPE.__UINT__, option: {}}
                     ]
                 )
-            } catch (e) {
-                result = false;
-            }
-            expect(result).to.be.false
+            }).to.throw()
         })
     });
     TEST_HELPER();

@@ -14,11 +14,11 @@ defineProperty = (target, keyName, type, option, isCustomType = false) => {
     if (!(target instanceof Object)) throwError(`${target} : Object 확장만 target이 될수있음.`)
     if (!isCustomType && !DEFINE_TYPE[type]) throwError(`${type} 은 정의 할수 없는 타입임.`)
     if (!(option === undefined || option === null)) {
-        if (!(option instanceof Object) || option instanceof Function) throwError(`${option} : option은 nullish와 Object만 허용`)
+        if (!(option instanceof Object) || option instanceof Function || option instanceof Array) throwError(`${option} : option은 nullish와 Object만 허용`)
     }
     option = option || {};
     // nullishAble 지정안하면 기본값 : true
-    if(!option.hasOwnProperty('nullishAble')) option['nullishAble'] = true;
+    if (!option.hasOwnProperty('nullishAble')) option['nullishAble'] = true;
     //TODO - 오버라이드가 가능해야되는거 아닌가 -_-?
     // hasOwnProperty니 직접적인 확인이니 가능하긴한데..
     if (target.hasOwnProperty('_' + keyName)) throwError(`${keyName} 은 이미 정의된 속성명입니다.`)

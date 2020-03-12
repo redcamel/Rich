@@ -63,7 +63,7 @@ const Rich = (_ => {
             }
         })(),
         addStatic: (name, staticObj) => {
-            if (!(staticObj instanceof Function) && staticObj instanceof Object) {
+            if (!(staticObj instanceof Function) && staticObj instanceof Object && !(staticObj instanceof Array)) {
                 if (name !== name.toUpperCase()) throwError(`${name} : 스타틱 오브젝트 네임은 대문자만 허용함`);
                 if (tempRich[name]) throwError(`${name} : 이미 존재하는 오브젝트 네임`);
                 else tempRich[name] = staticObj;
