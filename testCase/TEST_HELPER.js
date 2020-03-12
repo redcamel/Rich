@@ -1,7 +1,11 @@
 chai.config.includeStack = true;
 var expect = chai.expect;
 var assert = chai.assert;
-mocha.setup('bdd');
+mocha.setup({
+    ui : 'bdd',
+    timeout : 10000
+});
+
 (function () {
 // <div id="mocha">
 //     <h1>Rich.getJS & Rich.getCSS TestCase</h1>
