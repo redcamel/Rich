@@ -7,10 +7,7 @@ Rich.init(
 ).then(function () {
 
     describe('Test - 단위 유닛만 있을때 검증', function () {
-        afterEach(function () {
-            console.log(this)
-            console.log('afterEach', this.currentTest.title, this.currentTest);
-        });
+
         it('UINT', function () {
             expect(function () {
                 var testData = {uintCheck: 12}

@@ -1,7 +1,7 @@
 import resolve from '@rollup/plugin-node-resolve';
 import babel from 'rollup-plugin-babel';
 import {terser} from "rollup-plugin-terser";
-
+import strip from '@rollup/plugin-strip';
 const config =[
     {
         input: 'src/Rich.js',
@@ -17,7 +17,8 @@ const config =[
                 // toplevel:true,
                 // keep_classnames:true,
                 keep_fnames :true
-            })
+            }),
+            strip({})
         ]
     },
     {
@@ -34,7 +35,8 @@ const config =[
                 // toplevel:true,
                 // keep_classnames:true,
                 keep_fnames :true
-            })
+            }),
+            strip({})
         ]
     },
     {
