@@ -5,9 +5,9 @@ import throwError from "./throwError";
 let checkType = function (value, type, option) {
     option = option || {};
     let hasMin = option.hasOwnProperty('min');
-    if(hasMin && (option['min'] === null || option['min'] === undefined)) hasMin = false
+    if (hasMin && (option['min'] === null || option['min'] === undefined)) hasMin = false
     let hasMax = option.hasOwnProperty('max');
-    if(hasMax && (option['max'] === null || option['max'] === undefined)) hasMax = false
+    if (hasMax && (option['max'] === null || option['max'] === undefined)) hasMax = false
     let MIN = hasMin ? option['min'] : null;
     let MAX = hasMax ? option['max'] : null;
     if (!option.hasOwnProperty('nullishAble')) option['nullishAble'] = true;
@@ -93,7 +93,7 @@ let checkType = function (value, type, option) {
             }
             break;
         case DEFINE_TYPE.OBJECT :
-            if (value instanceof Object && !(value instanceof Array)) {
+            if (value instanceof Object && !(value instanceof Array) && typeof value !== 'function') {
             } else {
                 if (NULLISH_ABLE && VALUE_IS_NULLISH) {
                     // 널리쉬 허용일경우 통과

@@ -14,13 +14,11 @@ let defineObject = (target, keyName, type, option) => {
             return this['_' + keyName]
         },
         set: function (v) {
-            if (typeof v != 'object' || v instanceof Array ) {
+            if (!(v instanceof Object)) {
                 if (!(NULLISH_ABLE && (v === null || v === undefined))) {
                     if (v === null || v === undefined) throwError(`${target.constructor.name} - v : nullish를 허용하지 않는 세팅상태. / 입력값 : ${v}`);
-                    else throwError(`${target.constructor.name} - v : object만 허용함. / 입력값 : ${v}`);
+                    else throwError(`${target.constructor.name} - v : 순수 object만 허용함. / 입력값 : ${v}`);
                 }
-            }else{
-                if(!NULLISH_ABLE && v === null) throwError(`${target.constructor.name} - v : object만 허용함. / 입력값 : ${v}`);
             }
             this['_' + keyName] = v
             // 콜백 옵션실행
@@ -30,19 +28,19 @@ let defineObject = (target, keyName, type, option) => {
     // 기본값 생성
     if (NULLISH_ABLE) {
         if (option.hasOwnProperty('value')) {
-            if ((option['value'] instanceof Array || typeof option['value'] != 'object') && !(option['value'] === null || option['value'] === undefined)) throwError(`${target.constructor.name} - option['value'] : 순수 object or nullish만 허용함. / 입력값 : ${option['value']}`);
+            if (!(option['value'] instanceof Object) && !(option['value'] === null || option['value'] === undefined)) throwError(`${target.constructor.name} - option['value'] : object or nullish만 허용함. / 입력값 : ${option['value']}`);
         } else option['value'] = null;
     } else {
-        if (option['value'] instanceof Array || typeof option['value'] != 'object') throwError(`${target.constructor.name} - option['value'] : object만 허용함. / 입력값 : ${option['value']}`);
+        if (!(option['value'] instanceof Object)) throwError(`${target.constructor.name} - option['value'] : object만 허용함. / 입력값 : ${option['value']}`);
     }
     // 타입형 체크
-    if (typeof option['value'] != 'object') {
+    if (!(option['value'] instanceof Object)) {
         if (NULLISH_ABLE && (option['value'] === null || option['value'] === undefined)) {
         } else {
             if (option['value'] == null || option['value'] === undefined) {
                 throwError(`${target.constructor.name} - option['value'] : nullish를 허용하지 않는 세팅상태. / 입력값 : ${option['value']}`);
             } else {
-                throwError(`${target.constructor.name} - option['value'] : 순수 object만 허용함. / 입력값 : ${option['value']}`);
+                throwError(`${target.constructor.name} - option['value'] : object만 허용함. / 입력값 : ${option['value']}`);
             }
         }
     }

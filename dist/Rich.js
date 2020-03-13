@@ -107,22 +107,6 @@
       return temp === null ? undefined : decodeURIComponent(temp[1].replace(/\+/g, " "));
     }
 
-    function _typeof(obj) {
-      "@babel/helpers - typeof";
-
-      if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") {
-        _typeof = function (obj) {
-          return typeof obj;
-        };
-      } else {
-        _typeof = function (obj) {
-          return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
-        };
-      }
-
-      return _typeof(obj);
-    }
-
     function _classCallCheck(instance, Constructor) {
       if (!(instance instanceof Constructor)) {
         throw new TypeError("Cannot call a class as a function");
@@ -1483,12 +1467,10 @@
           return this['_' + keyName];
         },
         set: function set(v) {
-          if (_typeof(v) != 'object' || v instanceof Array) {
+          if (!(v instanceof Object)) {
             if (!(NULLISH_ABLE && (v === null || v === undefined))) {
-              if (v === null || v === undefined) throwError("".concat(target.constructor.name, " - v : nullish\uB97C \uD5C8\uC6A9\uD558\uC9C0 \uC54A\uB294 \uC138\uD305\uC0C1\uD0DC. / \uC785\uB825\uAC12 : ").concat(v));else throwError("".concat(target.constructor.name, " - v : object\uB9CC \uD5C8\uC6A9\uD568. / \uC785\uB825\uAC12 : ").concat(v));
+              if (v === null || v === undefined) throwError("".concat(target.constructor.name, " - v : nullish\uB97C \uD5C8\uC6A9\uD558\uC9C0 \uC54A\uB294 \uC138\uD305\uC0C1\uD0DC. / \uC785\uB825\uAC12 : ").concat(v));else throwError("".concat(target.constructor.name, " - v : \uC21C\uC218 object\uB9CC \uD5C8\uC6A9\uD568. / \uC785\uB825\uAC12 : ").concat(v));
             }
-          } else {
-            if (!NULLISH_ABLE && v === null) throwError("".concat(target.constructor.name, " - v : object\uB9CC \uD5C8\uC6A9\uD568. / \uC785\uB825\uAC12 : ").concat(v));
           }
 
           this['_' + keyName] = v; // 콜백 옵션실행
@@ -1499,19 +1481,19 @@
 
       if (NULLISH_ABLE) {
         if (option.hasOwnProperty('value')) {
-          if ((option['value'] instanceof Array || _typeof(option['value']) != 'object') && !(option['value'] === null || option['value'] === undefined)) throwError("".concat(target.constructor.name, " - option['value'] : \uC21C\uC218 object or nullish\uB9CC \uD5C8\uC6A9\uD568. / \uC785\uB825\uAC12 : ").concat(option['value']));
+          if (!(option['value'] instanceof Object) && !(option['value'] === null || option['value'] === undefined)) throwError("".concat(target.constructor.name, " - option['value'] : object or nullish\uB9CC \uD5C8\uC6A9\uD568. / \uC785\uB825\uAC12 : ").concat(option['value']));
         } else option['value'] = null;
       } else {
-        if (option['value'] instanceof Array || _typeof(option['value']) != 'object') throwError("".concat(target.constructor.name, " - option['value'] : object\uB9CC \uD5C8\uC6A9\uD568. / \uC785\uB825\uAC12 : ").concat(option['value']));
+        if (!(option['value'] instanceof Object)) throwError("".concat(target.constructor.name, " - option['value'] : object\uB9CC \uD5C8\uC6A9\uD568. / \uC785\uB825\uAC12 : ").concat(option['value']));
       } // 타입형 체크
 
 
-      if (_typeof(option['value']) != 'object') {
+      if (!(option['value'] instanceof Object)) {
         if (NULLISH_ABLE && (option['value'] === null || option['value'] === undefined)) ; else {
           if (option['value'] == null || option['value'] === undefined) {
             throwError("".concat(target.constructor.name, " - option['value'] : nullish\uB97C \uD5C8\uC6A9\uD558\uC9C0 \uC54A\uB294 \uC138\uD305\uC0C1\uD0DC. / \uC785\uB825\uAC12 : ").concat(option['value']));
           } else {
-            throwError("".concat(target.constructor.name, " - option['value'] : \uC21C\uC218 object\uB9CC \uD5C8\uC6A9\uD568. / \uC785\uB825\uAC12 : ").concat(option['value']));
+            throwError("".concat(target.constructor.name, " - option['value'] : object\uB9CC \uD5C8\uC6A9\uD568. / \uC785\uB825\uAC12 : ").concat(option['value']));
           }
         }
       } // 초기값 지정
@@ -1743,7 +1725,7 @@
           break;
 
         case DEFINE_TYPE.OBJECT:
-          if (value instanceof Object && !(value instanceof Array)) ; else {
+          if (value instanceof Object && !(value instanceof Array) && typeof value !== 'function') ; else {
             if (NULLISH_ABLE && VALUE_IS_NULLISH) ; else {
               // 널리쉬 불허용일때 다잡아냄
               throwError("checkType - ".concat(type, " : \uC21C\uC218 OBJECT\uB9CC \uD5C8\uC6A9\uD568. / \uC785\uB825\uAC12 : ").concat(value));

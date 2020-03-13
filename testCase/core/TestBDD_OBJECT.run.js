@@ -8,7 +8,7 @@ Rich.init(
     describe('Test - OBJECT', function () {
         describe('Test - 허용범위 테스트', function () {
             TEST_HELPER.makeTestByList(
-                TEST_HELPER.TYPE_LIST.OBJECT_NULLISH,
+                TEST_HELPER.getTestTypeList(TEST_HELPER.TYPE_LIST.OBJECT_NULLISH, TEST_HELPER.TYPE_LIST.FUNCTION_NULLISH,TEST_HELPER.TYPE_LIST.ARRAY_NULLISH),
                 function () {
                     it('입력값 : $testValue', function () {
                         var target = function Test() {}
@@ -29,7 +29,11 @@ Rich.init(
             TEST_HELPER.makeTestByList(
                 TEST_HELPER.removeItem(
                     TEST_HELPER.TYPE_LIST.ALL,
-                    TEST_HELPER.TYPE_LIST.OBJECT_NULLISH
+                    TEST_HELPER.getTestTypeList(
+                        TEST_HELPER.TYPE_LIST.OBJECT_NULLISH,
+                        TEST_HELPER.TYPE_LIST.FUNCTION_NULLISH,
+                        TEST_HELPER.TYPE_LIST.ARRAY_NULLISH
+                    )
                 ),
                 function () {
                     it('입력값 : $testValue', function () {
@@ -127,10 +131,14 @@ Rich.init(
                 TEST_HELPER.makeTestByList(
                     TEST_HELPER.removeItem(
                         TEST_HELPER.TYPE_LIST.ALL,
-                        TEST_HELPER.TYPE_LIST.OBJECT_NULLISH
+                        TEST_HELPER.getTestTypeList(
+                            TEST_HELPER.TYPE_LIST.OBJECT_NULLISH,
+                            TEST_HELPER.TYPE_LIST.FUNCTION,
+                            TEST_HELPER.TYPE_LIST.ARRAY
+                        )
                     ),
                     function () {
-                        it('{ nullishAble : false, value : $testValue } / 초기값이 boolean or nullish 아닐때 에러가 나는지', function () {
+                        it('{ nullishAble : false, value : $testValue } / 초기값이 object확장 or nullish 아닐때 에러가 나는지', function () {
                             expect(function () {
                                 var target = function Test() {}
                                 Rich.defineProperty(
@@ -181,7 +189,11 @@ Rich.init(
             describe('Test - option.nullishAble = true 일때 테스트', function () {
                 describe('Test - option.nullishAble = true 일때 초기값이 세팅대로 되나 체크', function () {
                     TEST_HELPER.makeTestByList(
-                        TEST_HELPER.TYPE_LIST.OBJECT_NULLISH,
+                        TEST_HELPER.getTestTypeList(
+                            TEST_HELPER.TYPE_LIST.OBJECT_NULLISH,
+                            TEST_HELPER.TYPE_LIST.FUNCTION,
+                            TEST_HELPER.TYPE_LIST.ARRAY
+                        ),
                         function () {
                             it('{ nullishAble : true, value : $testValue }', function () {
                                 var target = function Test() {}
@@ -204,7 +216,11 @@ Rich.init(
                 });
                 describe('Test - option.nullishAble = true 일때 실제 set을 null로 지정했을때 null이 허용되나 체크', function () {
                     TEST_HELPER.makeTestByList(
-                        TEST_HELPER.TYPE_LIST.OBJECT_NULLISH,
+                        TEST_HELPER.getTestTypeList(
+                            TEST_HELPER.TYPE_LIST.OBJECT_NULLISH,
+                            TEST_HELPER.TYPE_LIST.FUNCTION,
+                            TEST_HELPER.TYPE_LIST.ARRAY
+                        ),
                         function () {
                             it('{ nullishAble : true, value : $testValue } / 입력값 : null', function () {
                                 var target = function Test() {}
@@ -231,7 +247,11 @@ Rich.init(
             describe('Test - option.nullishAble = false 일때 테스트', function () {
                 describe('Test - option.nullishAble = false 일때 초기값이 세팅대로 되나 체크', function () {
                     TEST_HELPER.makeTestByList(
-                        TEST_HELPER.TYPE_LIST.OBJECT,
+                        TEST_HELPER.getTestTypeList(
+                            TEST_HELPER.TYPE_LIST.OBJECT,
+                            TEST_HELPER.TYPE_LIST.FUNCTION,
+                            TEST_HELPER.TYPE_LIST.ARRAY
+                        ),
                         function () {
                             it('{ nullishAble : false, value : $testValue }', function () {
                                 var target = function Test() {}
@@ -254,10 +274,14 @@ Rich.init(
                 });
                 describe('Test - option.nullishAble = false 일때 실제 set을 null로 지정했을때 에러가 나나 테스트', function () {
                     TEST_HELPER.makeTestByList(
-                        TEST_HELPER.TYPE_LIST.OBJECT,
+                        TEST_HELPER.getTestTypeList(
+                            TEST_HELPER.TYPE_LIST.OBJECT,
+                            TEST_HELPER.TYPE_LIST.FUNCTION,
+                            TEST_HELPER.TYPE_LIST.ARRAY
+                        ),
                         function () {
                             it('{ nullishAble : false, value : $testValue } / 입력값 : null', function () {
-                                expect(function(){
+                                expect(function () {
                                     var target = function Test() {}
                                     var realTestValue = $testValue
                                     Rich.defineProperty(

@@ -146,9 +146,9 @@
                         TEST_HELPER.makeTestByList(
                             TEST_HELPER.TYPE_LIST[$testType + '_NULLISH'],
                             function () {
-                                it('Rich.checkType( $testValue, ' + $testType + ', { max : '+($testValue+1)+' } )', function () {
+                                it('Rich.checkType( $testValue, ' + $testType + ', { max : ' + ($testValue + 1) + ' } )', function () {
                                     expect(function () {
-                                        Rich.checkType($testValue, $testType, {max: ($testValue+1)})
+                                        Rich.checkType($testValue, $testType, {max: ($testValue + 1)})
                                     }).to.not.throw();
                                 });
                             }
@@ -182,10 +182,10 @@
                     });
                     describe('체크값이 max 값 범위가 아닐 경우', function () {
                         it(
-                            'Rich.checkType( ' + ($maxValue - 1) + ', ' + $testType + ', { max : '+($maxValue-2)+' } ) / 실패해야함',
+                            'Rich.checkType( ' + ($maxValue - 1) + ', ' + $testType + ', { max : ' + ($maxValue - 2) + ' } ) / 실패해야함',
                             function () {
                                 expect(function () {
-                                    Rich.checkType(($maxValue - 1), $testType, {max: $maxValue-2})
+                                    Rich.checkType(($maxValue - 1), $testType, {max: $maxValue - 2})
                                 }).to.throw();
                             }
                         );
@@ -193,7 +193,7 @@
                             'Rich.checkType( ' + ($maxValue + 1) + ', ' + $testType + ', { max : $maxValue } ) / 실패해야함',
                             function () {
                                 expect(function () {
-                                    Rich.checkType( ($maxValue + 1), $testType, {max: $maxValue})
+                                    Rich.checkType(($maxValue + 1), $testType, {max: $maxValue})
                                 }).to.throw();
                             }
                         );
@@ -209,6 +209,94 @@
         testSource = testSource.replace(/\$maxValue/g, $maxValue)
 
         eval(testSource)
+    }
+    var make_STRING_BOOLEAN_FUNCTION_ARRAY_OBJECT = function ($testType) {
+        var testSource = function () {
+            describe(
+                'Test - 기본 허용범위 테스트',
+                function () {
+                    TEST_HELPER.makeTestByList(
+                        TEST_HELPER.getTestTypeList(TEST_HELPER.TYPE_LIST[$testType + '_NULLISH']),
+                        function () {
+                            it(
+                                'Rich.checkType( $testValue, $testType )',
+                                function () {
+                                    expect(function () {
+                                        Rich.checkType($testValue, $testType)
+                                    }).to.not.throw();
+                                }
+                            );
+                        }
+                    )
+                }
+            );
+            describe(
+                'Test - 기본 허용범위외 테스트',
+                function () {
+                    var testList = TEST_HELPER.getTestTypeList(TEST_HELPER.TYPE_LIST.ALL)
+                    testList = TEST_HELPER.removeItem(testList, TEST_HELPER.TYPE_LIST[$testType + '_NULLISH']);
+                    TEST_HELPER.makeTestByList(
+                        testList,
+                        function () {
+                            it(
+                                'Rich.checkType( $testValue, $testType )',
+                                function () {
+                                    expect(function () {
+                                        Rich.checkType($testValue, $testType)
+                                    }).to.throw();
+                                }
+                            );
+                        }
+                    );
+
+                }
+            );
+            describe(
+                'Test - 기본 허용범위 테스트 ( nullishAble = false 일 경우 )',
+                function () {
+                    TEST_HELPER.makeTestByList(
+                        TEST_HELPER.getTestTypeList(TEST_HELPER.TYPE_LIST[$testType]),
+                        function () {
+                            it(
+                                'option = { nullishAble : false } / Rich.checkType( $testValue, $testType )',
+                                function () {
+                                    expect(function () {
+                                        Rich.checkType($testValue, $testType, {nullishAble: false})
+                                    }).to.not.throw();
+                                }
+                            );
+                        }
+                    );
+                }
+            );
+            describe(
+                'Test - 기본 허용범위외 테스트 ( nullishAble = false 일 경우 )',
+                function () {
+                    var testList = TEST_HELPER.getTestTypeList(TEST_HELPER.TYPE_LIST.ALL)
+                    testList = TEST_HELPER.removeItem(testList, TEST_HELPER.TYPE_LIST[$testType]);
+                    TEST_HELPER.makeTestByList(
+                        testList,
+                        function () {
+                            it(
+                                'option = { nullishAble : false } / Rich.checkType( $testValue, $testType )',
+                                function () {
+                                    expect(function () {
+                                        Rich.checkType($testValue, $testType, {nullishAble: false})
+                                    }).to.throw();
+                                }
+                            );
+                        }
+                    );
+                }
+            );
+        }.toString();
+        testSource = testSource.trim()
+        testSource = testSource.replace(/function(\s?)+\((\s?)+\)(\s?)+{/, '')
+        testSource = testSource.replace(/}$/, '')
+        testSource = testSource.replace(/\$testType/g, 'Rich.DEFINE_TYPE.' + $testType)
+
+        eval(testSource)
+
     }
 </script>
 </body>
