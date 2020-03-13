@@ -5,15 +5,6 @@ mocha.setup({
     ui : 'bdd',
     timeout : 10000
 });
-
-/**
- * Display error `msg`.
- *
- * @param {string} msg
- */
-function error(msg) {
-    document.body.appendChild(fragment('<div id="mocha-error">%s</div>', msg));
-};
 (function () {
 // <div id="mocha">
 //     <h1>Rich.getJS & Rich.getCSS TestCase</h1>

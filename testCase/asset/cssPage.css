@@ -33,12 +33,13 @@ input, select, option, button, textarea {
 
 #mocha code .string {
     color: #ff8d00;
-    font-size: 16px;
+}
+#mocha code .keyword {
+    color: #82cbff;
 }
 
 #mocha code .number {
     color: #ff8d00;
-    font-size: 16px;
 }
 
 #mocha-stats em {

@@ -1656,7 +1656,9 @@
     var checkType = function checkType(value, type, option) {
       option = option || {};
       var hasMin = option.hasOwnProperty('min');
+      if (hasMin && (option['min'] === null || option['min'] === undefined)) hasMin = false;
       var hasMax = option.hasOwnProperty('max');
+      if (hasMax && (option['max'] === null || option['max'] === undefined)) hasMax = false;
       var MIN = hasMin ? option['min'] : null;
       var MAX = hasMax ? option['max'] : null;
       if (!option.hasOwnProperty('nullishAble')) option['nullishAble'] = true;
@@ -1669,32 +1671,32 @@
         case DEFINE_TYPE.UINT:
           if (typeof value == 'number') {
             // 넘버면 NaN 제외 일단 통과
-            if (isNaN(value)) throwError("Number\uB9CC \uD5C8\uC6A9\uD568. / \uC785\uB825\uAC12 : ".concat(value)); // 정수형의 경우 체크 && 음수체크
+            if (isNaN(value)) throwError("checkType - ".concat(type, " : Number\uB9CC \uD5C8\uC6A9\uD568. / \uC785\uB825\uAC12 : ").concat(value)); // 정수형의 경우 체크 && 음수체크
 
-            if (type !== DEFINE_TYPE.NUMBER && value !== parseInt(value)) throwError("value : \uC18C\uC218\uC810 \uD5C8\uC6A9\uC548\uD568. / \uC785\uB825\uAC12 : ".concat(value));
-            if (type === DEFINE_TYPE.UINT && value < 0) throwError("value : \uC74C\uC218 \uD5C8\uC6A9\uC548\uD568. / \uC785\uB825\uAC12 : ".concat(value));
+            if (type !== DEFINE_TYPE.NUMBER && value !== parseInt(value)) throwError("checkType - ".concat(type, " : value : \uC18C\uC218\uC810 \uD5C8\uC6A9\uC548\uD568. / \uC785\uB825\uAC12 : ").concat(value));
+            if (type === DEFINE_TYPE.UINT && value < 0) throwError("checkType - ".concat(type, " : value : \uC74C\uC218 \uD5C8\uC6A9\uC548\uD568. / \uC785\uB825\uAC12 : ").concat(value));
 
             if (hasMin) {
-              if (typeof MIN != 'number' || isNaN(MIN)) throwError("option['min'] : Number\uB9CC \uD5C8\uC6A9\uD568. / \uC785\uB825\uAC12 : ".concat(MIN));
-              if (type !== DEFINE_TYPE.NUMBER && MIN !== parseInt(MIN)) throwError("option['min'] : \uC18C\uC218\uC810 \uD5C8\uC6A9\uC548\uD568. / \uC785\uB825\uAC12 : ".concat(MIN));
-              if (type === DEFINE_TYPE.UINT && MIN < 0) throwError("option['min'] : \uC74C\uC218 \uD5C8\uC6A9\uC548\uD568. / \uC785\uB825\uAC12 : ".concat(MIN));
-              if (value < MIN) throwError("option['min'] : \uCD5C\uC18C\uAC12\uBCF4\uB2E4 \uC785\uB825\uAC12\uC774 \uC791\uC74C / \uC785\uB825\uAC12 : ".concat(value));
+              if (typeof MIN != 'number' || isNaN(MIN)) throwError("checkType - ".concat(type, " : option.min : Number\uB9CC \uD5C8\uC6A9\uD568. / \uC785\uB825\uAC12 : ").concat(MIN));
+              if (type !== DEFINE_TYPE.NUMBER && MIN !== parseInt(MIN)) throwError("checkType - ".concat(type, " : option.min : \uC18C\uC218\uC810 \uD5C8\uC6A9\uC548\uD568. / \uC785\uB825\uAC12 : ").concat(MIN));
+              if (type === DEFINE_TYPE.UINT && MIN < 0) throwError("checkType - ".concat(type, " : option.min : \uC74C\uC218 \uD5C8\uC6A9\uC548\uD568. / \uC785\uB825\uAC12 : ").concat(MIN));
+              if (value < MIN) throwError("checkType - ".concat(type, " : option.min : \uCD5C\uC18C\uAC12\uBCF4\uB2E4 \uC785\uB825\uAC12\uC774 \uC791\uC74C / \uC785\uB825\uAC12 : ").concat(value));
             }
 
             if (hasMax) {
-              if (typeof MAX != 'number' || isNaN(MAX)) throwError("option['max'] : Number\uB9CC \uD5C8\uC6A9\uD568. / \uC785\uB825\uAC12 : ".concat(MAX));
-              if (type !== DEFINE_TYPE.NUMBER && MAX !== parseInt(MAX)) throwError("option['max'] : \uC18C\uC218\uC810 \uD5C8\uC6A9\uC548\uD568. / \uC785\uB825\uAC12 : ".concat(MAX));
-              if (type === DEFINE_TYPE.UINT && MAX < 0) throwError("option['max'] : \uC74C\uC218 \uD5C8\uC6A9\uC548\uD568. / \uC785\uB825\uAC12 : ".concat(MAX));
-              if (value > MAX) throwError("option['max'] : \uCD5C\uB300\uAC12\uBCF4\uB2E4 \uC785\uB825\uAC12\uC774 \uD07C / \uC785\uB825\uAC12 : ".concat(value));
+              if (typeof MAX != 'number' || isNaN(MAX)) throwError("option.max : Number\uB9CC \uD5C8\uC6A9\uD568. / \uC785\uB825\uAC12 : ".concat(MAX));
+              if (type !== DEFINE_TYPE.NUMBER && MAX !== parseInt(MAX)) throwError("option.max : \uC18C\uC218\uC810 \uD5C8\uC6A9\uC548\uD568. / \uC785\uB825\uAC12 : ".concat(MAX));
+              if (type === DEFINE_TYPE.UINT && MAX < 0) throwError("option.max : \uC74C\uC218 \uD5C8\uC6A9\uC548\uD568. / \uC785\uB825\uAC12 : ".concat(MAX));
+              if (value > MAX) throwError("checkType - ".concat(type, " : option.max : \uCD5C\uB300\uAC12\uBCF4\uB2E4 \uC785\uB825\uAC12\uC774 \uD07C / \uC785\uB825\uAC12 : ").concat(value));
             }
 
             if (hasMin && hasMax) {
-              if (MIN > MAX) throwError("option['min'], option['max'] : min값은 max보다 작아야함", '입력값 : ', MIN, MAX);
+              if (MIN > MAX) throwError("checkType - ${type} : option.min, option.max : min값은 max보다 작아야함", '입력값 : ', MIN, MAX);
             }
           } else {
             if (NULLISH_ABLE && VALUE_IS_NULLISH) ; else {
               // 널리쉬 불허용일때 다잡아냄
-              throwError("Number\uB9CC \uD5C8\uC6A9\uD568. / \uC785\uB825\uAC12 : ".concat(value));
+              throwError("checkType - ".concat(type, " : Number\uB9CC \uD5C8\uC6A9\uD568. / \uC785\uB825\uAC12 : ").concat(value));
             }
           }
 
@@ -1704,7 +1706,7 @@
           if (typeof value == 'boolean') ; else {
             if (NULLISH_ABLE && VALUE_IS_NULLISH) ; else {
               // 널리쉬 불허용일때 다잡아냄
-              throwError("boolean\uB9CC \uD5C8\uC6A9\uD568. / \uC785\uB825\uAC12 : ".concat(value));
+              throwError("checkType - ".concat(type, " : boolean\uB9CC \uD5C8\uC6A9\uD568. / \uC785\uB825\uAC12 : ").concat(value));
             }
           }
 
@@ -1714,7 +1716,7 @@
           if (typeof value == 'string') ; else {
             if (NULLISH_ABLE && VALUE_IS_NULLISH) ; else {
               // 널리쉬 불허용일때 다잡아냄
-              throwError("string\uB9CC \uD5C8\uC6A9\uD568. / \uC785\uB825\uAC12 : ".concat(value));
+              throwError("checkType - ".concat(type, " : string\uB9CC \uD5C8\uC6A9\uD568. / \uC785\uB825\uAC12 : ").concat(value));
             }
           }
 
@@ -1724,7 +1726,7 @@
           if (typeof value == 'function') ; else {
             if (NULLISH_ABLE && VALUE_IS_NULLISH) ; else {
               // 널리쉬 불허용일때 다잡아냄
-              throwError("function\uB9CC \uD5C8\uC6A9\uD568. / \uC785\uB825\uAC12 : ".concat(value));
+              throwError("checkType - ".concat(type, " : function\uB9CC \uD5C8\uC6A9\uD568. / \uC785\uB825\uAC12 : ").concat(value));
             }
           }
 
@@ -1734,17 +1736,17 @@
           if (value instanceof Array) ; else {
             if (NULLISH_ABLE && VALUE_IS_NULLISH) ; else {
               // 널리쉬 불허용일때 다잡아냄
-              throwError("ARRAY\uB9CC \uD5C8\uC6A9\uD568. / \uC785\uB825\uAC12 : ".concat(value));
+              throwError("checkType - ".concat(type, " : ARRAY\uB9CC \uD5C8\uC6A9\uD568. / \uC785\uB825\uAC12 : ").concat(value));
             }
           }
 
           break;
 
         case DEFINE_TYPE.OBJECT:
-          if (_typeof(value) === 'object' && !(value instanceof Array)) ; else {
+          if (value instanceof Object && !(value instanceof Array)) ; else {
             if (NULLISH_ABLE && VALUE_IS_NULLISH) ; else {
               // 널리쉬 불허용일때 다잡아냄
-              throwError("\uC21C\uC218 OBJECT\uB9CC \uD5C8\uC6A9\uD568. / \uC785\uB825\uAC12 : ".concat(value));
+              throwError("checkType - ".concat(type, " : \uC21C\uC218 OBJECT\uB9CC \uD5C8\uC6A9\uD568. / \uC785\uB825\uAC12 : ").concat(value));
             }
           }
 

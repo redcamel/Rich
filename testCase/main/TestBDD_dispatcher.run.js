@@ -11,7 +11,7 @@ Rich.init(
             function () {
                 Rich.Css('html').S('height', '100%');
                 Rich.Css('body').S('height', '100%');
-                it('Test - dispatcher : ' + $testValue, function () {
+                it('dispatcher : ' + $testValue, function () {
                     var result = $testValue + '0';
                     Rich.Dom('body').S(
                         $testValue, function (e) {
@@ -35,7 +35,7 @@ Rich.init(
                 'drag', 'dragend', 'dragenter', 'dragleave', 'dragover', 'dragstart', 'drop', 'scroll'
             ],
             function () {
-                it('Test - dispatcher : $testValue', function () {
+                it('dispatcher : $testValue', function () {
                     var result = $testValue + '0';
                     var t0 = Rich.Dom('div').S(
                         $testValue, function (e) {

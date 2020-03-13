@@ -8,8 +8,208 @@
     <script src="../../dist/Rich.min.js"></script>
 </head>
 <body>
-
-
 <script src="TestBDD_checkType.run.js"></script>
+<script>
+    var make_NUMBER_INT_UINT_test = function ($testType, $minValue, $maxValue) {
+        var testSource = function () {
+            describe(
+                'Test - 기본 허용범위 테스트',
+                function () {
+                    TEST_HELPER.makeTestByList(
+                        TEST_HELPER.getTestTypeList(TEST_HELPER.TYPE_LIST[$testType + '_NULLISH']),
+                        function () {
+                            it(
+                                'Rich.checkType( $testValue, ' + $testType + ' )',
+                                function () {
+                                    expect(function () {
+                                        Rich.checkType($testValue, $testType)
+                                    }).to.not.throw();
+                                }
+                            );
+                        }
+                    )
+                }
+            );
+            describe(
+                'Test - 기본 허용범위외 테스트',
+                function () {
+                    var testList = TEST_HELPER.getTestTypeList(TEST_HELPER.TYPE_LIST.ALL);
+                    testList = TEST_HELPER.removeItem(testList, TEST_HELPER.TYPE_LIST[$testType + '_NULLISH']);
+                    TEST_HELPER.makeTestByList(
+                        testList,
+                        function () {
+                            it(
+                                'Rich.checkType( $testValue, ' + $testType + ' )',
+                                function () {
+                                    expect(function () {
+                                        Rich.checkType($testValue, $testType)
+                                    }).to.throw();
+                                }
+                            );
+                        }
+                    )
+                }
+            );
+            describe(
+                'Test - 기본 허용범위 테스트 ( nullishAble = false 일 경우 )',
+                function () {
+                    TEST_HELPER.makeTestByList(
+                        TEST_HELPER.getTestTypeList(TEST_HELPER.TYPE_LIST[$testType]),
+                        function () {
+                            it(
+                                'option = { nullishAble : false } / Rich.checkType( $testValue, ' + $testType + ' )',
+                                function () {
+                                    expect(function () {
+                                        Rich.checkType($testValue, $testType, {nullishAble: false})
+                                    }).to.not.throw();
+                                }
+                            );
+
+                        }
+                    )
+                }
+            );
+            describe(
+                'Test - 기본 허용범위외 테스트  ( nullishAble = false 일 경우 )',
+                function () {
+                    var testList = TEST_HELPER.getTestTypeList(TEST_HELPER.TYPE_LIST.ALL);
+                    testList = TEST_HELPER.removeItem(testList, TEST_HELPER.TYPE_LIST[$testType]);
+                    TEST_HELPER.makeTestByList(
+                        testList,
+                        function () {
+                            it(
+                                'option = { nullishAble : false } / Rich.checkType( $testValue, ' + $testType + ' )',
+                                function () {
+                                    expect(function () {
+                                        Rich.checkType($testValue, $testType, {nullishAble: false})
+                                    }).to.throw();
+                                }
+                            );
+
+                        }
+                    )
+                })
+            describe('Test - option.min ', function () {
+                describe('기본 허용 범위 테스트', function () {
+                    TEST_HELPER.makeTestByList(
+                        TEST_HELPER.TYPE_LIST[$testType + '_NULLISH'],
+                        function () {
+                            it('Rich.checkType( $minValue, ' + $testType + ', { min : $testValue } )', function () {
+                                expect(function () {
+                                    Rich.checkType($minValue, $testType, {min: $testValue})
+                                }).to.not.throw();
+                            });
+                        }
+                    )
+                });
+                describe('기본 허용 범위외 테스트', function () {
+                    TEST_HELPER.makeTestByList(
+                        TEST_HELPER.removeItem(
+                            TEST_HELPER.TYPE_LIST.ALL,
+                            TEST_HELPER.TYPE_LIST[$testType + '_NULLISH']
+                        ),
+                        function () {
+                            it('Rich.checkType( $minValue, ' + $testType + ', { min : $testValue } )', function () {
+                                expect(function () {
+                                    Rich.checkType($minValue, $testType, {min: $testValue})
+                                }).to.throw();
+                            });
+                        }
+                    )
+                });
+
+                describe('체크값이 min 값 범위 내일 경우', function () {
+                    it(
+                        'Rich.checkType( ' + $minValue + ', ' + $testType + ', { min : $minValue } ) / 성공해야함',
+                        function () {
+                            expect(function () {
+                                Rich.checkType($minValue, $testType, {min: $minValue})
+                            }).to.not.throw();
+                        }
+                    );
+                });
+                describe('체크값이 min 값 범위가 아닐 경우', function () {
+                    it(
+                        'Rich.checkType( ' + ($minValue - 1) + ', ' + $testType + ', { min : $minValue } ) / 실패해야함',
+                        function () {
+                            expect(function () {
+                                Rich.checkType(($minValue - 1), $testType, {min: $minValue})
+                            }).to.throw();
+                        }
+                    );
+                });
+            });
+            describe(
+                'Test - option.max ',
+                function () {
+                    describe('기본 허용 범위 테스트', function () {
+                        TEST_HELPER.makeTestByList(
+                            TEST_HELPER.TYPE_LIST[$testType + '_NULLISH'],
+                            function () {
+                                it('Rich.checkType( $testValue, ' + $testType + ', { max : '+($testValue+1)+' } )', function () {
+                                    expect(function () {
+                                        Rich.checkType($testValue, $testType, {max: ($testValue+1)})
+                                    }).to.not.throw();
+                                });
+                            }
+                        )
+                    });
+
+                    describe('기본 허용 범위외 테스트', function () {
+                        TEST_HELPER.makeTestByList(
+                            TEST_HELPER.removeItem(
+                                TEST_HELPER.TYPE_LIST.ALL,
+                                TEST_HELPER.TYPE_LIST[$testType + '_NULLISH']
+                            ),
+                            function () {
+                                it('Rich.checkType( $maxValue, ' + $testType + ', { max : $testValue } )', function () {
+                                    expect(function () {
+                                        Rich.checkType($maxValue, $testType, {max: $testValue})
+                                    }).to.throw();
+                                });
+                            }
+                        )
+                    });
+                    describe('체크값이 max 값 범위 내일 경우', function () {
+                        it(
+                            'Rich.checkType( $maxValue, ' + $testType + ', { max : $maxValue } ) / 성공해야함',
+                            function () {
+                                expect(function () {
+                                    Rich.checkType($maxValue, $testType, {max: $maxValue})
+                                }).to.not.throw();
+                            }
+                        );
+                    });
+                    describe('체크값이 max 값 범위가 아닐 경우', function () {
+                        it(
+                            'Rich.checkType( ' + ($maxValue - 1) + ', ' + $testType + ', { max : '+($maxValue-2)+' } ) / 실패해야함',
+                            function () {
+                                expect(function () {
+                                    Rich.checkType(($maxValue - 1), $testType, {max: $maxValue-2})
+                                }).to.throw();
+                            }
+                        );
+                        it(
+                            'Rich.checkType( ' + ($maxValue + 1) + ', ' + $testType + ', { max : $maxValue } ) / 실패해야함',
+                            function () {
+                                expect(function () {
+                                    Rich.checkType( ($maxValue + 1), $testType, {max: $maxValue})
+                                }).to.throw();
+                            }
+                        );
+                    });
+                }
+            );
+        }.toString()
+        testSource = testSource.trim()
+        testSource = testSource.replace(/function(\s?)+\((\s?)+\)(\s?)+{/, '')
+        testSource = testSource.replace(/}$/, '')
+        testSource = testSource.replace(/\$testType/g, 'Rich.DEFINE_TYPE.' + $testType)
+        testSource = testSource.replace(/\$minValue/g, $minValue)
+        testSource = testSource.replace(/\$maxValue/g, $maxValue)
+
+        eval(testSource)
+    }
+</script>
 </body>
 </html>
