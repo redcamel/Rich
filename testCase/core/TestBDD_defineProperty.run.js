@@ -82,7 +82,7 @@ Rich.init(
                                     Rich.defineProperty(
                                         function () {},
                                         'keyName_$testValue',
-                                        Rich.DEFINE_TYPE[$testValue],
+                                        Rich.DEFINE_TYPE[$testValue]
                                     )
                                 }).to.not.throw();
                             });
