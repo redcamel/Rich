@@ -91,8 +91,8 @@ Rich.init('asset/css.css').then(function () {
                 banner: 'Type'
             },
             {
-                title: 'TODO - Rich.defineProperty : OBJECT',
-                url: '',// 'core/TestBDD_OBJECT.html',
+                title: 'Rich.defineProperty : OBJECT',
+                url: 'core/TestBDD_OBJECT.html',
                 description: 'defineProperty.OBJECT 유형을 테스트함',
                 banner: 'Type'
             },

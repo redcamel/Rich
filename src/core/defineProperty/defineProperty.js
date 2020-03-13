@@ -7,6 +7,7 @@ import defineBoolean from "./defineBoolean";
 import defineCustomType from "./defineCustomType";
 import defineFunction from "./defineFunction";
 import defineArray from "./defineArray";
+import defineObject from "./defineObject";
 
 let defineProperty;
 defineProperty = (target, keyName, type, option, isCustomType = false) => {
@@ -42,6 +43,9 @@ defineProperty = (target, keyName, type, option, isCustomType = false) => {
                 break;
             case DEFINE_TYPE.ARRAY :
                 defineArray(target, keyName, type, option);
+                break;
+            case DEFINE_TYPE.OBJECT :
+                defineObject(target, keyName, type, option);
                 break;
             default :
                 throwError(`${type} : 정의할수 없는 타입`)
