@@ -2,6 +2,7 @@
 //TODO - 여기 정리해야겠다... 아호..
 import throwError from "./throwError";
 import DEFINE_TYPE from "./defineProperty/DEFINE_TYPE";
+import checkType from "./checkType";
 
 let check;
 let checkStruct;
@@ -11,13 +12,14 @@ check = function(checkValue, structInfo){
         switch (DEFINE_TYPE[checkTYPE]) {
             case  DEFINE_TYPE.ARRAY :
                 // 일단 배열인지 검증
-                Rich.checkType(checkValue, checkTYPE, structInfo['option'])
+                
+                checkType(checkValue, checkTYPE, structInfo['option'])
                 if (structInfo['childItem']) {
                     let childItemStruct = structInfo['childItem']
                     let childItemType = childItemStruct['type']
                     checkValue.forEach(function (v) {
                         console.log(v)
-                        Rich.checkType(v, childItemType, childItemStruct['option'])
+                        checkType(v, childItemType, childItemStruct['option'])
                         // 오브젝트일때
                         if (childItemStruct['struct']) checkStruct(v, childItemStruct['struct'])
                         if (childItemStruct['childItem']) {
@@ -29,11 +31,11 @@ check = function(checkValue, structInfo){
                 }
                 break
             case  DEFINE_TYPE.OBJECT :
-                Rich.checkType(checkValue, checkTYPE, structInfo['option'])
+                checkType(checkValue, checkTYPE, structInfo['option'])
                 checkStruct(checkValue, structInfo['struct'])
                 break
             default :
-                Rich.checkType(checkValue, checkTYPE, structInfo['option'])
+                checkType(checkValue, checkTYPE, structInfo['option'])
                 break
         }
 

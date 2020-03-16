@@ -288,7 +288,7 @@
       var rootDom;
       return function (queryString) {
         var useNative = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
-        rootDom = this === Rich$1 ? document : this.dom;
+        rootDom = this instanceof Dom$1 ? this.dom : document;
         rootDom = rootDom.querySelector(queryString) || null;
         return useNative ? rootDom : rootDom && Dom$1(rootDom);
       };
@@ -298,7 +298,7 @@
       var rootDom, len;
       return function (v, useNative) {
         var result;
-        rootDom = this === Rich$1 ? document : this.dom;
+        rootDom = this instanceof Dom$1 ? this.dom : document;
         result = rootDom.querySelectorAll(v);
         result = Array.prototype.slice.apply(result);
         len = result.length;
@@ -1849,14 +1849,14 @@
         switch (DEFINE_TYPE[checkTYPE]) {
           case DEFINE_TYPE.ARRAY:
             // 일단 배열인지 검증
-            Rich.checkType(checkValue, checkTYPE, structInfo['option']);
+            checkType(checkValue, checkTYPE, structInfo['option']);
 
             if (structInfo['childItem']) {
               var childItemStruct = structInfo['childItem'];
               var childItemType = childItemStruct['type'];
               checkValue.forEach(function (v) {
                 console.log(v);
-                Rich.checkType(v, childItemType, childItemStruct['option']); // 오브젝트일때
+                checkType(v, childItemType, childItemStruct['option']); // 오브젝트일때
 
                 if (childItemStruct['struct']) checkStruct(v, childItemStruct['struct']);
 
@@ -1871,12 +1871,12 @@
             break;
 
           case DEFINE_TYPE.OBJECT:
-            Rich.checkType(checkValue, checkTYPE, structInfo['option']);
+            checkType(checkValue, checkTYPE, structInfo['option']);
             checkStruct(checkValue, structInfo['struct']);
             break;
 
           default:
-            Rich.checkType(checkValue, checkTYPE, structInfo['option']);
+            checkType(checkValue, checkTYPE, structInfo['option']);
             break;
         }
       } else {
@@ -1906,7 +1906,7 @@
       checkStruct(data, structInfo);
     };
 
-    var Rich$1 = function (_) {
+    var Rich = function (_) {
       var tempRich;
       var CLASS_NAME_TABLE = {};
       tempRich = {
@@ -2039,6 +2039,6 @@
       return tempRich;
     }();
 
-    return Rich$1;
+    return Rich;
 
 })));
