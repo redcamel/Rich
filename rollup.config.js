@@ -13,7 +13,6 @@ const config = [
                 plugins: ["@babel/plugin-proposal-class-properties"],
                 exclude: 'node_modules/**' // only transpile our source code
             }),
-            strip({}),
             terser({
                 module: true,
                 mangle: {
@@ -31,11 +30,8 @@ const config = [
                 plugins: ["@babel/plugin-proposal-class-properties"],
                 exclude: 'node_modules/**' // only transpile our source code
             }),
-            strip({}),
             terser({
-                mangle: {
-                    reserved: ['Rich']
-                }
+
                 // module: true,
                 // toplevel:true,
                 // keep_classnames:true,

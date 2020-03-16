@@ -1966,6 +1966,7 @@ var Rich = function (_) {
           }
 
           console.log('초기화시간', time);
+          dispatcher$1(window, 'resize');
 
           if (urls) {
             var jsURLs = [];
@@ -1980,8 +1981,6 @@ var Rich = function (_) {
               return reject(error);
             });
           } else resolve(tempRich);
-
-          dispatcher$1(window, 'resize');
         };
 
         requestAnimationFrame(tick);

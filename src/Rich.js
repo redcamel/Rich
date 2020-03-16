@@ -88,7 +88,7 @@ const Rich = (_ => {
                     }
 
                     console.log('초기화시간', time);
-
+                    dispatcher(window, 'resize')
                     if (urls) {
                         let jsURLs = [];
                         let cssURLs = [];
@@ -106,9 +106,6 @@ const Rich = (_ => {
                         });
                         if (reject) t0.catch(error => reject(error))
                     } else resolve(tempRich);
-                    dispatcher(window, 'resize')
-
-
                 }
                 requestAnimationFrame(tick)
             })
