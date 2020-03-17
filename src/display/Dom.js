@@ -169,7 +169,7 @@ UUID_TABLE = {},
         // 디텍팅과 관련된 녀석들
         // 디덱팅과 관련없는 녀석들은 여기서 허용함
         // mouse event
-        keys = 'over,out,down,up,move,click,dblclick,wheel'.split(','),
+        keys = 'over,out,down,up,move,click,dblclick,rightclick,wheel'.split(','),
         // TODO - safari not surpport 'wheel',
         // keyboard event
         keys.push('keydown', 'keyup', 'keypress'),
