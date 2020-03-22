@@ -23,7 +23,6 @@ import checkTypes from "./core/checkTypes";
 import checkInstanceof from "./core/checkInstanceof";
 import checkSchema from "./core/checkSchema";
 
-
 const Rich = (_ => {
     let tempRich;
     let CLASS_NAME_TABLE = {};

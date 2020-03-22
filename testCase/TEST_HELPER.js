@@ -88,7 +88,7 @@ var TEST_HELPER = function () {
         FUNCTION_NULLISH: [testFunc, null, undefined],
         ARRAY_NULLISH: [testArray, null, undefined],
         //
-        NAN: [NaN],
+        NAN: [NaN]
     };
 
     TEST_HELPER.getTestTypeList = function () {
