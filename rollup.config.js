@@ -6,7 +6,7 @@ const config = [
     {
         input: 'src/Rich.js',
         output: [
-            {file: 'dist/Rich.min.mjs', format: 'es', name: 'Rich'}],
+            {file: 'dist/Rich.min.mjs.js', format: 'es', name: 'Rich'}],
         plugins: [
             resolve(),
             babel({
@@ -41,7 +41,7 @@ const config = [
     },
     {
         input: 'src/Rich.js',
-        output: [{file: 'dist/Rich.mjs', format: 'es'}],
+        output: [{file: 'dist/Rich.mjs.js', format: 'es'}],
         plugins: [
             resolve(),
             babel({
