@@ -25,7 +25,6 @@ import checkSchema from "./core/checkSchema";
 
 const Rich = (_ => {
     let tempRich;
-    let CLASS_NAME_TABLE = {};
 
     tempRich = {
         addMethod: (name, method) => {
@@ -44,14 +43,14 @@ const Rich = (_ => {
             let checkTableAndName;
             checkTableAndName = name => {
                 let t;
-                if (CLASS_NAME_TABLE[name]) throwError(`${name} : 이미 존재하는 클래스 네임`);
+                if (tempRich[name]) throwError(`${name} : 이미 존재하는 클래스 네임`);
                 if ((t = name.charAt(0)) !== t.toUpperCase()) throwError(`${name} : 클래스 네임은 대문자로 시작해야함`);
                 return true
             }
             return (name, cls, isClassYn = true) => {
                 if (cls instanceof Function) {
                     checkTableAndName(name)
-                    CLASS_NAME_TABLE[name] = cls;
+                    tempRich[name] = cls;
                     // if (isClassYn) tempRich[name] = (...arg) => {
                     //     return new cls(...arg)
                     // };

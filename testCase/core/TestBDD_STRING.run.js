@@ -200,11 +200,7 @@ Rich.init(
                     expect(targetInstance.keyName_test).to.equal('변화된 값이 되어라');
                 });
             });
-            describe('Test - option.allowList 테스트', function () {
-                it('TODO - allowList', function () {
 
-                })
-            });
             describe('Test - option.callback 테스트', function () {
                 it('콜백테스트', function () {
                     var result = false

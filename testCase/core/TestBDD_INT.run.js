@@ -344,11 +344,7 @@ Rich.init(
                     expect(targetInstance.keyName_test).to.equal(null);
                 });
             });
-            describe('Test - option.allowList 테스트', function () {
-                it('TODO - allowList', function () {
 
-                })
-            });
             describe('Test - option.callback 테스트', function () {
                 it('콜백테스트', function () {
                     var result = false

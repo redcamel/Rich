@@ -1911,7 +1911,6 @@
 
     var Rich = function (_) {
       var tempRich;
-      var CLASS_NAME_TABLE = {};
       tempRich = {
         addMethod: function addMethod(name, method) {
           if (method instanceof Function) {
@@ -1926,7 +1925,7 @@
 
           checkTableAndName = function checkTableAndName(name) {
             var t;
-            if (CLASS_NAME_TABLE[name]) throwError("".concat(name, " : \uC774\uBBF8 \uC874\uC7AC\uD558\uB294 \uD074\uB798\uC2A4 \uB124\uC784"));
+            if (tempRich[name]) throwError("".concat(name, " : \uC774\uBBF8 \uC874\uC7AC\uD558\uB294 \uD074\uB798\uC2A4 \uB124\uC784"));
             if ((t = name.charAt(0)) !== t.toUpperCase()) throwError("".concat(name, " : \uD074\uB798\uC2A4 \uB124\uC784\uC740 \uB300\uBB38\uC790\uB85C \uC2DC\uC791\uD574\uC57C\uD568"));
             return true;
           };
@@ -1935,7 +1934,7 @@
 
             if (cls instanceof Function) {
               checkTableAndName(name);
-              CLASS_NAME_TABLE[name] = cls; // if (isClassYn) tempRich[name] = (...arg) => {
+              tempRich[name] = cls; // if (isClassYn) tempRich[name] = (...arg) => {
               //     return new cls(...arg)
               // };
               // else tempRich[name] = cls;
